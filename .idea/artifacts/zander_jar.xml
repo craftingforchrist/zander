@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="zander:jar">
+    <output-path>$USER_HOME$/Desktop/shadowolf.ml/plugins</output-path>
+    <root id="archive" name="zander.jar">
+      <element id="module-output" name="zander" />
+    </root>
+  </artifact>
+</component>
