@@ -1,4 +1,7 @@
 package com.shadowolf.zander;
 
-public class zander {
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class zander extends JavaPlugin {
+
 }
