@@ -1,7 +1,5 @@
 # zander
-A Minecraft plugin coded in Java used for my Minecraft Servers.
-This plugin will be the base plugin that I will use on my Minecraft Servers which I host.
-At this point in time I am currently learning Java.
+This project is a Java starter project that I am working on. I am using project zander as a way to develop my skills in Java and to familiarise myself with the Spigot API and library.
 
 ### Links
 [Join my Discord](http://bit.ly/mancavediscord)<br>
