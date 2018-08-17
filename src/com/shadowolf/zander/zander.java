@@ -1,6 +1,5 @@
 package com.shadowolf.zander;
 
-import com.shadowolf.zander.events;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
