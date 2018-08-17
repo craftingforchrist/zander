@@ -1,5 +1,5 @@
 # zander
-A Minecraft plugin coded in Java used for my Minecraft Servers.
+This project is a Java starter project that I am working on.
 
 ### Links
 [Join my Discord](http://bit.ly/mancavediscord)<br>
