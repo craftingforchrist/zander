@@ -5,5 +5,7 @@ main: com.shadowolf.zander.zander
 description: A Minecraft Plugin written in Java
 
 commands:
-  youtube:
-    description: Test Command
+  heal:
+    description: Heal yourself to full health.
+  feed:
+    description: Satisfy your hunger.
