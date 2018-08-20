@@ -15,20 +15,20 @@ public class events implements Listener {
 
         event.setJoinMessage("");
         if(player.isOp()) {
-            event.setJoinMessage(ChatColor.GOLD + "Server Operator " + player.getName() + " has joined the server!");
+            event.setJoinMessage(ChatColor.RED.toString() + ChatColor.BOLD + "[!!!] " + ChatColor.GOLD + "Server Operator " + player.getName() + " has joined the server");
         } else {
-            event.setJoinMessage(ChatColor.YELLOW + player.getName() + " has joined the server!");
+            event.setJoinMessage(ChatColor.YELLOW + player.getName() + " has joined the server");
         }
     }
 
-    public void onJoin(org.bukkit.event.player.PlayerQuitEvent event){
+    public void onQuit(org.bukkit.event.player.PlayerQuitEvent event){
         Player player = event.getPlayer();
 
         event.setQuitMessage("");
         if(player.isOp()) {
-            event.setQuitMessage(ChatColor.GOLD + "Server Operator " + player.getName() + " has left the server!");
+            event.setQuitMessage(ChatColor.GOLD + "Server Operator " + player.getName() + " has left the server");
         } else {
-            event.setQuitMessage(ChatColor.YELLOW + player.getName() + " has left the server!");
+            event.setQuitMessage(ChatColor.YELLOW + player.getName() + " has left the server");
         }
     }
 }

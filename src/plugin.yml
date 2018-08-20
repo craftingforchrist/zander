@@ -6,6 +6,10 @@ description: A Minecraft Plugin written in Java
 
 commands:
   heal:
-    description: Heal yourself to full health.
+    description: Heal a user back to full health.
   feed:
-    description: Satisfy your hunger.
+    description: Satisfy a users hunger.
+  starve:
+    description: Deprive a user of their hunger.
+  kick:
+    description: Kicks a player from the server.

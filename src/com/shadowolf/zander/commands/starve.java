@@ -7,26 +7,26 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class healCommand implements CommandExecutor {
+public class starve implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player player  = (Player) sender;
 
         if (args.length == 0) {
-            player.setHealth(20);
-            player.sendMessage(ChatColor.GREEN + "You have been healed.");
+            player.setFoodLevel(0);
+            player.sendMessage(ChatColor.GREEN + "You have been" + ChatColor.RED + ChatColor.BOLD + " STARVED.");
             return true;
         }
 
         Player target = Bukkit.getServer().getPlayer(args[0]);
         if (target == null) {
-            player.sendMessage(ChatColor.RED + "Could not locate that player.");
+            player.sendMessage(ChatColor.RED + "That player could not be located.");
             return true;
         }
 
-        target.setHealth(20);
-        target.sendMessage(ChatColor.GREEN + "You have been healed");
-        player.sendMessage(ChatColor.GREEN + target.getName() + " has been successfully healed.");
+        target.setFoodLevel(0);
+        target.sendMessage(ChatColor.GREEN + "You have been fed.");
+        player.sendMessage(ChatColor.GREEN + target.getName() + " has been successfully" + ChatColor.RED + ChatColor.BOLD + " STARVED.");
         return false;
     }
 }
