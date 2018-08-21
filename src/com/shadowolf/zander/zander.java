@@ -16,7 +16,6 @@ public class zander extends JavaPlugin {
         this.getCommand("heal").setExecutor((CommandExecutor)new heal());
         this.getCommand("feed").setExecutor((CommandExecutor)new feed());
         this.getCommand("starve").setExecutor((CommandExecutor)new starve());
-        this.getCommand("kick").setExecutor((CommandExecutor)new kick());
         this.getCommand("adventure").setExecutor((CommandExecutor)new adventure());
         this.getCommand("creative").setExecutor((CommandExecutor)new creative());
         this.getCommand("survival").setExecutor((CommandExecutor)new survival());
