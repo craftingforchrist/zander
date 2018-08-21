@@ -5,34 +5,52 @@ author: shadowolfyt
 softdepend: [ActionBarAPI]
 
 commands:
-  heal:
-    description: Heal a user back to full health.
-    usage: /heal [target]
-  feed:
-    description: Satisfy a users hunger.
-    usage: /feed [target]
-  starve:
-    description: Deprives users of their hunger.
-    usage: /starve [target]
-  kick:
-    description: Kicks a player from the server.
-    usage: /kick [target]
-  gma:
-    description: Changes players gamemode to adventure.
-    usage: /gma [target]
-    aliases: [adventure]
-  gmc:
-    description: Changes players gamemode to creative.
-    usage: /gms [target]
-    aliases: [creative]
-  gms:
-    description: Changes players gamemode to survival.
-    usage: /gms [target]
-    aliases: [survival]
-  gmsp:
-    description: Changes players gamemode to spectator.
-    usage: /gmsp [target]
-    aliases: [spectator]
-  fly:
-    description: Allows players to fly.
-    usage: /fly [target]
+    heal:
+      description: Heal a user back to full health.
+      usage: /heal [target]
+    feed:
+      description: Satisfy a users hunger.
+      usage: /feed [target]
+    starve:
+      description: Deprives users of their hunger.
+      usage: /starve [target]
+    kick:
+      description: Kicks a player from the server.
+      usage: /kick [target]
+    gma:
+      description: Changes players gamemode to adventure.
+      usage: /gma [target]
+      aliases: [adventure]
+    gmc:
+      description: Changes players gamemode to creative.
+      usage: /gms [target]
+      aliases: [creative]
+    gms:
+      description: Changes players gamemode to survival.
+      usage: /gms [target]
+      aliases: [survival]
+    gmsp:
+      description: Changes players gamemode to spectator.
+      usage: /gmsp [target]
+      aliases: [spectator]
+    fly:
+      description: Allows players to fly.
+      usage: /fly [target]
+
+permissions:
+    zander.heal:
+      default: op
+    zander.feed:
+      default: op
+    zander.starve:
+      default: op
+    zander.survival:
+      default: op
+    zander.creative:
+      default: op
+    zander.adventure:
+      default: op
+    zander.spectator:
+      default: op
+    zander.fly:
+      default: op
