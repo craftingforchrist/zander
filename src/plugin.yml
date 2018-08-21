@@ -1,15 +1,35 @@
-name: zander
-author: shadowolfyt
-version: 1.0
 main: com.shadowolf.zander.zander
-description: A Minecraft Plugin written in Java
+name: zander
+version: 1.0
+author: shadowolfyt
+softdepend: [ActionBarAPI]
 
 commands:
   heal:
     description: Heal a user back to full health.
+    usage: /heal [target]
   feed:
     description: Satisfy a users hunger.
+    usage: /feed [target]
   starve:
     description: Deprive a user of their hunger.
+    usage: /starve [target]
   kick:
     description: Kicks a player from the server.
+    usage: /kick [target]
+  gma:
+    description: Changes users gamemode to adventure.
+    usage: /gma [target]
+    aliases: [adventure]
+  gmc:
+    description: Changes users gamemode to creative.
+    usage: /gms [target]
+    aliases: [creative]
+  gms:
+    description: Changes users gamemode to survival.
+    usage: /gms [target]
+    aliases: [survival]
+  gmsp:
+    description: Changes users gamemode to spectator.
+    usage: /gmsp [target]
+    aliases: [spectator]

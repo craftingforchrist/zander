@@ -1,10 +1,7 @@
 package com.shadowolf.zander;
 
 import com.shadowolf.zander.Events.events;
-import com.shadowolf.zander.commands.feed;
-import com.shadowolf.zander.commands.heal;
-import com.shadowolf.zander.commands.kick;
-import com.shadowolf.zander.commands.starve;
+import com.shadowolf.zander.commands.*;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,6 +17,10 @@ public class zander extends JavaPlugin {
         this.getCommand("feed").setExecutor((CommandExecutor)new feed());
         this.getCommand("starve").setExecutor((CommandExecutor)new starve());
         this.getCommand("kick").setExecutor((CommandExecutor)new kick());
+        this.getCommand("adventure").setExecutor((CommandExecutor)new adventure());
+        this.getCommand("creative").setExecutor((CommandExecutor)new creative());
+        this.getCommand("survival").setExecutor((CommandExecutor)new survival());
+        this.getCommand("spectator").setExecutor((CommandExecutor)new spectator());
     }
 
     public void onDisable() {
