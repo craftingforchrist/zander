@@ -44,6 +44,7 @@ public class adventure implements CommandExecutor {
             player.sendMessage(ChatColor.GREEN + target.getName() + "'s gamemode has been updated to " + ChatColor.GOLD.toString() + ChatColor.BOLD + player.getGameMode());
             return true;
         } else {
+            player.sendMessage(ChatColor.RED + "You do not have permission to use this command.");
             return true;
         }
     }

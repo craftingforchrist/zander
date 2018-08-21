@@ -36,6 +36,9 @@ commands:
     fly:
       description: Allows players to fly.
       usage: /fly [target]
+    hologram:
+      description: Allows players to fly.
+      usage: /hologram [arguments]
 
 permissions:
     zander.heal:
@@ -53,4 +56,6 @@ permissions:
     zander.spectator:
       default: op
     zander.fly:
+      default: op
+    zander.hologram:
       default: op
