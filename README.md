@@ -4,6 +4,4 @@ This project is a Java starter project that I am working on. I am using project 
 
 ### Links
 [Join my Discord](http://bit.ly/mancavediscord)
-
-### Resources
 Using the [Realistic Enderpearl fail by MissingNoGhost on DeviantArt]() as the plugin logo.
