@@ -21,6 +21,7 @@ public class zander extends JavaPlugin {
         this.getCommand("creative").setExecutor((CommandExecutor)new creative());
         this.getCommand("survival").setExecutor((CommandExecutor)new survival());
         this.getCommand("spectator").setExecutor((CommandExecutor)new spectator());
+        this.getCommand("fly").setExecutor((CommandExecutor)new fly());
     }
 
     public void onDisable() {

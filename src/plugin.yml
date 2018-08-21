@@ -12,24 +12,27 @@ commands:
     description: Satisfy a users hunger.
     usage: /feed [target]
   starve:
-    description: Deprive a user of their hunger.
+    description: Deprives users of their hunger.
     usage: /starve [target]
   kick:
     description: Kicks a player from the server.
     usage: /kick [target]
   gma:
-    description: Changes users gamemode to adventure.
+    description: Changes players gamemode to adventure.
     usage: /gma [target]
     aliases: [adventure]
   gmc:
-    description: Changes users gamemode to creative.
+    description: Changes players gamemode to creative.
     usage: /gms [target]
     aliases: [creative]
   gms:
-    description: Changes users gamemode to survival.
+    description: Changes players gamemode to survival.
     usage: /gms [target]
     aliases: [survival]
   gmsp:
-    description: Changes users gamemode to spectator.
+    description: Changes players gamemode to spectator.
     usage: /gmsp [target]
     aliases: [spectator]
+  fly:
+    description: Allows players to fly.
+    usage: /fly [target]
