@@ -20,3 +20,6 @@ This project is a Java starter project that I am working on. I am using project 
 ### Links
 [Join my Discord](http://bit.ly/mancavediscord)<br>
 Using the [Realistic Enderpearl fail by MissingNoGhost on DeviantArt](https://www.deviantart.com/missingnoghost/art/Realistic-Enderpearl-fail-412476635) as the plugin logo.
+
+### Used IntelliJ Plugins
+[Discord Rich Presence Integration](https://plugins.jetbrains.com/plugin/10217-discord-integration)
