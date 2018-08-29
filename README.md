@@ -15,7 +15,6 @@ This project is a Java starter project that I am working on. I am using project 
 | adventure | Change a players gamemode to Adventure | `zander.adventure` |
 | spectator | Change a players gamemode to Spectator | `zander.spectator` |
 | fly       | Toggle a players fly                   | `zander.fly`       |
-| hologram  | Creates a hologram                     | `zander.hologram`  |
 
 ### Links
 [Join my Discord](http://bit.ly/mancavediscord)<br>
