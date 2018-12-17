@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="spigot-latest">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../IntelliJIDEA Projects/Dependencies/spigot-latest.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../IntelliJIDEA Projects/Dependencies/spigot-latest.jar!/" />
+    </SOURCES>
+  </library>
+</component>

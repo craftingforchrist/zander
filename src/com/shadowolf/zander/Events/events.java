@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-public class events implements Listener {
+public class playeronjoin implements Listener {
     zander plugin = zander.getPlugin(zander.class);
 
     @EventHandler
@@ -18,17 +18,6 @@ public class events implements Listener {
             event.setJoinMessage(ChatColor.RED.toString() + ChatColor.BOLD + "[!!!] " + ChatColor.GOLD + "Server Operator " + player.getName() + " has joined the server");
         } else {
             event.setJoinMessage(ChatColor.YELLOW + player.getName() + " has joined the server");
-        }
-    }
-
-    public void onQuit(org.bukkit.event.player.PlayerQuitEvent event){
-        Player player = event.getPlayer();
-
-        event.setQuitMessage("");
-        if(player.isOp()) {
-            event.setQuitMessage(ChatColor.GOLD + "Server Operator " + player.getName() + " has left the server");
-        } else {
-            event.setQuitMessage(ChatColor.YELLOW + player.getName() + " has left the server");
         }
     }
 }
