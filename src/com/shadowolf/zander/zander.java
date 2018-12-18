@@ -9,12 +9,17 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class zander extends JavaPlugin implements Listener {
+    @Override
     public void onEnable() {
-        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "\n\nZander has been enabled.\n");
-        getServer().getPluginManager().registerEvents(new playeronjoin(), this);
-        getServer().getPluginManager().registerEvents(new playeronquit(), this);
         getConfig().options().copyDefaults(true);
         saveConfig();
+
+
+        // Events Registry
+        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "\n\nZander has been enabled.\n");
+        getServer().getPluginManager().registerEvents(new playeronjoin(this), this);
+        getServer().getPluginManager().registerEvents(new playeronquit(this), this);
+
 
         // Command Registry
         this.getCommand("heal").setExecutor((CommandExecutor)new heal());
@@ -27,7 +32,9 @@ public class zander extends JavaPlugin implements Listener {
         this.getCommand("fly").setExecutor((CommandExecutor)new fly());
     }
 
+    @Override
     public void onDisable() {
         getServer().getConsoleSender().sendMessage(ChatColor.RED + "\n\nZander has been disabled.\n");
+        saveConfig();
     }
 }

@@ -7,7 +7,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 public class playeronjoin implements Listener {
-    zander plugin = zander.getPlugin(zander.class);
+
+    zander plugin;
+
+    public playeronjoin(zander instance){
+        plugin = instance;
+
+    }
 
     @EventHandler
     public void onJoin(org.bukkit.event.player.PlayerJoinEvent event){
@@ -19,5 +25,14 @@ public class playeronjoin implements Listener {
         } else {
             event.setJoinMessage(ChatColor.YELLOW + player.getName() + " has joined the server");
         }
+
+        String playername = player.getName();
+        if (!player.hasPlayedBefore()){
+            plugin.getConfig().set(playername + ".joins", 0);
+        }
+
+        int joined = plugin.getConfig().getInt(playername + ".joins");
+        plugin.getConfig().set(playername + ".joins", joined + 1);
+        plugin.saveConfig();
     }
 }

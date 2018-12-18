@@ -7,7 +7,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 public class playeronquit implements Listener {
-    zander plugin = zander.getPlugin(zander.class);
+
+    zander plugin;
+
+    public playeronquit(zander instance){
+        plugin = instance;
+
+    }
 
     @EventHandler
     public void onQuit(org.bukkit.event.player.PlayerQuitEvent event){
@@ -19,5 +25,14 @@ public class playeronquit implements Listener {
         } else {
             event.setQuitMessage(ChatColor.YELLOW + player.getName() + " has left the server");
         }
+
+        String playername = player.getName();
+        if (!player.hasPlayedBefore()){
+            plugin.getConfig().set(playername + ".leaves", 0);
+        }
+
+        int leaves = plugin.getConfig().getInt(playername + ".leaves");
+        plugin.getConfig().set(playername + ".leaves", leaves + 1);
+        plugin.saveConfig();
     }
 }

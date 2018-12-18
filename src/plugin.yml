@@ -17,19 +17,19 @@ commands:
     gma:
       description: Changes players gamemode to adventure.
       usage: /gma [target]
-      aliases: [adventure]
+      aliases: [adventure, a]
     gmc:
       description: Changes players gamemode to creative.
       usage: /gms [target]
-      aliases: [creative]
+      aliases: [creative, c]
     gms:
       description: Changes players gamemode to survival.
       usage: /gms [target]
-      aliases: [survival]
+      aliases: [survival, s]
     gmsp:
       description: Changes players gamemode to spectator.
       usage: /gmsp [target]
-      aliases: [spectator]
+      aliases: [spectator, sp]
     fly:
       description: Allows players to fly.
       usage: /fly [target]
