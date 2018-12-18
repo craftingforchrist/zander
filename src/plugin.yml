@@ -1,8 +1,8 @@
 main: com.shadowolf.zander.zander
 name: zander
-version: 1.0
+version: 2.0
 author: shadowolfyt
-softdepend: [ActionBarAPI]
+softdepend: [ActionBarAPI, TitleAPI]
 
 commands:
     heal:
@@ -33,6 +33,9 @@ commands:
     fly:
       description: Allows players to fly.
       usage: /fly [target]
+    profile:
+      description: Display your profile stats.
+      usage: /profile
 
 permissions:
     zander.heal:

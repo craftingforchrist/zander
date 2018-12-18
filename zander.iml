@@ -28,5 +28,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="spigot-latest" level="project" />
+    <orderEntry type="library" name="TitleAPI-1.7.7" level="project" />
   </component>
 </module>
