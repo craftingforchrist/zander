@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="JDA-latest">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../IntelliJIDEA Projects/Dependencies/JDA-latest.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

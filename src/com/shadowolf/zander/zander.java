@@ -20,6 +20,7 @@ public class zander extends JavaPlugin implements Listener {
         // Events Registry
         getServer().getPluginManager().registerEvents(new playeronjoin(this), this);
         getServer().getPluginManager().registerEvents(new playeronquit(this), this);
+        new DiscordIntegration(this);
 
         // Command Registry
         this.getCommand("heal").setExecutor((CommandExecutor)new heal());
