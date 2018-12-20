@@ -29,6 +29,6 @@
     </orderEntry>
     <orderEntry type="library" name="spigot-latest" level="project" />
     <orderEntry type="library" name="TitleAPI-1.7.7" level="project" />
-    <orderEntry type="library" name="JDA-latest" level="project" />
+    <orderEntry type="library" name="jaad-0.8.6-sources" level="project" />
   </component>
 </module>

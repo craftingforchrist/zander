@@ -3,6 +3,7 @@ package com.shadowolf.zander.Events;
 import com.connorlinfoot.titleapi.TitleAPI;
 import com.shadowolf.zander.zander;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.entity.Firework;
@@ -42,6 +43,7 @@ public class playeronjoin implements Listener {
             fireworkmeta.setPower(3);
             firework.setFireworkMeta(fireworkmeta);
             event.setJoinMessage(ChatColor.LIGHT_PURPLE + player.getDisplayName() + ChatColor.YELLOW + " has joined for the first time!");
+            Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + player.getDisplayName() + ChatColor.YELLOW + " has joined for the first time!");
         } else {
             // Join Chat Message.
             if(player.isOp()) {

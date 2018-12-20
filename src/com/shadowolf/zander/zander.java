@@ -3,6 +3,7 @@ package com.shadowolf.zander;
 import com.shadowolf.zander.Events.playeronjoin;
 import com.shadowolf.zander.Events.playeronquit;
 import com.shadowolf.zander.commands.*;
+import com.shadowolf.zander.events.EnderDragonDeath;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
@@ -20,7 +21,7 @@ public class zander extends JavaPlugin implements Listener {
         // Events Registry
         getServer().getPluginManager().registerEvents(new playeronjoin(this), this);
         getServer().getPluginManager().registerEvents(new playeronquit(this), this);
-        new DiscordIntegration(this);
+        getServer().getPluginManager().registerEvents(new EnderDragonDeath(this), this);
 
         // Command Registry
         this.getCommand("heal").setExecutor((CommandExecutor)new heal());

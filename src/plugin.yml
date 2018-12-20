@@ -2,7 +2,11 @@ main: com.shadowolf.zander.zander
 name: zander
 version: 2.0
 author: shadowolfyt
-softdepend: [ActionBarAPI, TitleAPI]
+softdepend:
+  - ActionBarAPI
+  - TitleAPI
+depend:
+  - jda
 
 commands:
     heal:
