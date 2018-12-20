@@ -20,12 +20,15 @@ This project is a Java starter project that I am working on. I am using project 
 - Using the TitleAPI there is a nice little login message for when the user joins the server, the message also appears in the chat as well.
 - When a new user joins the server for the first time, a firework will be set off and will properly welcome the user to the server with a title screen using the TitleAPI and a little message in the chat also.
 
+## Contibuting
+If you would like to contribute to this project, you can open a [Pull Request](https://github.com/shadowolfyt/zander/pulls). In your pull request add a short description of that you're adding or fixing.  
+
 ## Dependencies
 - [TitleAPI by ConnorLinfoot](https://www.spigotmc.org/resources/titleapi-1-8-1-13.1325/)
 
-### Links
+## Support
+If you'd like to join the conversation or need support (I can help to the best of my ability) join my Discord [here.](http://bit.ly/mancavediscord)
+
+## Links
 [Join my Discord](http://bit.ly/mancavediscord)<br>
 Using the [Realistic Enderpearl fail by MissingNoGhost on DeviantArt](https://www.deviantart.com/missingnoghost/art/Realistic-Enderpearl-fail-412476635) as the plugin logo.
-
-### Used IntelliJ Plugins
-[Discord Rich Presence Integration](https://plugins.jetbrains.com/plugin/10217-discord-integration)
