@@ -5,8 +5,6 @@ author: shadowolfyt
 softdepend:
   - ActionBarAPI
   - TitleAPI
-depend:
-  - jda
 
 commands:
     heal:

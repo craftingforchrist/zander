@@ -1,7 +1,6 @@
 package com.shadowolf.zander.events;
 
 import com.connorlinfoot.titleapi.TitleAPI;
-import com.shadowolf.zander.zander;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;

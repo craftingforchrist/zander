@@ -10,18 +10,16 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class zander extends JavaPlugin implements Listener {
-    private ConfigurationManager cfgmanager;
 
     @Override
     public void onEnable() {
         loadConfig();
-        loadConfigManager();
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "\n\nZander has been enabled.\n");
 
         // Events Registry
+        //getServer().getPluginManager().registerEvents(new EnderDragonDeath(), this);
         getServer().getPluginManager().registerEvents(new playeronjoin(this), this);
         getServer().getPluginManager().registerEvents(new playeronquit(this), this);
-        getServer().getPluginManager().registerEvents(new EnderDragonDeath(this), this);
 
         // Command Registry
         this.getCommand("heal").setExecutor((CommandExecutor)new heal());
@@ -33,13 +31,6 @@ public class zander extends JavaPlugin implements Listener {
         this.getCommand("spectator").setExecutor((CommandExecutor)new spectator());
         this.getCommand("fly").setExecutor((CommandExecutor)new fly());
         this.getCommand("profile").setExecutor((CommandExecutor)new profile());
-    }
-
-    public void loadConfigManager() {
-        cfgmanager = new ConfigurationManager();
-        cfgmanager.setup();
-        cfgmanager.savePlayers();
-        cfgmanager.reloadPlayers();
     }
 
     public void loadConfig() {
