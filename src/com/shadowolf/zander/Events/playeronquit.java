@@ -26,11 +26,11 @@ public class playeronquit implements Listener {
         }
 
         if (!player.hasPlayedBefore()){
-            plugin.getConfig().set("players" +  player.getDisplayName() + ".leaves", 0);
+            plugin.getConfig().set("players" +  "." + player.getDisplayName() + ".leaves", 0);
         }
 
-        int leaves = plugin.getConfig().getInt("players" +  player.getDisplayName() + ".leaves");
-        plugin.getConfig().set("players" +  player.getDisplayName() + ".leaves", leaves + 1);
+        int leaves = plugin.getConfig().getInt("players" + "." + player.getDisplayName() + ".leaves");
+        plugin.getConfig().set("players" + "." + player.getDisplayName() + ".leaves", leaves + 1);
         plugin.saveConfig();
     }
 }

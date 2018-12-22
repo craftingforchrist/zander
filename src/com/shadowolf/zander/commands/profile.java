@@ -24,8 +24,13 @@ public class profile implements CommandExecutor {
         if (args.length == 0) {
             player.sendMessage("\n");
             player.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + player.getDisplayName() + "'s Profile");
-            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Joins: " + ChatColor.RESET + plugin.getConfig().getInt("players" + player.getDisplayName() +  ".joins"));
-            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Leaves: " + ChatColor.RESET + plugin.getConfig().getInt("players" + player.getDisplayName() +  ".leaves"));
+            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Joins: " + ChatColor.RESET + plugin.getConfig().getInt("players" + "." + player.getDisplayName() +  ".joins"));
+            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Leaves: " + ChatColor.RESET + plugin.getConfig().getInt("players" + "." + player.getDisplayName() +  ".leaves"));
+            if (player.hasPermission("zander.displayipaddress")) {
+                player.sendMessage(ChatColor.RED.toString() + ChatColor.ITALIC + "IP Address: " + ChatColor.RESET + plugin.getConfig().getString("players" + "." + player.getDisplayName() + ".ipaddress"));
+                player.sendMessage("\n");
+                player.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD + "[NOTE]: " + ChatColor.RESET + "You can see your IP Address since you are opped or have the permission node.");
+            }
             player.sendMessage("\n");
             return true;
         }
@@ -37,8 +42,13 @@ public class profile implements CommandExecutor {
         } else {
             player.sendMessage("\n");
             player.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + target.getDisplayName() + "'s Profile");
-            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Joins: " + ChatColor.RESET + plugin.getConfig().getInt("players" + target.getDisplayName() +  ".joins"));
-            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Leaves: " + ChatColor.RESET + plugin.getConfig().getInt("players" + target.getDisplayName() +  ".leaves"));
+            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Joins: " + ChatColor.RESET + plugin.getConfig().getInt("players" + "." + target.getDisplayName() +  ".joins"));
+            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Leaves: " + ChatColor.RESET + plugin.getConfig().getInt("players" + "." + target.getDisplayName() +  ".leaves"));
+            if (player.hasPermission("zander.displayipaddress")) {
+                player.sendMessage(ChatColor.RED.toString() + ChatColor.ITALIC + "IP Address: " + ChatColor.RESET + plugin.getConfig().getString("players" + "." + target.getDisplayName() + ".ipaddress"));
+                player.sendMessage("\n");
+                player.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD + "[NOTE]: " + ChatColor.RESET + "You can see this players IP Address since you are opped or have the permission node.");
+            }
             player.sendMessage("\n");
             return true;
         }

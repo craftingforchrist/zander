@@ -3,7 +3,6 @@ package com.shadowolf.zander.Events;
 import com.connorlinfoot.titleapi.TitleAPI;
 import com.shadowolf.zander.zander;
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.entity.Firework;
@@ -54,11 +53,16 @@ public class playeronjoin implements Listener {
 
         // Adding join information to YML file.
         if (!player.hasPlayedBefore()){
-            plugin.getConfig().set("players" + player.getDisplayName() + ".joins", 0);
+            plugin.getConfig().set("players" + "." + player.getDisplayName() + ".joins", 0);
         }
 
-        int joined = plugin.getConfig().getInt("players" + player.getDisplayName() + ".joins");
-        plugin.getConfig().set("players" + player.getDisplayName() + ".joins", joined + 1);
+        int joined = plugin.getConfig().getInt("players" + "." + player.getDisplayName() + ".joins");
+        plugin.getConfig().set("players" + "." + player.getDisplayName() + ".joins", joined + 1);
+        plugin.saveConfig();
+
+        // Create IP Address field in YML.
+        String ip = player.getPlayer().getAddress().toString().replaceAll("/", "");
+        plugin.getConfig().set("players" + "." + player.getDisplayName() + ".ipaddress", ip);
         plugin.saveConfig();
     }
 }

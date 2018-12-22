@@ -56,3 +56,5 @@ permissions:
       default: op
     zander.fly:
       default: op
+    zander.displayipaddress:
+      default: op
