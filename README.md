@@ -20,6 +20,8 @@ This project is a Java starter project that I am working on. I am using project 
 ## Features
 - Using the TitleAPI there is a nice little login message for when the user joins the server, the message also appears in the chat as well.
 - When a new user joins the server for the first time, a firework will be set off and will properly welcome the user to the server with a title screen using the TitleAPI and a little message in the chat also.
+- Using the config.yml file you can customise and create your own server MOTD on the servers ping.
+- A profile command to track Joins, Leaves, Deaths and other information.
 
 ## Contibuting
 If you would like to contribute to this project, you can open a [Pull Request](https://github.com/shadowolfyt/zander/pulls). In your pull request add a short description of that you're adding or fixing.  
