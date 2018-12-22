@@ -12,7 +12,6 @@ public class playeronquit implements Listener {
 
     public playeronquit(zander instance){
         plugin = instance;
-
     }
 
     @EventHandler
@@ -26,13 +25,12 @@ public class playeronquit implements Listener {
             event.setQuitMessage(ChatColor.YELLOW + player.getName() + " has left the server");
         }
 
-        String playername = player.getName();
         if (!player.hasPlayedBefore()){
-            plugin.getConfig().set(playername + ".leaves", 0);
+            plugin.getConfig().set("players" +  player.getDisplayName() + ".leaves", 0);
         }
 
-        int leaves = plugin.getConfig().getInt(playername + ".leaves");
-        plugin.getConfig().set(playername + ".leaves", leaves + 1);
+        int leaves = plugin.getConfig().getInt("players" +  player.getDisplayName() + ".leaves");
+        plugin.getConfig().set("players" +  player.getDisplayName() + ".leaves", leaves + 1);
         plugin.saveConfig();
     }
 }

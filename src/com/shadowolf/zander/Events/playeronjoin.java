@@ -17,9 +17,8 @@ public class playeronjoin implements Listener {
 
     zander plugin;
 
-    public playeronjoin(zander instance){
+    public playeronjoin(zander instance) {
         plugin = instance;
-
     }
 
     @EventHandler
@@ -54,13 +53,12 @@ public class playeronjoin implements Listener {
         player.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD + "[zander] " + ChatColor.RESET + "Welcome to the new update of the SMP. I am zander, a plugin developed by shadowolfyt.\nThis project will only start off small but will get bigger.\n\n To see what I can do, check out my GitHub Repository:" + ChatColor.RED + "https://github.com/shadowolfyt/zander" + ChatColor.RESET);
 
         // Adding join information to YML file.
-        String playername = player.getName();
         if (!player.hasPlayedBefore()){
-            plugin.getConfig().set(playername + ".joins", 0);
+            plugin.getConfig().set("players" + player.getDisplayName() + ".joins", 0);
         }
 
-        int joined = plugin.getConfig().getInt(playername + ".joins");
-        plugin.getConfig().set(playername + ".joins", joined + 1);
+        int joined = plugin.getConfig().getInt("players" + player.getDisplayName() + ".joins");
+        plugin.getConfig().set("players" + player.getDisplayName() + ".joins", joined + 1);
         plugin.saveConfig();
     }
 }

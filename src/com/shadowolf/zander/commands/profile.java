@@ -12,8 +12,9 @@ public class profile implements CommandExecutor {
 
     zander plugin;
 
-    public profile(zander instance){
+    public profile(zander instance) {
         plugin = instance;
+
     }
 
     @Override
@@ -23,8 +24,8 @@ public class profile implements CommandExecutor {
         if (args.length == 0) {
             player.sendMessage("\n");
             player.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + player.getDisplayName() + "'s Profile");
-            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Joins: " + ChatColor.RESET + plugin.getConfig().getInt(player.getDisplayName() +  ".joins"));
-            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Leaves: " + ChatColor.RESET + plugin.getConfig().getInt(player.getDisplayName() +  ".leaves"));
+            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Joins: " + ChatColor.RESET + plugin.getConfig().getInt("players" + player.getDisplayName() +  ".joins"));
+            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Leaves: " + ChatColor.RESET + plugin.getConfig().getInt("players" + player.getDisplayName() +  ".leaves"));
             player.sendMessage("\n");
             return true;
         }
@@ -36,9 +37,8 @@ public class profile implements CommandExecutor {
         } else {
             player.sendMessage("\n");
             player.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + target.getDisplayName() + "'s Profile");
-            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Joins: " + ChatColor.RESET + plugin.getConfig().getInt(target.getDisplayName() +  ".joins"));
-            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Leaves: " + ChatColor.RESET + plugin.getConfig().getInt(target.getDisplayName() +  ".leaves"));
-
+            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Joins: " + ChatColor.RESET + plugin.getConfig().getInt("players" + target.getDisplayName() +  ".joins"));
+            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Leaves: " + ChatColor.RESET + plugin.getConfig().getInt("players" + target.getDisplayName() +  ".leaves"));
             player.sendMessage("\n");
             return true;
         }

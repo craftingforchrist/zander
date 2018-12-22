@@ -1,4 +1,4 @@
-package com.shadowolf.zander.events;
+package com.shadowolf.zander.Events;
 
 import com.connorlinfoot.titleapi.TitleAPI;
 import net.md_5.bungee.api.ChatColor;
