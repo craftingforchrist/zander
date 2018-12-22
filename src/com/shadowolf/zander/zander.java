@@ -6,6 +6,7 @@ import com.shadowolf.zander.commands.*;
 import com.shadowolf.zander.events.EnderDragonDeath;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.CommandExecutor;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,6 +15,7 @@ public class zander extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         loadConfig();
+        configDefaults();
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "\n\nZander has been enabled.\n");
 
         // Events Registry
@@ -30,11 +32,22 @@ public class zander extends JavaPlugin implements Listener {
         this.getCommand("survival").setExecutor((CommandExecutor)new survival());
         this.getCommand("spectator").setExecutor((CommandExecutor)new spectator());
         this.getCommand("fly").setExecutor((CommandExecutor)new fly());
-        this.getCommand("profile").setExecutor((CommandExecutor)new profile());
+        this.getCommand("profile").setExecutor((CommandExecutor)new profile(this));
+
+        if (this.getConfig().getString("bottoken") == "TOKEN") {
+            getServer().getConsoleSender().sendMessage(ChatColor.RED + "Zander has disabled the Discord Integration feature due to an invalid token.");
+        } else {
+            getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "Zander has detected a Discord bot token. Attempting to make connection.");
+        }
     }
 
     public void loadConfig() {
         getConfig().options().copyDefaults(true);
+        saveConfig();
+    }
+
+    public void configDefaults() {
+        this.getConfig().addDefault("bottoken", "TOKEN");
         saveConfig();
     }
 
