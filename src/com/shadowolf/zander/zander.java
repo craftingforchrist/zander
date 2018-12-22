@@ -1,12 +1,12 @@
 package com.shadowolf.zander;
 
+import com.shadowolf.zander.Events.EnderDragonDeath;
+import com.shadowolf.zander.Events.ServerListPing;
 import com.shadowolf.zander.Events.playeronjoin;
 import com.shadowolf.zander.Events.playeronquit;
 import com.shadowolf.zander.commands.*;
-import com.shadowolf.zander.events.EnderDragonDeath;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.CommandExecutor;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -19,9 +19,10 @@ public class zander extends JavaPlugin implements Listener {
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "\n\nZander has been enabled.\n");
 
         // Events Registry
-        //getServer().getPluginManager().registerEvents(new EnderDragonDeath(), this);
+        getServer().getPluginManager().registerEvents(new EnderDragonDeath(), this);
         getServer().getPluginManager().registerEvents(new playeronjoin(this), this);
         getServer().getPluginManager().registerEvents(new playeronquit(this), this);
+        getServer().getPluginManager().registerEvents(new ServerListPing(this), this);
 
         // Command Registry
         this.getCommand("heal").setExecutor((CommandExecutor)new heal());
@@ -34,6 +35,7 @@ public class zander extends JavaPlugin implements Listener {
         this.getCommand("fly").setExecutor((CommandExecutor)new fly());
         this.getCommand("profile").setExecutor((CommandExecutor)new profile(this));
 
+        // Check for Bot token in config files.
         if (this.getConfig().getString("bottoken") == "TOKEN") {
             getServer().getConsoleSender().sendMessage(ChatColor.RED + "Zander has disabled the Discord Integration feature due to an invalid token.");
         } else {
@@ -48,6 +50,8 @@ public class zander extends JavaPlugin implements Listener {
 
     public void configDefaults() {
         this.getConfig().addDefault("bottoken", "TOKEN");
+        this.getConfig().addDefault("motd.line1", "&b&lzander&r enabled server");
+        this.getConfig().addDefault("motd.line2", "&eYou should probably change this in the config.yml");
         saveConfig();
     }
 
