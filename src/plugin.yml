@@ -2,6 +2,7 @@ main: com.shadowolf.zander.zander
 name: zander
 version: 1.1
 author: shadowolfyt
+api-version: 1.13
 softdepend:
   - TitleAPI
 

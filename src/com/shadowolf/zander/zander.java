@@ -27,6 +27,7 @@ public class zander extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new WhitelistGUI(null), this);
         getServer().getPluginManager().registerEvents(new WhitelistListGUI(null), this);
 
+        // December 25th Christmas MOTD Changes
         getServer().getPluginManager().registerEvents(new MerryChristmas(this), this);
 
         // Command Registry

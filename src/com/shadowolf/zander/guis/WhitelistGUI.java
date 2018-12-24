@@ -12,6 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class WhitelistGUI implements Listener {
     Inventory inv = Bukkit.createInventory(null, 9, "Whitelist Manager");
@@ -26,35 +27,21 @@ public class WhitelistGUI implements Listener {
         onMeta.setDisplayName(ChatColor.GREEN + "Enable Whitelist");
         onMeta.setLore(Arrays.asList("Enable the whitelist to limit players."));
         on.setItemMeta(onMeta);
-        inv.setItem(0, on);
+        inv.setItem(2, on);
 
         ItemStack off = new ItemStack(Material.REDSTONE_BLOCK);
         ItemMeta offMeta = on.getItemMeta();
         offMeta.setDisplayName(ChatColor.GREEN + "Disable Whitelist");
         offMeta.setLore(Arrays.asList("Disable the whitelist so that all players can join."));
         off.setItemMeta(offMeta);
-        inv.setItem(0, off);
+        inv.setItem(6, off);
 
         ItemStack list = new ItemStack(Material.PAPER);
         ItemMeta listMeta = on.getItemMeta();
-        listMeta.setDisplayName(ChatColor.GREEN + "Whitelited Players");
+        listMeta.setDisplayName(ChatColor.GREEN + "Whitelisted Players");
         listMeta.setLore(Arrays.asList("List all whitelisted players."));
         list.setItemMeta(listMeta);
-        inv.setItem(0, list);
-
-        ItemStack add = new ItemStack(Material.EMERALD);
-        ItemMeta addMeta = on.getItemMeta();
-        addMeta.setDisplayName(ChatColor.GREEN + "Add Player");
-        addMeta.setLore(Arrays.asList("Add a player to the whitelist."));
-        add.setItemMeta(addMeta);
-        inv.setItem(0, add);
-
-        ItemStack remove = new ItemStack(Material.REDSTONE);
-        ItemMeta removeMeta = on.getItemMeta();
-        removeMeta.setDisplayName(ChatColor.GREEN + "Remove Player");
-        removeMeta.setLore(Arrays.asList("Remove a player to the whitelist."));
-        remove.setItemMeta(removeMeta);
-        inv.setItem(0, remove);
+        inv.setItem(4, list);
 
         player.openInventory(inv);
     }
@@ -90,14 +77,7 @@ public class WhitelistGUI implements Listener {
 
             // List
             case PAPER:
-                break;
-
-            // Add
-            case EMERALD:
-                break;
-
-            // Remove
-            case REDSTONE:
+                new WhitelistListGUI(player);
                 break;
 
             default:
