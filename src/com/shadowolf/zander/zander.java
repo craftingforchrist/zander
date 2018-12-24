@@ -2,6 +2,8 @@ package com.shadowolf.zander;
 
 import com.shadowolf.zander.Events.*;
 import com.shadowolf.zander.commands.*;
+import com.shadowolf.zander.guis.WhitelistGUI;
+import com.shadowolf.zander.guis.WhitelistListGUI;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
@@ -17,10 +19,15 @@ public class zander extends JavaPlugin implements Listener {
 
         // Events Registry
         getServer().getPluginManager().registerEvents(new EnderDragonDeath(), this);
-        getServer().getPluginManager().registerEvents(new playeronjoin(this), this);
+        //getServer().getPluginManager().registerEvents(new playeronjoin(this), this);
         getServer().getPluginManager().registerEvents(new playeronquit(this), this);
-        getServer().getPluginManager().registerEvents(new ServerListPing(this), this);
+        //getServer().getPluginManager().registerEvents(new ServerListPing(this), this);
         getServer().getPluginManager().registerEvents(new PlayerDeathEvent(this), this);
+        getServer().getPluginManager().registerEvents(new WhitelistListener(this), this);
+        getServer().getPluginManager().registerEvents(new WhitelistGUI(null), this);
+        getServer().getPluginManager().registerEvents(new WhitelistListGUI(null), this);
+
+        getServer().getPluginManager().registerEvents(new MerryChristmas(this), this);
 
         // Command Registry
         this.getCommand("heal").setExecutor((CommandExecutor)new heal());
@@ -32,6 +39,7 @@ public class zander extends JavaPlugin implements Listener {
         this.getCommand("spectator").setExecutor((CommandExecutor)new spectator());
         this.getCommand("fly").setExecutor((CommandExecutor)new fly());
         this.getCommand("profile").setExecutor((CommandExecutor)new profile(this));
+        this.getCommand("whitelist").setExecutor((CommandExecutor)new whitelist());
 
         // Check for Bot token in config files.
         if (this.getConfig().getString("bottoken") == "TOKEN") {

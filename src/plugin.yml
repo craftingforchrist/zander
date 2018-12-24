@@ -37,6 +37,11 @@ commands:
     profile:
       description: Display your profile stats.
       usage: /profile
+    whitelist:
+      description: Whitelist command.
+      usage: /whitelist
+      aliases: [wl]
+
 
 permissions:
     zander.heal:
@@ -56,4 +61,6 @@ permissions:
     zander.fly:
       default: op
     zander.displayipaddress:
+      default: op
+    zander.whitelist:
       default: op

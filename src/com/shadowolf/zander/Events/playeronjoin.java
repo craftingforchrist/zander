@@ -12,6 +12,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.meta.FireworkMeta;
 
+import java.util.Date;
+
 public class playeronjoin implements Listener {
 
     zander plugin;
@@ -24,7 +26,7 @@ public class playeronjoin implements Listener {
     public void onJoin(PlayerJoinEvent event){
         Player player = event.getPlayer();
 
-        TitleAPI.sendTitle(player,40,50,40,"Welcome " + ChatColor.AQUA + player.getDisplayName(),ChatColor.GOLD + "Enjoy your stay!");
+        //TitleAPI.sendTitle(player,40,50,40,"Welcome " + ChatColor.AQUA + player.getDisplayName(),ChatColor.GOLD + "Enjoy your stay!");
 
         event.setJoinMessage("");
         // New User Joins for first time.
@@ -49,7 +51,6 @@ public class playeronjoin implements Listener {
                 event.setJoinMessage(ChatColor.YELLOW + player.getName() + " has joined the server");
             }
         }
-        player.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD + "[zander] " + ChatColor.RESET + "Welcome to the new update of the SMP. I am zander, a plugin developed by shadowolfyt.\nThis project will only start off small but will get bigger.\n\n To see what I can do, check out my GitHub Repository:" + ChatColor.RED + "https://github.com/shadowolfyt/zander" + ChatColor.RESET);
 
         // Adding join information to YML file.
         if (!player.hasPlayedBefore()){
