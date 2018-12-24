@@ -22,6 +22,7 @@ This project is a Java starter project that I am working on. I am using project 
 - When a new user joins the server for the first time, a firework will be set off and will properly welcome the user to the server with a title screen using the TitleAPI and a little message in the chat also.
 - Using the config.yml file you can customise and create your own server MOTD on the servers ping.
 - A profile command to track Joins, Leaves, Deaths and other information.
+    - The server will log a players IP address and can only be seen either in the config.yml or can be seen in the players profile command when you have either op or have the `zander.displayipaddress` permission node.
 
 ## Contibuting
 If you would like to contribute to this project, you can open a [Pull Request](https://github.com/shadowolfyt/zander/pulls). In your pull request add a short description of that you're adding or fixing.  
