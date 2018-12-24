@@ -24,7 +24,7 @@ public class MerryChristmas implements Listener {
         Player player = event.getPlayer();
         LocalDate localDate = LocalDate.now();
 
-        if (localDate.getMonthValue() == 12 && localDate.getDayOfMonth() == 24) {
+        if (localDate.getMonthValue() == 12 && localDate.getDayOfMonth() == 25) {
             TitleAPI.sendTitle(player,40,60,50,ChatColor.GREEN + "Merry " + ChatColor.RED + "Christmas!", player.getDisplayName() + " have a very Merry Christmas!");
             player.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD + "[zander] " + ChatColor.RESET + "Merry Christmas " + ChatColor.BLUE + player.getDisplayName() + "!" + ChatColor.RESET + "\n\nHave a wonderful day with all your friends and family.\nRemember the reason for the season.\n\nFor to us a child is born, to us a son is given, and the government will be on his shoulders. And he will be called Wonderful Counselor, Mighty God, Everlasting Father, Prince of Peace. [Isaiah 9:6]");
             player.sendMessage("\n\n");
@@ -41,7 +41,7 @@ public class MerryChristmas implements Listener {
     public void onServerPing(ServerListPingEvent event) {
         LocalDate localDate = LocalDate.now();
 
-        if (localDate.getMonthValue() == 12 && localDate.getDayOfMonth() == 24) {
+        if (localDate.getMonthValue() == 12 && localDate.getDayOfMonth() == 25) {
             plugin.getConfig().set("motd" + "." + "line1", "&b&lzander &b&cM&ae&cr&ar&cy &aC&ch&ar&ci&as&ct&am&ca&as");
             plugin.getConfig().set("motd" + "." + "line2", "&6Remember the reason for the Season.");
             event.setMotd(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("motd.line1") + "\n" + plugin.getConfig().getString("motd.line2")));
