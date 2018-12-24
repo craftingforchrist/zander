@@ -24,7 +24,7 @@ This project is a Java starter project that I am working on. I am using project 
 - A profile command to track Joins, Leaves, Deaths and other information.
     - The server will log a players IP address and can only be seen either in the config.yml or can be seen in the players profile command when you have either op or have the `zander.displayipaddress` permission node.
 
-## Contibuting
+## Contributing
 If you would like to contribute to this project, you can open a [Pull Request](https://github.com/shadowolfyt/zander/pulls). In your pull request add a short description of that you're adding or fixing.  
 
 ## Dependencies
