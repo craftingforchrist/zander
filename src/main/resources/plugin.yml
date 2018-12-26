@@ -1,6 +1,6 @@
 main: com.shadowolfyt.zander.ZanderMain
 name: zander
-version: 1.2
+version: 1.3
 author: shadowolfyt
 api-version: 1.13
 softdepend:
@@ -45,7 +45,6 @@ commands:
   jukebox:
     description: Jukebox Command.
     usage: /jukebox
-
 
 permissions:
   zander.heal:

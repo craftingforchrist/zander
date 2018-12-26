@@ -10,8 +10,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.server.ServerListPingEvent;
 
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 
 public class MerryChristmas implements Listener {
     ZanderMain plugin;

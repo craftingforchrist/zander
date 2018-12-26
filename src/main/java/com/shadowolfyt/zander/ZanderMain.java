@@ -24,8 +24,8 @@ public class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new WhitelistListener(this), this);
         getServer().getPluginManager().registerEvents(new WhitelistGUI(null), this);
         getServer().getPluginManager().registerEvents(new WhitelistListGUI(null), this);
-        //getServer().getPluginManager().registerEvents(new JukeboxGUI(null), this);
-        getServer().getPluginManager().registerEvents(new MerryChristmas(this), this); // December 25th Christmas MOTD Changes
+        getServer().getPluginManager().registerEvents(new JukeboxGUI(this), this);
+        //getServer().getPluginManager().registerEvents(new MerryChristmas(this), this); // December 25th Christmas MOTD Changes
 
         // Command Registry
         this.getCommand("heal").setExecutor((CommandExecutor)new heal());
@@ -38,7 +38,7 @@ public class ZanderMain extends JavaPlugin {
         this.getCommand("fly").setExecutor((CommandExecutor)new fly());
         this.getCommand("profile").setExecutor((CommandExecutor)new profile(this));
         this.getCommand("whitelist").setExecutor((CommandExecutor)new whitelist());
-        //this.getCommand("jukebox").setExecutor((CommandExecutor)new jukebox());
+        this.getCommand("jukebox").setExecutor((CommandExecutor)new jukebox());
 
         // Check for Bot token in config files.
         if (this.getConfig().getString("bottoken") == "TOKEN") {
@@ -54,9 +54,11 @@ public class ZanderMain extends JavaPlugin {
     }
 
     public void configDefaults() {
-        this.getConfig().addDefault("bottoken", "TOKEN");
+        this.getConfig().addDefault("bottoken", "TOKEN"); // Discord Integration Bot Token [Coming Soon]
+        // Default MOTD Message.
         this.getConfig().addDefault("motd.line1", "&b&lzander&r enabled server");
         this.getConfig().addDefault("motd.line2", "&eYou should probably change this in the config.yml");
+        // Starting players database file.
         this.getConfig().addDefault("players", null);
         saveConfig();
     }
