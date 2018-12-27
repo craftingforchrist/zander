@@ -11,6 +11,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class PlayerOnJoin implements Listener {
     ZanderMain plugin;
@@ -24,6 +29,7 @@ public class PlayerOnJoin implements Listener {
         Player player = event.getPlayer();
 
         TitleAPI.sendTitle(player,40,50,40,"Welcome " + ChatColor.AQUA + player.getDisplayName(),ChatColor.GOLD + "Enjoy your stay!");
+        TitleAPI.sendTabTitle(player, plugin.getConfig().getString("tabtitle.header"),plugin.getConfig().getString("tabtitle.footer"));
 
         event.setJoinMessage("");
         // New User Joins for first time.
@@ -52,15 +58,29 @@ public class PlayerOnJoin implements Listener {
         // Adding join information to YML file.
         if (!player.hasPlayedBefore()){
             plugin.getConfig().set("players" + "." + player.getDisplayName() + ".joins", 0);
+            plugin.getConfig().set("players" + "." + player.getDisplayName() + ".leaves", 0);
+            plugin.getConfig().set("players" + "." + player.getDisplayName() + ".deaths", 0);
+            plugin.getConfig().set("players" + "." + player.getDisplayName() + ".lastseen", null);
+            plugin.getConfig().set("players" + "." + player.getDisplayName() + ".uuid", null);
+            plugin.getConfig().set("players" + "." + player.getDisplayName() + ".ipaddress", null);
         }
 
         int joined = plugin.getConfig().getInt("players" + "." + player.getDisplayName() + ".joins");
         plugin.getConfig().set("players" + "." + player.getDisplayName() + ".joins", joined + 1);
         plugin.saveConfig();
 
-        // Create IP Address field in YML.
+        // Create UUID field in config.
+        String playerUUID = player.getPlayer().getUniqueId().toString();
+        plugin.getConfig().set("players" + "." + player.getDisplayName() + ".uuid", playerUUID);
+        plugin.saveConfig();
+
+        // Create IP Address field config.
         String ip = player.getPlayer().getAddress().toString().replaceAll("/", "");
         plugin.getConfig().set("players" + "." + player.getDisplayName() + ".ipaddress", ip);
+        plugin.saveConfig();
+
+        // Changes Last Seen to Currently Online.
+        plugin.getConfig().set("players" + "." + player.getDisplayName() + ".lastseen", ChatColor.GREEN.toString() + ChatColor.BOLD + "Currently Online" + ChatColor.RESET);
         plugin.saveConfig();
     }
 }

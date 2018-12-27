@@ -4,6 +4,7 @@ import com.shadowolfyt.zander.guis.WhitelistGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -23,7 +24,11 @@ public class whitelist implements CommandExecutor {
 
                 target.setWhitelisted(true);
                 Bukkit.getServer().reloadWhitelist();
-                player.sendMessage(ChatColor.GREEN + target.getName() + " has been added to the whitelist.");
+                player.sendMessage(ChatColor.LIGHT_PURPLE + target.getName() + " has been whitelisted on the HermitCraft SMP realm.");
+
+                for(Player pl: Bukkit.getOnlinePlayers()){
+                    pl.playSound(pl.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 100000, 1);
+                }
                 return true;
             }
 

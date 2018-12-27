@@ -5,24 +5,25 @@
 This project is a Java starter project that I am working on. I am using project zander as a way to develop my skills in Java and to familiarise myself with the Spigot API and the library.
 
 ## Commands
-|  Command  |             Description                     |   Permission Node  |
-|-----------|---------------------------------------------|--------------------|
-| heal      | Heal a player to full health.               | `zander.heal`      |
-| feed      | Satisfy a player to full hunger.            | `zander.feed`      |
-| starve    | Take away a players hunger.                 | `zander.starve`    |
-| survival  | Change a players gamemode to Survival.      | `zander.survival`  |
-| creative  | Change a players gamemode to Creative.      | `zander.creative`  |
-| adventure | Change a players gamemode to Adventure.     | `zander.adventure` |
-| spectator | Change a players gamemode to Spectator.     | `zander.spectator` |
-| fly       | Toggle a players fly.                       | `zander.fly`       |
-| profile   | See stats about you or the targeted player. |                    |
+|  Command  |             Description                              |  Permission Node   |
+|-----------|------------------------------------------------------|--------------------|
+| heal      | Heal a player to full health.                        | `zander.heal`      |
+| feed      | Satisfy a player to full hunger.                     | `zander.feed`      |
+| starve    | Take away a players hunger.                          | `zander.starve`    |
+| survival  | Change a players gamemode to Survival.               | `zander.survival`  |
+| creative  | Change a players gamemode to Creative.               | `zander.creative`  |
+| adventure | Change a players gamemode to Adventure.              | `zander.adventure` |
+| spectator | Change a players gamemode to Spectator.              | `zander.spectator` |
+| fly       | Toggle a players fly.                                | `zander.fly`       |
+| profile   | See stats about you or the targeted player.          |                    |
+| profile   | Allows the player to play Minecraft records locally. | `zander.jukebox`   |
 
 ## Features
 - Using the TitleAPI there is a nice little login message for when the user joins the server, the message also appears in the chat as well.
 - When a new user joins the server for the first time, a firework will be set off and will properly welcome the user to the server with a title screen using the TitleAPI and a little message in the chat also.
 - Using the config.yml file you can customise and create your own server MOTD on the servers ping.
 - A profile command to track Joins, Leaves, Deaths and other information.
-    - The server will log a players IP address and can only be seen either in the config.yml or can be seen in the players profile command when you have either op or have the `zander.displayipaddress` permission node.
+    - The server will log a players IP address and can only be seen either in the config.yml or can be seen in the players profile command when you have either op or have the `zander.displaydeveloperinformation` permission node.
 
 ## Contributing
 If you would like to contribute to this project, you can open a [Pull Request](https://github.com/shadowolfyt/zander/pulls). In your pull request add a short description of that you're adding or fixing.  

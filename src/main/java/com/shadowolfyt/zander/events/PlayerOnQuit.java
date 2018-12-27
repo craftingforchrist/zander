@@ -1,10 +1,14 @@
 package com.shadowolfyt.zander.events;
 
-import com.shadowolfyt.zander.ZanderMain;
-import net.md_5.bungee.api.ChatColor;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
+    import com.shadowolfyt.zander.ZanderMain;
+    import net.md_5.bungee.api.ChatColor;
+    import org.bukkit.entity.Player;
+    import org.bukkit.event.EventHandler;
+    import org.bukkit.event.Listener;
+
+    import java.text.SimpleDateFormat;
+    import java.util.Date;
+    import java.util.Locale;
 
 public class PlayerOnQuit implements Listener {
     ZanderMain plugin;
@@ -24,12 +28,18 @@ public class PlayerOnQuit implements Listener {
             event.setQuitMessage(ChatColor.YELLOW + player.getName() + " has left the server");
         }
 
-        if (!player.hasPlayedBefore()){
-            plugin.getConfig().set("players" +  "." + player.getDisplayName() + ".leaves", 0);
-        }
-
+        // Adds +1 to leaves in config.yml.
         int leaves = plugin.getConfig().getInt("players" + "." + player.getDisplayName() + ".leaves");
         plugin.getConfig().set("players" + "." + player.getDisplayName() + ".leaves", leaves + 1);
         plugin.saveConfig();
+
+        // Logs last seen for player on logout.
+        String pattern = "EEEEE MMMMM yyyy HH:mm";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, new Locale("EN", "AU"));
+        String date = simpleDateFormat.format(new Date());
+
+        plugin.getConfig().set("players" + "." + player.getDisplayName() + ".lastseen", date);
+        plugin.saveConfig();
+
     }
 }

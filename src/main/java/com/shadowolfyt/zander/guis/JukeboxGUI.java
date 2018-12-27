@@ -177,6 +177,11 @@ public class JukeboxGUI implements Listener {
                 player.closeInventory();
                 break;
 
+            case MUSIC_DISC_MELLOHI:
+                player.playSound(player.getLocation(), Sound.MUSIC_DISC_MELLOHI, 9999999, 1);
+                player.closeInventory();
+                break;
+
             case MUSIC_DISC_STAL:
                 player.playSound(player.getLocation(), Sound.MUSIC_DISC_STAL, 9999999, 1);
                 player.closeInventory();
