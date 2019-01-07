@@ -16,7 +16,7 @@ This project is a Java starter project that I am working on. I am using project 
 | spectator | Change a players gamemode to Spectator.              | `zander.spectator` |
 | fly       | Toggle a players fly.                                | `zander.fly`       |
 | profile   | See stats about you or the targeted player.          |                    |
-| profile   | Allows the player to play Minecraft records locally. | `zander.jukebox`   |
+| jukebox   | Allows the player to play Minecraft records locally. | `zander.jukebox`   |
 
 ## Features
 - Using the TitleAPI there is a nice little login message for when the user joins the server, the message also appears in the chat as well.
