@@ -22,12 +22,16 @@ public class whitelist implements CommandExecutor {
             if (args[0].equalsIgnoreCase("add")) {
                 OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
 
-                target.setWhitelisted(true);
-                Bukkit.getServer().reloadWhitelist();
-                player.sendMessage(ChatColor.LIGHT_PURPLE + target.getName() + " has been whitelisted on the HermitCraft SMP realm.");
+                if (target.isWhitelisted()) {
+                    player.sendMessage(ChatColor.RED + "This player is already whitelist.");
+                } else {
+                    target.setWhitelisted(true);
+                    Bukkit.getServer().reloadWhitelist();
+                    Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + target.getName() + " has been whitelisted.");
 
-                for(Player pl: Bukkit.getOnlinePlayers()){
-                    pl.playSound(pl.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 100000, 1);
+                    for (Player pl: Bukkit.getOnlinePlayers()) {
+                        pl.playSound(pl.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 100000, 1);
+                    }
                 }
                 return true;
             }
@@ -35,9 +39,14 @@ public class whitelist implements CommandExecutor {
             if (args[0].equalsIgnoreCase("remove")) {
                 OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
 
-                target.setWhitelisted(false);
-                Bukkit.getServer().reloadWhitelist();
-                player.sendMessage(ChatColor.RED + target.getName() + " has been removed from the whitelist.");
+                if (!target.isWhitelisted()) {
+                    player.sendMessage(ChatColor.RED + "This player is already whitelist.");
+
+                } else {
+                    target.setWhitelisted(false);
+                    Bukkit.getServer().reloadWhitelist();
+                    Bukkit.broadcastMessage(ChatColor.RED + target.getName() + " has been removed from the whitelist.");
+                }
                 return true;
             }
         } else {

@@ -52,11 +52,5 @@
             <artifactId>TitleAPI</artifactId>
             <version>1.7.6</version>
         </dependency>
-
-        <dependency>
-            <groupId>net.dv8tion</groupId>
-            <artifactId>JDA</artifactId>
-            <version>3.8.1_450</version>
-        </dependency>
     </dependencies>
 </project>

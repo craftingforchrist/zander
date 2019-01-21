@@ -1,6 +1,6 @@
 main: com.shadowolfyt.zander.ZanderMain
 name: zander
-version: 1.3
+version: 1.4
 author: shadowolfyt
 api-version: 1.13
 depend:

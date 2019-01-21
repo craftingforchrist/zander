@@ -15,7 +15,7 @@ public class PlayerDeath implements Listener {
     }
 
     @EventHandler
-    public void EntityDeathEvent(EntityDeathEvent event) {
+    public void EntityDeathEvent (EntityDeathEvent event) {
 
         LivingEntity entity = event.getEntity();
 
