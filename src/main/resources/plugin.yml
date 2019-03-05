@@ -48,6 +48,9 @@ commands:
   punish:
     description: Punish Command.
     usage: /punish
+  changelog:
+    description: Changelog Command.
+    usage: /changelog
 
 permissions:
   zander.heal:

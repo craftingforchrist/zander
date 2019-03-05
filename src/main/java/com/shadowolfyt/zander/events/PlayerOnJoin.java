@@ -87,22 +87,5 @@ public class PlayerOnJoin implements Listener {
         // Changes Last Seen to Currently Online.
         plugin.getConfig().set("players" + "." + player.getDisplayName() + ".lastseen", ChatColor.GREEN.toString() + ChatColor.BOLD + "Currently Online" + ChatColor.RESET);
         plugin.saveConfig();
-
-        BukkitScheduler scheduler = getServer().getScheduler();
-        scheduler.scheduleSyncRepeatingTask(plugin, new Runnable() {
-            @Override
-            public void run() {
-                Random random = new Random();
-                int number = random.nextInt(4) + 1;
-
-                if (number == 1) {
-                    Bukkit.broadcastMessage(ChatColor.AQUA + ChatColor.BOLD.toString() + "[zander] " + ChatColor.RESET + "Have you joined this Discord server? If you haven't you should totally join: " + ChatColor.BLUE + "https://bit.ly/mancavediscord");
-                } else if (number == 2) {
-                    Bukkit.broadcastMessage(ChatColor.AQUA + ChatColor.BOLD.toString() + "[zander] " + ChatColor.RESET + "A new cube has formed at " +  ChatColor.LIGHT_PURPLE.toString() + ChatColor.BOLD +  "-240 -750" +  ChatColor.RESET + ". More information to come soon..");
-                } else if (number == 3) {
-                    Bukkit.broadcastMessage(ChatColor.AQUA + ChatColor.BOLD.toString() + "[zander] " + ChatColor.RESET + "To see what is happening in the development of zander, check out the Open Source GitHub Repository here: " + ChatColor.RED + "https://github.com/shadowolfyt/zander");
-                }
-            }
-        }, 300, 25000);
     }
 }

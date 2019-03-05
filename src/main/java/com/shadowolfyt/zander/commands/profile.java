@@ -9,7 +9,6 @@ import org.bukkit.entity.Player;
 
 public class profile implements CommandExecutor {
     ZanderMain plugin;
-
     public profile(ZanderMain instance) {
         plugin = instance;
     }
