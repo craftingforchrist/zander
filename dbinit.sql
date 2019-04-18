@@ -7,7 +7,7 @@ GRANT SELECT ON zander.* TO crutech@'%';
 GRANT INSERT ON zander.* TO crutech@'%';
 GRANT UPDATE ON zander.* TO crutech@'%';
 
-CREATE TABLE surveydata (
+CREATE TABLE playerdata (
   uuid VARCHAR(36) not null primary key,
   username TEXT
 );
