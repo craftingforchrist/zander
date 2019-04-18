@@ -9,5 +9,5 @@ GRANT UPDATE ON zander.* TO crutech@'%';
 
 CREATE TABLE surveydata (
   uuid VARCHAR(36) not null primary key,
-  username TEXT,
+  username TEXT
 );
