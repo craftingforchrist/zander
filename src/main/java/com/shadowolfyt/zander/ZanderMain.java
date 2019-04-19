@@ -8,9 +8,14 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class ZanderMain extends JavaPlugin {
     @Override
     public void onEnable() {
+        establishConnection();
         loadConfig();
         configDefaults();
 
@@ -43,6 +48,20 @@ public class ZanderMain extends JavaPlugin {
         this.getCommand("jukebox").setExecutor((CommandExecutor)new jukebox());
         this.getCommand("punish").setExecutor((CommandExecutor)new punish());
         this.getCommand("changelog").setExecutor((CommandExecutor)new changelog(this));
+    }
+
+    private Connection connection;
+    private String connectionStr = "jbdc:mysql://localhost:3306/zander?user=zander&password=Passwordzander321&autoReconnect=true";
+
+    private void establishConnection(){
+        try {
+            Class.forName("com.mysql.jbdc.Driver");
+            this.connection = DriverManager.getConnection(connectionStr);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private void loadConfig() {
