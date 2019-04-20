@@ -57,6 +57,7 @@ public final class ZanderMain extends JavaPlugin {
         this.getCommand("discord").setExecutor((CommandExecutor)new discord(this));
     }
 
+
     public void establishConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
