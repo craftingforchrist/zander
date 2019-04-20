@@ -1,6 +1,7 @@
 package com.shadowolfyt.zander;
 
 import com.shadowolfyt.zander.commands.*;
+import com.shadowolfyt.zander.discord.DiscordMain;
 import com.shadowolfyt.zander.events.*;
 import com.shadowolfyt.zander.guis.*;
 import net.md_5.bungee.api.ChatColor;
@@ -38,7 +39,7 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new WhitelistListGUI(null), this);
         getServer().getPluginManager().registerEvents(new JukeboxGUI(this), this);
         getServer().getPluginManager().registerEvents(new PunishGUI(this), this);
-        getServer().getPluginManager().registerEvents(new AnnouncementManager(this), this);
+        getServer().getPluginManager().registerEvents(new DiscordMain(this), this);
 
         // Command Registry
         this.getCommand("heal").setExecutor((CommandExecutor)new heal());
@@ -53,6 +54,7 @@ public final class ZanderMain extends JavaPlugin {
         this.getCommand("whitelist").setExecutor((CommandExecutor)new whitelist());
         this.getCommand("jukebox").setExecutor((CommandExecutor)new jukebox());
         this.getCommand("punish").setExecutor((CommandExecutor)new punish());
+        this.getCommand("discord").setExecutor((CommandExecutor)new discord(this));
     }
 
     public void establishConnection() {
@@ -61,7 +63,7 @@ public final class ZanderMain extends JavaPlugin {
             connection = DriverManager.getConnection(
                 "jdbc:mysql://" + getConfig().getString(
                     "database.ip") + ":" + getConfig().getString(
-                    "database.port") + "/" +getConfig().getString("database.databasename"),
+                    "database.port") + "/" + getConfig().getString("database.databasename"),
                 getConfig().getString("database.username"),
                 getConfig().getString("database.password"));
             getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Database connection was successful.");

@@ -5,12 +5,16 @@ database:
   username: zander
   password: Passwordzander321
 discord:
-  token: ""
+  token: "TOKEN"
+  chatprefix: "&l&f[&9DISCORD&f]&r"
+  chatchannel: "server-chat"
+  broadcastprefix: "&l&c[&BROADCAST&f]&r"
+  broadcastchannel: "announcements"
+  link:
 server:
-  motdFirstLine: ""
-  motdSecondLine: ""
-  tablineHeader:
-  tablineFooter:
-annoucements:
-  enabled: true
+  motdFirstLine: '&b&l[zander]&r&3 My Minecraft Server'
+  motdSecondLine: '&eJust another Minecraft Server'
+  titleSubText: 'Enjoy your stay!'
+  tablineHeader: '&6My Minecraft Server'
+  tablineFooter: '&5zander enabled server'
 players:

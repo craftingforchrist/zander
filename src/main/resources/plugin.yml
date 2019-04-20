@@ -3,7 +3,7 @@ name: zander
 version: 1.4
 author: shadowolfyt
 api-version: 1.13
-depend:
+softdepend:
 - TitleAPI
 
 commands:
@@ -48,9 +48,9 @@ commands:
   punish:
     description: Punish Command.
     usage: /punish
-  changelog:
-    description: Changelog Command.
-    usage: /changelog
+  discord:
+    description: Discord Command.
+    usage: /discord
 
 permissions:
   zander.heal:
