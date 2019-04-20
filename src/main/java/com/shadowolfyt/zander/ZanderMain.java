@@ -69,11 +69,18 @@ public final class ZanderMain extends JavaPlugin {
             getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Database connection was successful.");
         } catch (SQLException e) {
             e.printStackTrace();
+
             getServer().getConsoleSender().sendMessage(ChatColor.RED + "Database connection failed!");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             getServer().getConsoleSender().sendMessage(ChatColor.RED + "Database connection failed!");
         }
+    }
+
+
+    public Connection getConnection()
+    {
+        return connection;
     }
 
     private void loadConfiguration() {
