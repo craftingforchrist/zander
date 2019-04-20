@@ -4,12 +4,13 @@ database:
   databasename: zander
   username: zander
   password: Passwordzander321
+discord:
+  token: ""
 server:
-  motdFirstLine:
-  motdSecondLine:
+  motdFirstLine: ""
+  motdSecondLine: ""
   tablineHeader:
   tablineFooter:
 annoucements:
   enabled: true
-
 players:

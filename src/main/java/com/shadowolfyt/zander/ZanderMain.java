@@ -13,9 +13,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import static org.bukkit.Bukkit.getServer;
+public final class ZanderMain extends JavaPlugin {
+    private Connection connection;
 
-public class ZanderMain extends JavaPlugin {
     public static ZanderMain plugin;
     public FileConfiguration configuration;
 
@@ -55,17 +55,23 @@ public class ZanderMain extends JavaPlugin {
         this.getCommand("punish").setExecutor((CommandExecutor)new punish());
     }
 
-    private Connection establishConnection() {
+    public void establishConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            DriverManager.getConnection("jdbc:mysql://" + ZanderMain.plugin.getConfig().getString("database.ip") + ":" + ZanderMain.plugin.getConfig().getString("database.port") + "/" + ZanderMain.plugin.getConfig().getString("database.databasename"), ZanderMain.plugin.getConfig().getString("database.username"), ZanderMain.plugin.getConfig().getString("database.password"));
-            getServer().getConsoleSender().sendMessage("Database connection was successful.");
+            connection = DriverManager.getConnection(
+                "jdbc:mysql://" + getConfig().getString(
+                    "database.ip") + ":" + getConfig().getString(
+                    "database.port") + "/" +getConfig().getString("database.databasename"),
+                getConfig().getString("database.username"),
+                getConfig().getString("database.password"));
+            getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Database connection was successful.");
         } catch (SQLException e) {
             e.printStackTrace();
+            getServer().getConsoleSender().sendMessage(ChatColor.RED + "Database connection failed!");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            getServer().getConsoleSender().sendMessage(ChatColor.RED + "Database connection failed!");
         }
-        return null;
     }
 
     private void loadConfiguration() {
