@@ -1,0 +1,15 @@
+database:
+  ip: localhost
+  port: 3306
+  databasename: zander
+  username: zander
+  password: Passwordzander321
+server:
+  motdFirstLine:
+  motdSecondLine:
+  tablineHeader:
+  tablineFooter:
+annoucements:
+  enabled: true
+
+players:

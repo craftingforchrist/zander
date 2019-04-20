@@ -24,7 +24,6 @@ public class AnnouncementManager implements Listener {
         if (plugin.getConfig().getString("announcementsenable") == "true") {
             BukkitScheduler scheduler = getServer().getScheduler();
             scheduler.scheduleSyncRepeatingTask(plugin, new Runnable() {
-                @Override
                 public void run() {
                     Random random = new Random();
                     int number = random.nextInt(4) + 1;
