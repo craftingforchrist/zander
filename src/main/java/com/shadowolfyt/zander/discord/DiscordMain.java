@@ -30,7 +30,6 @@ public class DiscordMain extends ListenerAdapter implements Listener {
     public DiscordMain (ZanderMain instance) {
         plugin = instance;
         startBot();
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
         jda.addEventListener(this);
     }
 
