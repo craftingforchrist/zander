@@ -25,25 +25,49 @@ import javax.security.auth.login.LoginException;
 import static org.bukkit.Bukkit.getServer;
 
 public class DiscordMain extends ListenerAdapter implements Listener {
-    ZanderMain plugin;
+    private ZanderMain plugin;
     public JDA jda;
+
     public DiscordMain (ZanderMain instance) {
-        plugin = instance;
-        startBot();
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
-        jda.addEventListener(this);
+        this.plugin = instance;
+        this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
+
+        if (startBot()) {
+            registerDiscordEventListeners();
+        }
     }
 
-    private void startBot() {
+    private void registerDiscordEventListeners() {
+        this.jda.addEventListener(this);
+    }
+
+    /**
+     * Starts the Discord connection via JDA library
+     *
+     * Blocks the current thread until the connection to Discord is successful.
+     *
+     * See JDA#awaitReady
+     * @return True if connection is successful
+     */
+    private boolean startBot() {
         try {
-            jda = new JDABuilder(AccountType.BOT).setToken(plugin.getConfig().getString("discord.token")).buildBlocking();
-            getServer().getConsoleSender().sendMessage(ChatColor.BLUE + "[Discord] " + ChatColor.GREEN + "Zander is now connected to Discord.");
-            TextChannel textChannel = jda.getTextChannelsByName(plugin.getConfig().getString("discord.chatchannel"), true).get(0);
+            // Build JDA/bot connection
+            this.jda = new JDABuilder(AccountType.BOT).setToken(plugin.getConfig().getString("discord.token")).build().awaitReady();
+
+            // Show signs of life
+            this.plugin.getLogger().info(ChatColor.BLUE + "[Discord] " + ChatColor.GREEN + "Zander is now connected to Discord.");
+            TextChannel textChannel = this.jda.getTextChannelsByName(
+                    this.plugin.getConfig().getString("discord.chatchannel"),
+                    true
+            ).get(0);
             textChannel.sendMessage("** :white_check_mark: Server has started **").queue();
+
+            return true;
         } catch (LoginException | InterruptedException e) {
             e.printStackTrace();
             getServer().getConsoleSender().sendMessage(ChatColor.RED + "Zander has encountered an error and can't login to Discord. The Discord Token may not be set, discord integrations might not function.");
         }
+        return false;
     }
 
     @EventHandler
