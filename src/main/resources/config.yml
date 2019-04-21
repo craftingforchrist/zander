@@ -6,9 +6,9 @@ database:
   password: Passwordzander321
 discord:
   token: "TOKEN"
-  chatprefix: "&l&f[&9DISCORD&f]&r"
+  chatprefix: "&f&l[&9DISCORD&f]&r"
   chatchannel: "server-chat"
-  broadcastprefix: "&l&c[&BROADCAST&f]&r"
+  broadcastprefix: "&c&l[&BROADCAST&f]&r"
   broadcastchannel: "announcements"
   link:
 server:
