@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 public class heal implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        Player player  = (Player) sender;
+        Player player = (Player) sender;
 
         if (player.hasPermission("zander.heal")) {
             if (args.length == 0) {

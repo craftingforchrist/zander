@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 public class starve implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        Player player  = (Player) sender;
+        Player player = (Player) sender;
 
         if (player.hasPermission("zander.starve")) {
             if (args.length == 0) {

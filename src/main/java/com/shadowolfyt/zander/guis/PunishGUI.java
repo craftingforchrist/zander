@@ -2,7 +2,6 @@ package com.shadowolfyt.zander.guis;
 
 import com.shadowolfyt.zander.ZanderMain;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,13 +17,12 @@ import static org.bukkit.Material.LEATHER_BOOTS;
 public class PunishGUI implements Listener {
 
     ZanderMain plugin;
+    Inventory inv = Bukkit.createInventory(null, 9, "Punishment GUI");
+
 
     public PunishGUI(ZanderMain instance) {
         plugin = instance;
     }
-
-
-    Inventory inv = Bukkit.createInventory(null, 9, "Punishment GUI");
 
     public PunishGUI(Player player) {
         if (player == null) {
@@ -43,7 +41,7 @@ public class PunishGUI implements Listener {
     }
 
     @EventHandler
-    public void onClick (InventoryClickEvent event) {
+    public void onClick(InventoryClickEvent event) {
         if (!event.getInventory().getName().equalsIgnoreCase("Punishment GUI")) {
             return;
         }

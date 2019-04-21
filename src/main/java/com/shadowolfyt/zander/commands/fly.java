@@ -11,8 +11,8 @@ public class fly implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (sender.hasPermission("zander.fly")) {
-            if(args.length == 0) {
-                if(sender instanceof Player) {
+            if (args.length == 0) {
+                if (sender instanceof Player) {
                     Player player = (Player) sender;
                     toggleUserFly(player);
                 } else {
@@ -20,7 +20,7 @@ public class fly implements CommandExecutor {
                 }
             } else {
                 Player target = Bukkit.getPlayer(args[0]);
-                if(target != null) {
+                if (target != null) {
                     toggleUserFly(target);
                     sender.sendMessage(ChatColor.GREEN + target.getName() + "'s fly was toggled.");
                 } else {
@@ -34,7 +34,7 @@ public class fly implements CommandExecutor {
     }
 
     private boolean toggleUserFly(Player player) {
-        if(player == null) return false;
+        if (player == null) return false;
 
         boolean fly = player.isFlying() || player.getAllowFlight();
 

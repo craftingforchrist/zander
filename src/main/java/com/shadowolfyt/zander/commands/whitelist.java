@@ -15,7 +15,7 @@ public class whitelist implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(!sender.hasPermission("zander.whitelist")) {
+        if (!sender.hasPermission("zander.whitelist")) {
             // No permissions.
             sender.sendMessage(ChatColor.RED + "You don't have permission to use this command.");
             return true;
@@ -23,10 +23,10 @@ public class whitelist implements CommandExecutor {
 
         // Sender has 'zander.whitelist'
 
-        if(args.length == 0 && (sender instanceof Player)) {
+        if (args.length == 0 && (sender instanceof Player)) {
             new WhitelistGUI((Player) sender);
             return true;
-        } else if(args.length == 0) {
+        } else if (args.length == 0) {
             sender.sendMessage(ChatColor.YELLOW + "The GUI is only available for players only.");
             return true;
         }
@@ -36,7 +36,7 @@ public class whitelist implements CommandExecutor {
         if (args[0].equalsIgnoreCase("add")) {
             OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
 
-            if(target != null) {
+            if (target != null) {
                 if (target.isWhitelisted()) {
                     sender.sendMessage(ChatColor.RED + "This player is already whitelist.");
                 } else {
@@ -56,7 +56,7 @@ public class whitelist implements CommandExecutor {
         if (args[0].equalsIgnoreCase("remove")) {
             OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
 
-            if(target != null) {
+            if (target != null) {
                 if (!target.isWhitelisted()) {
                     sender.sendMessage(ChatColor.RED + "This player is not in the whitelist.");
 

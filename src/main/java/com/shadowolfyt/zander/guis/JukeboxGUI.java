@@ -1,7 +1,10 @@
 package com.shadowolfyt.zander.guis;
 
 import com.shadowolfyt.zander.ZanderMain;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,12 +20,11 @@ import static org.bukkit.Bukkit.getServer;
 public class JukeboxGUI implements Listener {
 
     ZanderMain plugin;
+    Inventory inv = Bukkit.createInventory(null, 27, "Jukebox Player");
 
     public JukeboxGUI(ZanderMain instance) {
         plugin = instance;
     }
-
-    Inventory inv = Bukkit.createInventory(null, 27, "Jukebox Player");
 
     public JukeboxGUI(Player player) {
         if (player == null) {
@@ -133,7 +135,7 @@ public class JukeboxGUI implements Listener {
     }
 
     @EventHandler
-    public void onClick (InventoryClickEvent event) {
+    public void onClick(InventoryClickEvent event) {
         if (!event.getInventory().getName().equalsIgnoreCase("Jukebox Player")) {
             return;
         }

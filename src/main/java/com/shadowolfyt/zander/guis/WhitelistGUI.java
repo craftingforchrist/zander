@@ -16,7 +16,7 @@ import java.util.Arrays;
 public class WhitelistGUI implements Listener {
     Inventory inv = Bukkit.createInventory(null, 9, "Whitelist Manager");
 
-    public WhitelistGUI (Player player) {
+    public WhitelistGUI(Player player) {
         if (player == null) {
             return;
         }
@@ -46,7 +46,7 @@ public class WhitelistGUI implements Listener {
     }
 
     @EventHandler
-    public void onClick (InventoryClickEvent event) {
+    public void onClick(InventoryClickEvent event) {
         if (!event.getInventory().getName().equalsIgnoreCase("Whitelist Manager")) {
             return;
         }

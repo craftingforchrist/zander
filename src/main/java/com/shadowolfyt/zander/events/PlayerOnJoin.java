@@ -1,11 +1,8 @@
 package com.shadowolfyt.zander.events;
 
 import com.connorlinfoot.titleapi.TitleAPI;
-import com.mysql.jdbc.JDBC4CallableStatement;
-import com.mysql.jdbc.JDBC4PreparedStatement;
 import com.shadowolfyt.zander.ZanderMain;
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.entity.Firework;
@@ -14,29 +11,19 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.meta.FireworkMeta;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitScheduler;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Random;
-
-import static org.bukkit.Bukkit.getServer;
 
 public class PlayerOnJoin implements Listener {
     ZanderMain plugin;
 
-    public PlayerOnJoin (ZanderMain instance) {
+    public PlayerOnJoin(ZanderMain instance) {
         plugin = instance;
     }
+
     @EventHandler
-    public void onJoin(PlayerJoinEvent event){
+    public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        TitleAPI.sendTitle(player,40,50,40,"Welcome " + ChatColor.AQUA + player.getDisplayName(),ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.titleSubText")));
+        TitleAPI.sendTitle(player, 40, 50, 40, "Welcome " + ChatColor.AQUA + player.getDisplayName(), ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.titleSubText")));
         TitleAPI.sendTabTitle(player, ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.tablineHeader")), ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.tablineFooter")));
 
         event.setJoinMessage("");
@@ -45,18 +32,18 @@ public class PlayerOnJoin implements Listener {
             Firework firework = (Firework) event.getPlayer().getWorld().spawn(event.getPlayer().getLocation(), Firework.class);
             FireworkMeta fireworkmeta = firework.getFireworkMeta();
             fireworkmeta.addEffect(FireworkEffect.builder()
-                .flicker(false)
-                .trail(true)
-                .with(FireworkEffect.Type.CREEPER)
-                .withColor(Color.GREEN)
-                .withFade(Color.BLUE)
-                .build());
+                    .flicker(false)
+                    .trail(true)
+                    .with(FireworkEffect.Type.CREEPER)
+                    .withColor(Color.GREEN)
+                    .withFade(Color.BLUE)
+                    .build());
             fireworkmeta.setPower(3);
             firework.setFireworkMeta(fireworkmeta);
             event.setJoinMessage(ChatColor.LIGHT_PURPLE + player.getDisplayName() + ChatColor.YELLOW + " has joined for the first time!");
         } else {
             // Join Chat Message.
-            if(player.isOp()) {
+            if (player.isOp()) {
                 event.setJoinMessage(ChatColor.RED.toString() + ChatColor.BOLD + "[!!!] " + ChatColor.GOLD + "Server Operator " + player.getName() + " has joined the server");
             } else {
                 event.setJoinMessage(ChatColor.YELLOW + player.getName() + " has joined the server");
@@ -64,7 +51,7 @@ public class PlayerOnJoin implements Listener {
         }
 
         // Adding join information to YML file.
-        if (!player.hasPlayedBefore()){
+        if (!player.hasPlayedBefore()) {
             plugin.getConfig().set("players" + "." + player.getDisplayName() + ".joins", 0);
             plugin.getConfig().set("players" + "." + player.getDisplayName() + ".leaves", 0);
             plugin.getConfig().set("players" + "." + player.getDisplayName() + ".deaths", 0);

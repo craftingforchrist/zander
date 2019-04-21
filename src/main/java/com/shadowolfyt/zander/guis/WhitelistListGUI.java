@@ -32,14 +32,14 @@ public class WhitelistListGUI implements Listener {
             listedplayermeta.setLore(Arrays.asList("This player is whitelisted."));
             listedplayer.setItemMeta(listedplayermeta);
             inv.setItem(slot, listedplayer);
-            slot +=1;
+            slot += 1;
         }
 
         player.openInventory(inv);
     }
 
     @EventHandler
-    public void onClick (InventoryClickEvent event) {
+    public void onClick(InventoryClickEvent event) {
         if (!event.getInventory().getName().equalsIgnoreCase("Whitelisted Players")) {
             return;
         }

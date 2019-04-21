@@ -10,11 +10,9 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -25,10 +23,10 @@ import javax.security.auth.login.LoginException;
 import static org.bukkit.Bukkit.getServer;
 
 public class DiscordMain extends ListenerAdapter implements Listener {
-    private ZanderMain plugin;
     public JDA jda;
+    private ZanderMain plugin;
 
-    public DiscordMain (ZanderMain instance) {
+    public DiscordMain(ZanderMain instance) {
         this.plugin = instance;
         this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
 
@@ -43,10 +41,11 @@ public class DiscordMain extends ListenerAdapter implements Listener {
 
     /**
      * Starts the Discord connection via JDA library
-     *
+     * <p>
      * Blocks the current thread until the connection to Discord is successful.
-     *
+     * <p>
      * See JDA#awaitReady
+     *
      * @return True if connection is successful
      */
     private boolean startBot() {

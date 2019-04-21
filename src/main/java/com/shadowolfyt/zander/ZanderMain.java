@@ -3,7 +3,10 @@ package com.shadowolfyt.zander;
 import com.shadowolfyt.zander.commands.*;
 import com.shadowolfyt.zander.discord.DiscordMain;
 import com.shadowolfyt.zander.events.*;
-import com.shadowolfyt.zander.guis.*;
+import com.shadowolfyt.zander.guis.JukeboxGUI;
+import com.shadowolfyt.zander.guis.PunishGUI;
+import com.shadowolfyt.zander.guis.WhitelistGUI;
+import com.shadowolfyt.zander.guis.WhitelistListGUI;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -15,10 +18,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public final class ZanderMain extends JavaPlugin {
-    private Connection connection;
-
     public static ZanderMain plugin;
     public FileConfiguration configuration;
+    private Connection connection;
 
     @Override
     public void onEnable() {
@@ -42,30 +44,30 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new DiscordMain(this), this);
 
         // Command Registry
-        this.getCommand("heal").setExecutor((CommandExecutor)new heal());
-        this.getCommand("feed").setExecutor((CommandExecutor)new feed());
-        this.getCommand("starve").setExecutor((CommandExecutor)new starve());
-        this.getCommand("adventure").setExecutor((CommandExecutor)new adventure());
-        this.getCommand("creative").setExecutor((CommandExecutor)new creative());
-        this.getCommand("survival").setExecutor((CommandExecutor)new survival());
-        this.getCommand("spectator").setExecutor((CommandExecutor)new spectator());
-        this.getCommand("fly").setExecutor((CommandExecutor)new fly());
-        this.getCommand("profile").setExecutor((CommandExecutor)new profile(this));
-        this.getCommand("whitelist").setExecutor((CommandExecutor)new whitelist());
-        this.getCommand("jukebox").setExecutor((CommandExecutor)new jukebox());
-        this.getCommand("punish").setExecutor((CommandExecutor)new punish());
-        this.getCommand("discord").setExecutor((CommandExecutor)new discord(this));
+        this.getCommand("heal").setExecutor((CommandExecutor) new heal());
+        this.getCommand("feed").setExecutor((CommandExecutor) new feed());
+        this.getCommand("starve").setExecutor((CommandExecutor) new starve());
+        this.getCommand("adventure").setExecutor((CommandExecutor) new adventure());
+        this.getCommand("creative").setExecutor((CommandExecutor) new creative());
+        this.getCommand("survival").setExecutor((CommandExecutor) new survival());
+        this.getCommand("spectator").setExecutor((CommandExecutor) new spectator());
+        this.getCommand("fly").setExecutor((CommandExecutor) new fly());
+        this.getCommand("profile").setExecutor((CommandExecutor) new profile(this));
+        this.getCommand("whitelist").setExecutor((CommandExecutor) new whitelist());
+        this.getCommand("jukebox").setExecutor((CommandExecutor) new jukebox());
+        this.getCommand("punish").setExecutor((CommandExecutor) new punish());
+        this.getCommand("discord").setExecutor((CommandExecutor) new discord(this));
     }
 
     public void establishConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(
-                "jdbc:mysql://" + getConfig().getString(
-                    "database.ip") + ":" + getConfig().getString(
-                    "database.port") + "/" + getConfig().getString("database.databasename"),
-                getConfig().getString("database.username"),
-                getConfig().getString("database.password"));
+                    "jdbc:mysql://" + getConfig().getString(
+                            "database.ip") + ":" + getConfig().getString(
+                            "database.port") + "/" + getConfig().getString("database.databasename"),
+                    getConfig().getString("database.username"),
+                    getConfig().getString("database.password"));
             getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Database connection was successful.");
         } catch (SQLException e) {
             e.printStackTrace();
