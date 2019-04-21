@@ -19,6 +19,7 @@ import java.util.Arrays;
 import static org.bukkit.Material.LEATHER_BOOTS;
 
 public class punish implements CommandExecutor {
+    @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player player = (Player) sender;
         if (player.hasPermission("zander.punish")) {

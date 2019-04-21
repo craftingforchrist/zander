@@ -13,6 +13,7 @@ public class profile implements CommandExecutor {
         plugin = instance;
     }
 
+    @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player player  = (Player) sender;
 

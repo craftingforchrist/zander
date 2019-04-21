@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 public class whitelist implements CommandExecutor {
     private final String EN_ERR_PLAYER_DOES_NOT_EXIST = ChatColor.RED + "Player does not exist!";
 
+    @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(!sender.hasPermission("zander.whitelist")) {
             // No permissions.
