@@ -22,19 +22,12 @@ public class JukeboxGUI implements Listener {
         plugin = instance;
     }
 
-    Inventory inv = Bukkit.createInventory(null, 27, "Jukebox Player");
+    Inventory inv = Bukkit.createInventory(null, 27, "Jukebox Radio");
 
     public JukeboxGUI(Player player) {
         if (player == null) {
             return;
         }
-
-        // Disabled [used if the Music Disc has not been found].
-        ItemStack disabled = new ItemStack(Material.BARRIER);
-        ItemMeta disabledMeta = disabled.getItemMeta();
-        disabledMeta.setDisplayName(ChatColor.RED + "Music Disc Locked!");
-        disabledMeta.setLore(Arrays.asList("Find this Music Disc to unlock it."));
-        disabled.setItemMeta(disabledMeta);
 
         // 13
         ItemStack MUSICDISC13 = new ItemStack(Material.MUSIC_DISC_13);
@@ -55,21 +48,21 @@ public class JukeboxGUI implements Listener {
         ItemMeta MUSICDISCBLOCKSMeta = MUSICDISCBLOCKS.getItemMeta();
         MUSICDISCBLOCKSMeta.setDisplayName("Music Disc");
         MUSICDISCBLOCKS.setItemMeta(MUSICDISCBLOCKSMeta);
-        inv.setItem(2, disabled); // Change this when sound is imported.
+        inv.setItem(2, MUSICDISCBLOCKS); // Change this when sound is imported.
 
         // CHIRP
         ItemStack MUSICDISCCHRIP = new ItemStack(Material.MUSIC_DISC_CHIRP);
         ItemMeta MUSICDISCCHRIPMeta = MUSICDISCCHRIP.getItemMeta();
         MUSICDISCCHRIPMeta.setDisplayName("Music Disc");
         MUSICDISCCHRIP.setItemMeta(MUSICDISCCHRIPMeta);
-        inv.setItem(3, disabled); // Change this when sound is imported.
+        inv.setItem(3, MUSICDISCCHRIP); // Change this when sound is imported.
 
         // FAR
         ItemStack MUSICDISCFAR = new ItemStack(Material.MUSIC_DISC_FAR);
         ItemMeta MUSICDISCFARMeta = MUSICDISCCHRIP.getItemMeta();
         MUSICDISCFARMeta.setDisplayName("Music Disc");
         MUSICDISCFAR.setItemMeta(MUSICDISCFARMeta);
-        inv.setItem(4, disabled); // Change this when sound is imported.
+        inv.setItem(4, MUSICDISCFAR); // Change this when sound is imported.
 
 
         // MALL
@@ -98,14 +91,14 @@ public class JukeboxGUI implements Listener {
         ItemMeta MUSICDISCSTRADMeta = MUSICDISCSTRAD.getItemMeta();
         MUSICDISCSTRADMeta.setDisplayName("Music Disc");
         MUSICDISCSTRAD.setItemMeta(MUSICDISCSTRADMeta);
-        inv.setItem(8, disabled); // Change this when sound is imported.
+        inv.setItem(8, MUSICDISCSTRAD); // Change this when sound is imported.
 
         // WARD
         ItemStack MUSICDISCWARD = new ItemStack(Material.MUSIC_DISC_WARD);
         ItemMeta MUSICDISCWARDMeta = MUSICDISCWARD.getItemMeta();
         MUSICDISCWARDMeta.setDisplayName("Music Disc");
         MUSICDISCWARD.setItemMeta(MUSICDISCWARDMeta);
-        inv.setItem(9, disabled); // Change this when sound is imported.
+        inv.setItem(9, MUSICDISCWARD); // Change this when sound is imported.
 
         // 11
         ItemStack MUSICDISC11 = new ItemStack(Material.MUSIC_DISC_11);
@@ -119,7 +112,7 @@ public class JukeboxGUI implements Listener {
         ItemMeta MUSICDISCWAITMeta = MUSICDISCWAIT.getItemMeta();
         MUSICDISCWAITMeta.setDisplayName("Music Disc");
         MUSICDISCWAIT.setItemMeta(MUSICDISCWAITMeta);
-        inv.setItem(11, disabled); // Change this when sound is imported.
+        inv.setItem(11, MUSICDISCWAIT); // Change this when sound is imported.
 
         // STOP SOUND
         ItemStack stopsound = new ItemStack(Material.CYAN_WOOL);

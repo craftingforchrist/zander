@@ -7,6 +7,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class profile implements CommandExecutor {
     ZanderMain plugin;
     public profile(ZanderMain instance) {
@@ -15,6 +19,17 @@ public class profile implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player player  = (Player) sender;
+
+        try {
+            PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM " + plugin.getConfig().getString("database.playerdatatable") + " WHERE uuid=?");
+            findstatement.setString(1, player.getUniqueId().toString());
+            ResultSet results = findstatement.executeQuery();
+            if (results.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         if (args.length == 0) {
             player.sendMessage("\n");

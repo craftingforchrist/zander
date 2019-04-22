@@ -1,6 +1,6 @@
 main: com.shadowolfyt.zander.ZanderMain
 name: zander
-version: 1.4
+version: 1.0
 author: shadowolfyt
 api-version: 1.13
 softdepend:
@@ -51,6 +51,9 @@ commands:
   discord:
     description: Discord Command.
     usage: /discord
+  verify:
+    description: Discord Command.
+    usage: /verify
 
 permissions:
   zander.heal:

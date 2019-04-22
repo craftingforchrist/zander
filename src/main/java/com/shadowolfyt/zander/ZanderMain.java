@@ -6,8 +6,6 @@ import com.shadowolfyt.zander.events.*;
 import com.shadowolfyt.zander.guis.*;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.CommandExecutor;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.Connection;
@@ -16,9 +14,7 @@ import java.sql.SQLException;
 
 public final class ZanderMain extends JavaPlugin {
     private Connection connection;
-
     public static ZanderMain plugin;
-    public FileConfiguration configuration;
 
     @Override
     public void onEnable() {
@@ -26,8 +22,8 @@ public final class ZanderMain extends JavaPlugin {
         establishConnection();
         loadConfiguration();
 
-        PluginDescriptionFile pdf = plugin.getDescription();
-        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "\n\nZander has been enabled.\nRunning Version " + pdf.getVersion() + "\nGitHub Repository: https://github.com/shadowolfyt/zander\nCreated by shadowolfyt\n\n");
+        // Init Message
+        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "\n\nZander has been enabled.\nRunning Version " + plugin.getDescription().getVersion() + "\nGitHub Repository: https://github.com/shadowolfyt/zander\nCreated by shadowolfyt\n\n");
 
         // Events Registry
         getServer().getPluginManager().registerEvents(new PlayerOnJoin(this), this);
@@ -60,20 +56,19 @@ public final class ZanderMain extends JavaPlugin {
     public void establishConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(
-                "jdbc:mysql://" + getConfig().getString(
-                    "database.ip") + ":" + getConfig().getString(
-                    "database.port") + "/" + getConfig().getString("database.databasename"),
-                getConfig().getString("database.username"),
-                getConfig().getString("database.password"));
-            getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Database connection was successful.");
+            connection = DriverManager.getConnection("jdbc:mysql://" + getConfig().getString("database.ip") + ":" + getConfig().getString("database.port") + "/" + getConfig().getString("database.databasename"), getConfig().getString("database.username"), getConfig().getString("database.password"));
+            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + ChatColor.GREEN + " Database connection was successful.");
         } catch (SQLException e) {
             e.printStackTrace();
-            getServer().getConsoleSender().sendMessage(ChatColor.RED + "Database connection failed!");
+            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + ChatColor.RED + " Database connection failed!");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             getServer().getConsoleSender().sendMessage(ChatColor.RED + "Database connection failed!");
         }
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
 
     private void loadConfiguration() {

@@ -9,5 +9,10 @@ GRANT UPDATE ON zander.* TO zander@'%';
 
 CREATE TABLE playerdata (
   uuid VARCHAR(36) not null primary key,
-  username TEXT
+  username TEXT,
+  joins TEXT,
+  leaves TEXT,
+  deaths TEXT,
+  lastseen TEXT,
+  ipaddress TEXT
 );
