@@ -22,4 +22,4 @@ The jukebox radio comes with the /jukebox command `zander.jukebox` will open a G
 #### Rotten Flesh to Leather
 It basically explains it all in the title, a simple recipe added to allow users to smelt Rotten Flesh to Leather, to give it more purpose.
 
-![img](https://i.gyazo.com/0eea23fc0a9348e6d18e1b4347095bec.mp4)
+[![video](https://i.gyazo.com/69202523a46fd45fc2685d25d9a8c09a.png)](https://i.gyazo.com/0eea23fc0a9348e6d18e1b4347095bec.mp4)
