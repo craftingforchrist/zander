@@ -13,6 +13,7 @@ CREATE TABLE playerdata (
   joins TEXT,
   leaves TEXT,
   deaths TEXT,
+  status TEXT,
   lastseen TEXT,
   ipaddress TEXT
 );

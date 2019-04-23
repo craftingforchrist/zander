@@ -5,7 +5,12 @@ import com.shadowolfyt.zander.discord.DiscordMain;
 import com.shadowolfyt.zander.events.*;
 import com.shadowolfyt.zander.guis.*;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.command.CommandExecutor;
+import org.bukkit.inventory.FurnaceRecipe;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.Connection;
@@ -52,6 +57,9 @@ public final class ZanderMain extends JavaPlugin {
         this.getCommand("jukebox").setExecutor((CommandExecutor)new jukebox());
         this.getCommand("punish").setExecutor((CommandExecutor)new punish());
         this.getCommand("discord").setExecutor((CommandExecutor)new discord(this));
+
+        // Recipe Registry
+        Bukkit.addRecipe(new FurnaceRecipe(new NamespacedKey(plugin, "furnace_flesh_leather"), new ItemStack(Material.LEATHER), Material.ROTTEN_FLESH, 0, 1200));
     }
 
     public void establishConnection() {

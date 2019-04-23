@@ -15,6 +15,11 @@ Thank you to all of these people who have helped and have contributed to this pr
 
 ## Features
 #### Jukebox Radio
-Enabling this will enable the /jukebox command, which will open a GUI where you can select and play any disc that is currently in the game. Personally, I have been using this with a custom resource pack and putting other music over it.
+The jukebox radio comes with the /jukebox command `zander.jukebox` will open a GUI where you can select and play any disc that is currently in the game. Personally, I have been using this with a custom resource pack and putting other music over it.
 
 ![img](https://i.gyazo.com/42eb80721eff5f8889078f4ec567f175.png)
+
+#### Rotten Flesh to Leather
+It basically explains it all in the title, a simple recipe added to allow users to smelt Rotten Flesh to Leather, to give it more purpose.
+
+![img](https://i.gyazo.com/0eea23fc0a9348e6d18e1b4347095bec.mp4)
