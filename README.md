@@ -14,8 +14,7 @@ Thank you to all of these people who have helped and have contributed to this pr
 - [jasoryeh](https://github.com/jasoryeh)
 
 ## Features
-You can find and control these features in the config.yml file.
-##### Jukebox Radio [jukeboxradio]
+#### Jukebox Radio
 Enabling this will enable the /jukebox command, which will open a GUI where you can select and play any disc that is currently in the game. Personally, I have been using this with a custom resource pack and putting other music over it.
 
 ![img](https://i.gyazo.com/42eb80721eff5f8889078f4ec567f175.png)

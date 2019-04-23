@@ -127,7 +127,7 @@ public class JukeboxGUI implements Listener {
 
     @EventHandler
     public void onClick (InventoryClickEvent event) {
-        if (!event.getInventory().getName().equalsIgnoreCase("Jukebox Player")) {
+        if (!event.getInventory().getName().equalsIgnoreCase("Jukebox Radio")) {
             return;
         }
 

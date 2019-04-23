@@ -13,13 +13,9 @@ public class jukebox implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player player = (Player) sender;
         if (player.hasPermission("zander.jukebox")) {
-            if (plugin.getConfig().getString("features.jukeboxradio") == "true") {
-                if (args.length == 0) {
-                    new JukeboxGUI(player);
-                    return true;
-                }
-            } else {
-                player.sendMessage(ChatColor.RED + "This feature is not enabled. You can enable this in the config.yml.");
+            if (args.length == 0) {
+                new JukeboxGUI(player);
+                return true;
             }
         } else {
             player.sendMessage(ChatColor.RED + "You do not have permission to use this command.");

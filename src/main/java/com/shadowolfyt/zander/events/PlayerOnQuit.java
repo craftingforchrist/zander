@@ -34,8 +34,8 @@ public class PlayerOnQuit implements Listener {
         //
         try {
             PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE " + plugin.getConfig().getString("database.playerdatatable") + " SET leaves = leaves+1, lastseen=? WHERE uuid=?");
-            updatestatement.setString(1, player.getUniqueId().toString());
-            updatestatement.setString(2, "Offline");
+            updatestatement.setString(1, "Offline");
+            updatestatement.setString(2, player.getUniqueId().toString());
             updatestatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

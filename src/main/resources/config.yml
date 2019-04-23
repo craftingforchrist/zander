@@ -21,5 +21,3 @@ server:
   titleSubText: 'Enjoy your stay!'
   tablineHeader: '&6My Minecraft Server'
   tablineFooter: '&5zander enabled server'
-features:
-  jukeboxradio: true

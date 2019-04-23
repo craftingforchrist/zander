@@ -6,15 +6,10 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -24,7 +19,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import javax.security.auth.login.LoginException;
 
-import java.io.IOException;
 import java.util.*;
 
 import static org.bukkit.Bukkit.getServer;
@@ -46,7 +40,7 @@ public class DiscordMain extends ListenerAdapter implements Listener {
         uuidCodeMap = new HashMap<>();
         uuididMap = new HashMap<>();
         verifiedMembers = new ArrayList<>();
-        Bukkit.getScheduler().runTaskLater(plugin, ()->guild = jda.getGuilds().get(0), 100L);
+        Bukkit.getScheduler().runTaskLater(plugin, ()-> guild = jda.getGuilds().get(0), 100L);
     }
 
     private void startBot() {
@@ -59,7 +53,6 @@ public class DiscordMain extends ListenerAdapter implements Listener {
             TextChannel textChannel = jda.getTextChannelsByName(plugin.getConfig().getString("discord.chatchannel"), true).get(0);
             textChannel.sendMessage("** :white_check_mark: Server has started **").queue();
         } catch (LoginException | InterruptedException e) {
-            e.printStackTrace();
             getServer().getConsoleSender().sendMessage(ChatColor.RED + "Zander has encountered an error and can't login to Discord. The Discord Token may not be set, discord integrations might not function.");
         }
     }

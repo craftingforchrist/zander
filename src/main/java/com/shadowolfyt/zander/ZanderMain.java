@@ -35,6 +35,7 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new WhitelistListGUI(null), this);
         getServer().getPluginManager().registerEvents(new JukeboxGUI(this), this);
         getServer().getPluginManager().registerEvents(new PunishGUI(this), this);
+        // Discord Events Registry
         getServer().getPluginManager().registerEvents(new DiscordMain(this), this);
 
         // Command Registry
@@ -59,11 +60,11 @@ public final class ZanderMain extends JavaPlugin {
             connection = DriverManager.getConnection("jdbc:mysql://" + getConfig().getString("database.ip") + ":" + getConfig().getString("database.port") + "/" + getConfig().getString("database.databasename"), getConfig().getString("database.username"), getConfig().getString("database.password"));
             getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + ChatColor.GREEN + " Database connection was successful.");
         } catch (SQLException e) {
-            e.printStackTrace();
             getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + ChatColor.RED + " Database connection failed!");
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            getServer().getConsoleSender().sendMessage(ChatColor.RED + "Database connection failed!");
+        } catch (ClassNotFoundException e) {
+            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + ChatColor.RED + " Database connection failed!");
+            e.printStackTrace();
         }
     }
 

@@ -67,7 +67,7 @@ public class PlayerOnJoin implements Listener {
 
                 insertstatement.setString(1, player.getUniqueId().toString());
                 insertstatement.setString(2, player.getDisplayName());
-                insertstatement.setString(3, "1");
+                insertstatement.setString(3, "0");
                 insertstatement.setString(4, "0");
                 insertstatement.setString(5, "0");
                 insertstatement.setString(6, "Currently Online");
@@ -82,13 +82,14 @@ public class PlayerOnJoin implements Listener {
 
         //
         // Database Query
-        // Add +1 to joins and update IP address on login.
+        // Add +1 to joins, set player to currently online and update IP address on login.
         //
         try {
             String ip = player.getPlayer().getAddress().toString().replaceAll("/", "");
-            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE " + plugin.getConfig().getString("database.playerdatatable") + " SET joins = joins+1, ipaddress = ? WHERE uuid=?");
+            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE " + plugin.getConfig().getString("database.playerdatatable") + " SET joins = joins+1, ipaddress = ?, lastseen = ? WHERE uuid=?");
             updatestatement.setString(1, ip);
-            updatestatement.setString(2, player.getUniqueId().toString());
+            updatestatement.setString(2, "Currently Online");
+            updatestatement.setString(3, player.getUniqueId().toString());
             updatestatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

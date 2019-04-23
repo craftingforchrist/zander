@@ -1,6 +1,7 @@
 package com.shadowolfyt.zander.commands;
 
 import com.shadowolfyt.zander.guis.WhitelistGUI;
+import com.shadowolfyt.zander.guis.WhitelistListGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -47,6 +48,11 @@ public class whitelist implements CommandExecutor {
                     Bukkit.getServer().reloadWhitelist();
                     Bukkit.broadcastMessage(ChatColor.RED + target.getName() + " has been removed from the whitelist.");
                 }
+                return true;
+            }
+
+            if (args[0].equalsIgnoreCase("list")) {
+                new WhitelistListGUI(player);
                 return true;
             }
         } else {

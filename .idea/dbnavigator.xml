@@ -23,11 +23,7 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="3e302f30-3a00-4d4c-9bff-0a2bf3e8c607">
-        <schema name="zander" object-types="function, table, view, column, procedure, constraint, index, dataset trigger" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="3e302f30-3a00-4d4c-9bff-0a2bf3e8c607">
