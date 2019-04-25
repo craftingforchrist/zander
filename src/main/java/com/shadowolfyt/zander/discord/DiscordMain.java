@@ -1,9 +1,11 @@
 package com.shadowolfyt.zander.discord;
 
 import com.shadowolfyt.zander.ZanderMain;
+import lombok.Getter;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
@@ -23,14 +25,22 @@ import javax.security.auth.login.LoginException;
 import static org.bukkit.Bukkit.getServer;
 
 public class DiscordMain extends ListenerAdapter implements Listener {
-    public JDA jda;
+    @Getter
+    private static DiscordMain instance;
+
+    @Getter
+    private JDA jda;
     private ZanderMain plugin;
 
-    public DiscordMain(ZanderMain instance) {
-        this.plugin = instance;
+    public DiscordMain(ZanderMain plugin) {
+        this.instance = this;
+
+        this.plugin = plugin;
         this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
 
         if (startBot()) {
+            setGame(Game.GameType.DEFAULT, plugin.getConfig().getString("discord.status", "rednaz"));
+
             registerDiscordEventListeners();
         }
     }
@@ -101,5 +111,17 @@ public class DiscordMain extends ListenerAdapter implements Listener {
         String message = event.getMessage().getContentRaw();
         User user = event.getAuthor();
         Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("discord.chatprefix")) + " " + user.getName() + "#" + user.getDiscriminator() + ": " + message);
+    }
+
+    /**
+     * Be very careful about this, a rate limit of 5 per minute is enforced
+     *
+     * See Presence.setGame
+     *
+     * @param type "type of game" so streaming, playing, etc.
+     * @param text Text to show
+     */
+    public static void setGame(Game.GameType type, String text) {
+        DiscordMain.getInstance().getJda().getPresence().setGame(Game.of(type, text));
     }
 }

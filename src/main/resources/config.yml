@@ -8,6 +8,7 @@ discord:
   token: "TOKEN"
   chatprefix: "&l&f[&9DISCORD&f]&r"
   chatchannel: "server-chat"
+  status: "zander"
   broadcastprefix: "&l&c[&BROADCAST&f]&r"
   broadcastchannel: "announcements"
   link:
