@@ -5,10 +5,10 @@ import net.md_5.bungee.api.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerQuitEvent;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class PlayerOnQuit implements Listener {
     ZanderMain plugin;
@@ -18,7 +18,7 @@ public class PlayerOnQuit implements Listener {
     }
 
     @EventHandler
-    public void onQuit(org.bukkit.event.player.PlayerQuitEvent event) {
+    public void onQuit(PlayerQuitEvent event){
         Player player = event.getPlayer();
 
         event.setQuitMessage("");
@@ -28,18 +28,17 @@ public class PlayerOnQuit implements Listener {
             event.setQuitMessage(ChatColor.YELLOW + player.getName() + " has left the server");
         }
 
-        // Adds +1 to leaves in config.yml.
-        int leaves = plugin.getConfig().getInt("players" + "." + player.getDisplayName() + ".leaves");
-        plugin.getConfig().set("players" + "." + player.getDisplayName() + ".leaves", leaves + 1);
-        plugin.saveConfig();
-
-        // Logs last seen for player on logout.
-        String pattern = "EEEEE MMMMM yyyy HH:mm";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, new Locale("EN", "AU"));
-        String date = simpleDateFormat.format(new Date());
-
-        plugin.getConfig().set("players" + "." + player.getDisplayName() + ".lastseen", date);
-        plugin.saveConfig();
-
+        //
+        // Database Query
+        // Add +1 to leaves and display user as offline.
+        //
+        try {
+            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE " + plugin.getConfig().getString("database.playerdatatable") + " SET leaves = leaves+1, lastseen=? WHERE uuid=?");
+            updatestatement.setString(1, "Offline");
+            updatestatement.setString(2, player.getUniqueId().toString());
+            updatestatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
