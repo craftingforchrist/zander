@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="238debdd-46dc-44c3-bc04-16d0a7c6f3fe" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/ZanderMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/ZanderMain.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +19,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/ZanderMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="101" column="12" selection-start-line="101" selection-start-column="12" selection-end-line="101" selection-end-column="207" />
+            <state relative-caret-position="3">
+              <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -30,24 +29,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/events/PlayerOnJoin.java">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="63" column="72" lean-forward="true" selection-start-line="63" selection-start-column="72" selection-end-line="63" selection-end-column="72" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#670#671#0" expanded="true" />
-                <element signature="e#703#704#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="34">
+              <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/events/PlayerOnQuit.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/discord/DiscordMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="41" selection-end-column="9" />
+            <state relative-caret-position="-408">
+              <caret line="33" selection-start-line="33" selection-end-line="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -112,7 +106,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/config.yml" />
         <option value="$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/commands/whitelist.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/discord/events/ChatHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/discord/DiscordMain.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/commands/broadcast.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/events/PlayerOnQuit.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/commands/profile.java" />
@@ -121,7 +114,9 @@
         <option value="$PROJECT_DIR$/dbinit.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/recipes/FleshLeatherRecipe.java" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/discord/DiscordMain.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/ZanderMain.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -364,7 +359,21 @@
       <option name="project" value="LOCAL" />
       <updated>1556023567089</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="On server shutdown, set all users offline.">
+      <created>1556156320419</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1556156320419</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Committing progress.">
+      <created>1556161843934</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1556161843934</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TodoView">
@@ -377,7 +386,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15991472" />
@@ -425,10 +434,11 @@
     <MESSAGE value="Committing work on different aspects and profile redevelopment." />
     <MESSAGE value="Added Flesh to Leather furnace recipe." />
     <MESSAGE value="Fixing MD error." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing MD error." />
+    <MESSAGE value="On server shutdown, set all users offline." />
+    <MESSAGE value="Committing progress." />
+    <option name="LAST_COMMIT_MESSAGE" value="Committing progress." />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/commands/stop.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/guis/StopGUI.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.13.2-R0.1-SNAPSHOT/spigot-api-1.13.2-R0.1-20181225.234816-84.jar!/org/bukkit/command/CommandExecutor.class" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/commands/starve.java">
@@ -618,16 +628,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/discord/DiscordMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="37" column="35" selection-start-line="37" selection-start-column="35" selection-end-line="37" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dbinit.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -650,10 +650,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/events/PlayerOnJoin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="63" column="72" lean-forward="true" selection-start-line="63" selection-start-column="72" selection-end-line="63" selection-end-column="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#670#671#0" expanded="true" />
+            <element signature="e#703#704#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/events/PlayerOnQuit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="41" selection-end-column="9" />
+        <state relative-caret-position="561">
+          <caret line="35" column="51" lean-forward="true" selection-start-line="35" selection-start-column="51" selection-end-line="35" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/discord/DiscordMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-408">
+          <caret line="33" selection-start-line="33" selection-end-line="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -662,23 +684,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/ZanderMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="101" column="12" selection-start-line="101" selection-start-column="12" selection-end-line="101" selection-end-column="207" />
+        <state relative-caret-position="3">
+          <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/shadowolfyt/zander/events/PlayerOnJoin.java">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="63" column="72" lean-forward="true" selection-start-line="63" selection-start-column="72" selection-end-line="63" selection-end-column="72" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#670#671#0" expanded="true" />
-            <element signature="e#703#704#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="34">
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
         </state>
       </provider>
     </entry>
