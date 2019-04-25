@@ -15,6 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public final class ZanderMain extends JavaPlugin {
@@ -88,6 +89,21 @@ public final class ZanderMain extends JavaPlugin {
 
     @Override
     public void onDisable() {
+
+        //
+        // Database Query
+        // Add +1 to leaves and display user as offline.
+        //
+        try {
+            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE " + plugin.getConfig().getString("database.playerdatatable") + " SET leaves = leaves+1, lastseen=? WHERE lastseen=?");
+            updatestatement.setString(1, "Offline");
+            updatestatement.setString(2, "Currently Online");
+            updatestatement.executeUpdate();
+            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + " Adding +1 to leaves and setting all users offline.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         getServer().getConsoleSender().sendMessage(ChatColor.RED + "\n\nZander has been disabled.\n");
         loadConfiguration();
     }
