@@ -42,6 +42,7 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new JukeboxGUI(this), this);
         getServer().getPluginManager().registerEvents(new PunishGUI(this), this);
         getServer().getPluginManager().registerEvents(new DiscordMain(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerGamemodeChange(), this);
 
         // Command Registry
         this.getCommand("heal").setExecutor((CommandExecutor) new heal());
