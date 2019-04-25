@@ -4,6 +4,8 @@ import com.shadowolfyt.zander.commands.*;
 import com.shadowolfyt.zander.discord.DiscordMain;
 import com.shadowolfyt.zander.events.*;
 import com.shadowolfyt.zander.guis.*;
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.entities.TextChannel;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -21,6 +23,8 @@ import java.sql.SQLException;
 public final class ZanderMain extends JavaPlugin {
     private Connection connection;
     public static ZanderMain plugin;
+    public JDA jda;
+
 
     @Override
     public void onEnable() {
@@ -89,6 +93,8 @@ public final class ZanderMain extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        TextChannel textChannel = jda.getTextChannelsByName(plugin.getConfig().getString("discord.chatchannel"), true).get(0);
+        textChannel.sendMessage(":x: Server is offline **").queue();
 
         //
         // Database Query

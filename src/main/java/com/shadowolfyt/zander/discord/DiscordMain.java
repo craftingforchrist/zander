@@ -101,7 +101,7 @@ public class DiscordMain extends ListenerAdapter implements Listener {
     }
 
     //
-    // Player Leave
+    // Player Death
     //
     @EventHandler
     public void PlayerDeathEvent(PlayerDeathEvent event) {
