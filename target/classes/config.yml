@@ -1,0 +1,23 @@
+database:
+  ip: localhost
+  port: 3306
+  databasename: zander
+  username: zander
+  password: Passwordzander321
+  playerdatatable: playerdata
+prefix: "&b&l[zander]&r]"
+developmentprefix: "&b&l[DEV]&r"
+discord:
+  token: "TOKEN"
+  commandprefix: "!"
+  chatprefix: "&f&l[&9&lDISCORD&f&l]&r"
+  chatchannel: "server-chat"
+  broadcastprefix: "&c&l[&BROADCAST&f]&r"
+  broadcastchannel: "announcements"
+  link: "LINK"
+server:
+  motdFirstLine: '&b&l[zander]&r&3 My Minecraft Server'
+  motdSecondLine: '&eJust another Minecraft Server'
+  titleSubText: 'Enjoy your stay!'
+  tablineHeader: '&6My Minecraft Server'
+  tablineFooter: '&5zander enabled server'
