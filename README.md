@@ -9,6 +9,10 @@ If you are having trouble and need help or have issues with using zander, shoot 
 If you would like to help and contribute to the zander project, feel free to fork the project, add what you'd like and create a Pull Request, stating what you've added or fixed.
 I super appreciate any form of help.
 
+## Addon
+### [zander-web](https://github.com/shadowolfyt/zander-web)
+An addon that is in Development is a web server side to integrate with the MySQL database.
+
 ### Contributors
 Thank you to all of these people who have helped and have contributed to this project:
 - [jasoryeh](https://github.com/jasoryeh)
