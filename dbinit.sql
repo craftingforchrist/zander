@@ -15,5 +15,8 @@ CREATE TABLE playerdata (
   deaths TEXT,
   status TEXT,
   lastseen TEXT,
-  ipaddress TEXT
+  ipaddress TEXT,
+  isFrozen TEXT,
+  discordid TEXT,
+  discorddiscriminator TEXT
 );

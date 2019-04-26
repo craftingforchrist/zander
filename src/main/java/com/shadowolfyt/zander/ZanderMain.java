@@ -44,6 +44,7 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new WhitelistListGUI(null), this);
         getServer().getPluginManager().registerEvents(new JukeboxGUI(this), this);
         getServer().getPluginManager().registerEvents(new PunishGUI(this), this);
+        getServer().getPluginManager().registerEvents(new FreezeListener(this), this);
         // Discord Events Registry
         getServer().getPluginManager().registerEvents(new DiscordMain(this), this);
 
@@ -61,19 +62,7 @@ public final class ZanderMain extends JavaPlugin {
         this.getCommand("jukebox").setExecutor((CommandExecutor) new jukebox());
         this.getCommand("punish").setExecutor((CommandExecutor) new punish());
         this.getCommand("discord").setExecutor((CommandExecutor) new discord(this));
-        this.getCommand("heal").setExecutor((CommandExecutor)new heal());
-        this.getCommand("feed").setExecutor((CommandExecutor)new feed());
-        this.getCommand("starve").setExecutor((CommandExecutor)new starve());
-        this.getCommand("adventure").setExecutor((CommandExecutor)new adventure());
-        this.getCommand("creative").setExecutor((CommandExecutor)new creative());
-        this.getCommand("survival").setExecutor((CommandExecutor)new survival());
-        this.getCommand("spectator").setExecutor((CommandExecutor)new spectator());
-        this.getCommand("fly").setExecutor((CommandExecutor)new fly());
-        this.getCommand("profile").setExecutor((CommandExecutor)new profile(this));
-        this.getCommand("whitelist").setExecutor((CommandExecutor)new whitelist());
-        this.getCommand("jukebox").setExecutor((CommandExecutor)new jukebox());
-        this.getCommand("punish").setExecutor((CommandExecutor)new punish());
-        this.getCommand("discord").setExecutor((CommandExecutor)new discord(this));
+        this.getCommand("freeze").setExecutor((CommandExecutor)new freeze(this));
 
         // Recipe Registry
         Bukkit.addRecipe(new FurnaceRecipe(new NamespacedKey(plugin, "furnace_flesh_leather"), new ItemStack(Material.LEATHER), Material.ROTTEN_FLESH, 0, 1200));
