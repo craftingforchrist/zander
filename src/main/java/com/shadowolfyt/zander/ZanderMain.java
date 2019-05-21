@@ -44,7 +44,6 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new WhitelistListGUI(null), this);
         getServer().getPluginManager().registerEvents(new JukeboxGUI(this), this);
         getServer().getPluginManager().registerEvents(new PunishGUI(this), this);
-        getServer().getPluginManager().registerEvents(new FreezeListener(this), this);
         // Discord Events Registry
         getServer().getPluginManager().registerEvents(new DiscordMain(this), this);
 
@@ -62,7 +61,6 @@ public final class ZanderMain extends JavaPlugin {
         this.getCommand("jukebox").setExecutor((CommandExecutor) new jukebox());
         this.getCommand("punish").setExecutor((CommandExecutor) new punish());
         this.getCommand("discord").setExecutor((CommandExecutor) new discord(this));
-        this.getCommand("freeze").setExecutor((CommandExecutor)new freeze(this));
 
         // Recipe Registry
         Bukkit.addRecipe(new FurnaceRecipe(new NamespacedKey(plugin, "furnace_flesh_leather"), new ItemStack(Material.LEATHER), Material.ROTTEN_FLESH, 0, 1200));
@@ -101,20 +99,6 @@ public final class ZanderMain extends JavaPlugin {
     public void onDisable() {
         TextChannel textChannel = jda.getTextChannelsByName(plugin.getConfig().getString("discord.chatchannel"), true).get(0);
         textChannel.sendMessage(":x: Server is offline **").queue();
-
-        //
-        // Database Query
-        // Add +1 to leaves and display user as offline.
-        //
-        try {
-            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE " + plugin.getConfig().getString("database.playerdatatable") + " SET leaves = leaves+1, lastseen=? WHERE lastseen=?");
-            updatestatement.setString(1, "Offline");
-            updatestatement.setString(2, "Currently Online");
-            updatestatement.executeUpdate();
-            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + " Adding +1 to leaves and setting all users offline.");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
         getServer().getConsoleSender().sendMessage(ChatColor.RED + "\n\nZander has been disabled.\n");
         loadConfiguration();

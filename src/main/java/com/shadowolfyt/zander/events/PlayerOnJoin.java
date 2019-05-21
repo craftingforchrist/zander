@@ -65,15 +65,16 @@ public class PlayerOnJoin implements Listener {
             if (!results.next()) {
                 plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + " " + player.getDisplayName() + " is a new player, creating a player profile.");
                 String ip = player.getPlayer().getAddress().toString().replaceAll("/", "");
-                PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO " + plugin.getConfig().getString("database.playerdatatable") + " (uuid, username, joins, leaves, deaths, lastseen, ipaddress) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO " + plugin.getConfig().getString("database.playerdatatable") + " (uuid, username, joins, deaths, status, lastseen, isVerified, ipaddress) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
                 insertstatement.setString(1, player.getUniqueId().toString());
                 insertstatement.setString(2, player.getDisplayName());
                 insertstatement.setString(3, "0");
                 insertstatement.setString(4, "0");
-                insertstatement.setString(5, "0");
+                insertstatement.setString(5, "Currently Online");
                 insertstatement.setString(6, "Currently Online");
-                insertstatement.setString(7, ip);
+                insertstatement.setString(7, "false");
+                insertstatement.setString(8, ip);
 
                 insertstatement.executeUpdate();
                 plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + " Inserted information into " + player.getDisplayName() + "'s profile");
@@ -88,10 +89,11 @@ public class PlayerOnJoin implements Listener {
         //
         try {
             String ip = player.getPlayer().getAddress().toString().replaceAll("/", "");
-            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE " + plugin.getConfig().getString("database.playerdatatable") + " SET joins = joins+1, ipaddress = ?, lastseen = ? WHERE uuid=?");
+            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE " + plugin.getConfig().getString("database.playerdatatable") + " SET joins = joins+1, ipaddress = ?, lastseen = ?, status = ? WHERE uuid=?");
             updatestatement.setString(1, ip);
             updatestatement.setString(2, "Currently Online");
-            updatestatement.setString(3, player.getUniqueId().toString());
+            updatestatement.setString(3, "Currently Online");
+            updatestatement.setString(4, player.getUniqueId().toString());
             updatestatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

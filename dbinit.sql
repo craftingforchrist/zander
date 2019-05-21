@@ -11,12 +11,11 @@ CREATE TABLE playerdata (
   uuid VARCHAR(36) not null primary key,
   username TEXT,
   joins TEXT,
-  leaves TEXT,
   deaths TEXT,
   status TEXT,
   lastseen TEXT,
   ipaddress TEXT,
-  isFrozen TEXT,
-  discordid TEXT,
+  isVerified TEXT,
+  discordid VARCHAR(18),
   discorddiscriminator TEXT
 );

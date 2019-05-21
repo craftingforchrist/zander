@@ -6,10 +6,14 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -19,6 +23,10 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import javax.security.auth.login.LoginException;
 
+import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 import static org.bukkit.Bukkit.getServer;
@@ -34,7 +42,7 @@ public class DiscordMain extends ListenerAdapter implements Listener {
 
     public DiscordMain(ZanderMain instance) {
         this.plugin = instance;
-        this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        //this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
         this.uuidCodeMap = new HashMap<>();
         this.uuididMap = new HashMap<>();
         this.verifiedMembers = new ArrayList<>();
@@ -138,45 +146,53 @@ public class DiscordMain extends ListenerAdapter implements Listener {
     // Discord Verification
     //
     //@Override
-//    public void GuildMessageReceived(GuildMessageReceivedEvent event) {
-//        if (event.getAuthor().isBot() || event.getAuthor().isFake() || event.isWebhookMessage()) return;
-//        String[] args = event.getMessage().getContentRaw().split(" ");
-//        if (args[0].equalsIgnoreCase(plugin.getConfig().getString("discord.commandprefix") + "link")) {
+    public void GuildMessageReceived(GuildMessageReceivedEvent event) {
+        if (event.getAuthor().isBot() || event.getAuthor().isFake() || event.isWebhookMessage()) return;
+        String[] args = event.getMessage().getContentRaw().split(" ");
+        if (args[0].equalsIgnoreCase(plugin.getConfig().getString("discord.commandprefix") + "link")) {
 //            if (event.getMember().getRoles().stream().filter(role -> role.getName().equals("Verified")).findAny().orElse(null) != null){
 //                event.getChannel().sendMessage("Error " + event.getAuthor().getAsMention() + ", you are already verified.").queue();
 //                return;
 //            }
-//
-//            if (args.length != 2) {
-//                event.getChannel().sendMessage("Error! You need to specify a user.").queue();
-//                return;
-//            }
-//
-//            Player target = Bukkit.getPlayer(args[1]);
-//            if (target == null){
-//                event.getChannel().sendMessage("Error! This player is not online.").queue();
-//                return;
-//            }
-//            String randomcode = new Random().nextInt(800000)+200000+"DVC"; // DVC is Disoord Verification Code
-//            uuidCodeMap.put(target.getUniqueId(), randomcode);
-//            uuididMap.put(target.getUniqueId(), event.getAuthor().getId());
-//            event.getAuthor().openPrivateChannel().complete().sendMessage("Your verification code has been generated!\n Use this command in game `/verify " + randomcode + "`").queue();
-//        }
-//    }
-//
-//    @EventHandler
-//    public void onJoinVerification(PlayerJoinEvent event) {
-//        if (plugin.playerData.contains("Data." + event.getPlayer().getUniqueId().toString())){
-//            verifiedMembers.add(event.getPlayer().getUniqueId());
-//        }
-//    }
-//
-//    @EventHandler
-//    public void onQuitVerification(PlayerQuitEvent event) {
-//        if (plugin.playerData.contains("Data." + event.getPlayer().getUniqueId().toString())){
-//            verifiedMembers.remove(event.getPlayer().getUniqueId());
-//        }
-//    }
+
+            if (args.length != 2) {
+                event.getChannel().sendMessage("Error! You need to specify a user.").queue();
+                return;
+            }
+
+            Player target = Bukkit.getPlayer(args[1]);
+            if (target == null) {
+                event.getChannel().sendMessage("Error! This player is not online.").queue();
+                return;
+            }
+
+            String randomcode = new Random().nextInt(800000)+200000+"DVC"; // DVC is Disoord Verification Code
+            uuidCodeMap.put(target.getUniqueId(), randomcode);
+            uuididMap.put(target.getUniqueId(), event.getAuthor().getId());
+            event.getAuthor().openPrivateChannel().complete().sendMessage("Your verification code has been generated!\n Use this command in game `/verify " + randomcode + "`").queue();
+        }
+    }
+
+    @EventHandler
+    public void onJoinVerification(PlayerJoinEvent event) {
+        try {
+            PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM " + plugin.getConfig().getString("database.playerdatatable") + " WHERE uuid=?");
+            findstatement.setString(1, event.getPlayer().getUniqueId().toString());
+            ResultSet results = findstatement.executeQuery();
+            if (!results.next()) {
+                if (results.getString("isVerified") == "true") {
+                    getServer().getConsoleSender().sendMessage("This player is verified with Discord.");
+                    return;
+                } else {
+                    getServer().getConsoleSender().sendMessage("This player is not registered or verified with Discord, their not going anywhere.");
+                    return;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 //
 //    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 //        if (!(sender instanceof Player)){
