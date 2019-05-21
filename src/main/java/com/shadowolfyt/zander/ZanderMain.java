@@ -24,6 +24,7 @@ public final class ZanderMain extends JavaPlugin {
     private Connection connection;
     public static ZanderMain plugin;
     public JDA jda;
+    public static String prefix = "!";
 
     @Override
     public void onEnable() {

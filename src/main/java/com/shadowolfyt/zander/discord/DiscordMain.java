@@ -58,6 +58,7 @@ public class DiscordMain extends ListenerAdapter implements Listener {
 
     private void registerDiscordEventListeners() {
         this.jda.addEventListener(this);
+        this.jda.addEventListener(new profile());
     }
 
     /**
@@ -73,9 +74,10 @@ public class DiscordMain extends ListenerAdapter implements Listener {
         try {
             // Build JDA/bot connection
             this.jda = new JDABuilder(AccountType.BOT).setToken(plugin.getConfig().getString("discord.token")).build().awaitReady();
+            jda.getPresence().setGame(Game.playing("zander Community SMP"));
 
             // Show signs of life
-            this.plugin.getLogger().info(ChatColor.BLUE + "[Discord] " + ChatColor.GREEN + "Zander is now connected to Discord.");
+            getServer().getConsoleSender().sendMessage(ChatColor.BLUE + "[Discord] " + ChatColor.GREEN + "Zander is now connected to Discord.");
             TextChannel textChannel = this.jda.getTextChannelsByName(
                     this.plugin.getConfig().getString("discord.chatchannel"),
                     true
