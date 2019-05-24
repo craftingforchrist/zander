@@ -13,10 +13,6 @@ I super appreciate any form of help.
 ### [zander-web](https://github.com/shadowolfyt/zander-web)
 An addon that is in Development is a web server side to integrate with the MySQL database.
 
-### Contributors
-Thank you to all of these people who have helped and have contributed to this project:
-- [jasoryeh](https://github.com/jasoryeh)
-
 ## Features
 #### Jukebox Radio
 The jukebox radio comes with the /jukebox command `zander.jukebox` will open a GUI where you can select and play any disc that is currently in the game. Personally, I have been using this with a custom resource pack and putting other music over it.
