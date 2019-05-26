@@ -5,7 +5,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class profile implements CommandExecutor {
     ZanderMain plugin;
@@ -16,54 +19,29 @@ public class profile implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        Player player = (Player) sender;
-
         if (args.length == 0) {
-            if(!doesProfileExist(player.getDisplayName())) {
-                player.sendMessage("Player doesn't exist in records.");
-                return true;
-            }
-
-            player.sendMessage("\n");
-            player.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + player.getDisplayName() + "'s Profile");
-            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Joins: " + ChatColor.RESET + plugin.getConfig().getInt("players" + "." + player.getDisplayName() + ".joins"));
-            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Leaves: " + ChatColor.RESET + plugin.getConfig().getInt("players" + "." + player.getDisplayName() + ".leaves"));
-            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Deaths: " + ChatColor.RESET + plugin.getConfig().getInt("players" + "." + player.getDisplayName() + ".deaths"));
-            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Last Seen: " + ChatColor.RESET + plugin.getConfig().getString("players" + "." + player.getDisplayName() + ".lastseen"));
-            if (player.hasPermission("zander.displayipaddress")) {
-                player.sendMessage(ChatColor.RED.toString() + ChatColor.ITALIC + "IP Address: " + ChatColor.RESET + plugin.getConfig().getString("players" + "." + player.getDisplayName() + ".ipaddress"));
-                player.sendMessage(ChatColor.RED.toString() + ChatColor.ITALIC + "UUID: " + ChatColor.RESET + plugin.getConfig().getString("players" + "." + player.getDisplayName() + ".uuid"));
-                player.sendMessage("\n");
-                player.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD + "[NOTE]: " + ChatColor.RESET + "Normal users cannot see the fields in red. Users that are opped or have the permission node can.");
-            }
-            player.sendMessage("\n");
-            return true;
-        }
-
-        if(!doesProfileExist(args[0])) {
-            player.sendMessage("Player doesn't exist in records.");
-            return true;
-        }
-
-        if (plugin.getConfig().getString("players" + "." + args[0]) == null) {
-            player.sendMessage(ChatColor.RED + "That player could not be located.");
-            return true;
+            sender.sendMessage(ChatColor.RED + "Correct Usage: /profile [PlayerName]");
         } else {
-            player.sendMessage("\n");
-            player.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + plugin.getConfig().getString("players" + "." + args[0]) + "'s Profile");
-            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Joins: " + ChatColor.RESET + plugin.getConfig().getInt("players" + "." + args[0] + ".joins"));
-            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Leaves: " + ChatColor.RESET + plugin.getConfig().getInt("players" + "." + args[0] + ".leaves"));
-            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Deaths: " + ChatColor.RESET + plugin.getConfig().getInt("players" + "." + args[0] + ".deaths"));
-            player.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Last Seen: " + ChatColor.RESET + plugin.getConfig().getString("players" + "." + args[0] + ".lastseen"));
-            if (player.hasPermission("zander.displaydeveloperinformation")) {
-                player.sendMessage(ChatColor.RED.toString() + ChatColor.ITALIC + "IP Address: " + ChatColor.RESET + plugin.getConfig().getString("players" + "." + args[0] + ".ipaddress"));
-                player.sendMessage(ChatColor.RED.toString() + ChatColor.ITALIC + "UUID: " + ChatColor.RESET + plugin.getConfig().getString("players" + "." + args[0] + ".uuid"));
-                player.sendMessage("\n");
-                player.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD + "[NOTE]: " + ChatColor.RESET + "Normal users cannot see the fields in red. Users that are opped or have the permission node can.");
+            try {
+                PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM " + plugin.getConfig().getString("database.playerdatatable") + " WHERE username=?");
+                findstatement.setString(1, args[0]);
+                ResultSet results = findstatement.executeQuery();
+                if (results.next()) {
+                    sender.sendMessage("\n");
+                    sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + results.getString("username") + "'s Profile");
+                    sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Joins: " + ChatColor.RESET + results.getInt("joins"));
+                    sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Leaves: " + ChatColor.RESET + results.getInt("leaves"));
+                    sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Deaths: " + ChatColor.RESET + results.getInt("deaths"));
+                    sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Last Seen: " + ChatColor.RESET + results.getString("lastseen"));
+                    sender.sendMessage("\n");
+                    return true;
+                }
+            } catch (SQLException e) {
+                sender.sendMessage(ChatColor.RED + "This player cannot be found in the database.");
+                e.printStackTrace();
             }
-            player.sendMessage("\n");
-            return true;
         }
+        return true;
     }
 
     private static boolean doesProfileExist(String username) {

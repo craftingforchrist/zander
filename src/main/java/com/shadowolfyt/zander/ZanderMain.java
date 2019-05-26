@@ -3,24 +3,28 @@ package com.shadowolfyt.zander;
 import com.shadowolfyt.zander.commands.*;
 import com.shadowolfyt.zander.discord.DiscordMain;
 import com.shadowolfyt.zander.events.*;
-import com.shadowolfyt.zander.guis.JukeboxGUI;
-import com.shadowolfyt.zander.guis.PunishGUI;
-import com.shadowolfyt.zander.guis.WhitelistGUI;
-import com.shadowolfyt.zander.guis.WhitelistListGUI;
+import com.shadowolfyt.zander.guis.*;
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.entities.TextChannel;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.command.CommandExecutor;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.PluginDescriptionFile;
+import org.bukkit.inventory.FurnaceRecipe;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public final class ZanderMain extends JavaPlugin {
-    public static ZanderMain plugin;
-    public FileConfiguration configuration;
     private Connection connection;
+    public static ZanderMain plugin;
+    public JDA jda;
+    public static String prefix = "!";
 
     @Override
     public void onEnable() {
@@ -28,8 +32,8 @@ public final class ZanderMain extends JavaPlugin {
         establishConnection();
         loadConfiguration();
 
-        PluginDescriptionFile pdf = plugin.getDescription();
-        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "\n\nZander has been enabled.\nRunning Version " + pdf.getVersion() + "\nGitHub Repository: https://github.com/shadowolfyt/zander\nCreated by shadowolfyt\n\n");
+        // Init Message
+        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "\n\nZander has been enabled.\nRunning Version " + plugin.getDescription().getVersion() + "\nGitHub Repository: https://github.com/shadowolfyt/zander\nCreated by shadowolfyt\n\n");
 
         // Events Registry
         getServer().getPluginManager().registerEvents(new PlayerOnJoin(this), this);
@@ -41,6 +45,7 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new WhitelistListGUI(null), this);
         getServer().getPluginManager().registerEvents(new JukeboxGUI(this), this);
         getServer().getPluginManager().registerEvents(new PunishGUI(this), this);
+        // Discord Events Registry
         getServer().getPluginManager().registerEvents(new DiscordMain(this), this);
         getServer().getPluginManager().registerEvents(new PlayerGamemodeChange(), this);
 
@@ -58,6 +63,9 @@ public final class ZanderMain extends JavaPlugin {
         this.getCommand("jukebox").setExecutor((CommandExecutor) new jukebox());
         this.getCommand("punish").setExecutor((CommandExecutor) new punish());
         this.getCommand("discord").setExecutor((CommandExecutor) new discord(this));
+
+        // Recipe Registry
+        Bukkit.addRecipe(new FurnaceRecipe(new NamespacedKey(plugin, "furnace_flesh_leather"), new ItemStack(Material.LEATHER), Material.ROTTEN_FLESH, 0, 1200));
     }
 
     public void establishConnection() {
@@ -71,12 +79,16 @@ public final class ZanderMain extends JavaPlugin {
                     getConfig().getString("database.password"));
             getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Database connection was successful.");
         } catch (SQLException e) {
+            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + ChatColor.RED + " Database connection failed!");
             e.printStackTrace();
-            getServer().getConsoleSender().sendMessage(ChatColor.RED + "Database connection failed!");
         } catch (ClassNotFoundException e) {
+            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + ChatColor.RED + " Database connection failed!");
             e.printStackTrace();
-            getServer().getConsoleSender().sendMessage(ChatColor.RED + "Database connection failed!");
         }
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
 
     private void loadConfiguration() {
@@ -87,6 +99,9 @@ public final class ZanderMain extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        TextChannel textChannel = jda.getTextChannelsByName(plugin.getConfig().getString("discord.chatchannel"), true).get(0);
+        textChannel.sendMessage(":x: Server is offline **").queue();
+
         getServer().getConsoleSender().sendMessage(ChatColor.RED + "\n\nZander has been disabled.\n");
         loadConfiguration();
     }

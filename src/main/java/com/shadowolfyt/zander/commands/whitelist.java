@@ -68,6 +68,11 @@ public class whitelist implements CommandExecutor {
             } else {
                 sender.sendMessage(EN_ERR_PLAYER_DOES_NOT_EXIST);
             }
+
+
+        } else if (args[0].equalsIgnoreCase("list")) {
+            sender.sendMessage(ChatColor.YELLOW + "Currently whitelisted: ");
+            Bukkit.getServer().getWhitelistedPlayers().forEach(p -> sender.sendMessage(p.getPlayer().getDisplayName()));
             return true;
         }
         return true;

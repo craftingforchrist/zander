@@ -9,5 +9,13 @@ GRANT UPDATE ON zander.* TO zander@'%';
 
 CREATE TABLE playerdata (
   uuid VARCHAR(36) not null primary key,
-  username TEXT
+  username TEXT,
+  joins TEXT,
+  deaths TEXT,
+  status TEXT,
+  lastseen TEXT,
+  ipaddress TEXT,
+  isVerified TEXT,
+  discordid VARCHAR(18),
+  discorddiscriminator TEXT
 );

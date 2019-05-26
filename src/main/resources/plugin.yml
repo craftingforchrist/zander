@@ -1,6 +1,6 @@
 main: com.shadowolfyt.zander.ZanderMain
 name: zander
-version: 1.4
+version: 1.0
 author: shadowolfyt
 api-version: 1.13
 softdepend:
@@ -51,6 +51,12 @@ commands:
   discord:
     description: Discord Command.
     usage: /discord
+  verify:
+    description: Discord Command.
+    usage: /verify
+  freeze:
+    description: Freeze Command.
+    usage: /freeze
 
 permissions:
   zander.heal:
@@ -76,4 +82,6 @@ permissions:
   zander.jukebox:
     default: op
   zander.punish:
+    default: op
+  zander.freeze:
     default: op

@@ -12,6 +12,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.meta.FireworkMeta;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class PlayerOnJoin implements Listener {
     ZanderMain plugin;
 
@@ -27,7 +31,7 @@ public class PlayerOnJoin implements Listener {
         TitleAPI.sendTabTitle(player, ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.tablineHeader")), ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.tablineFooter")));
 
         event.setJoinMessage("");
-        // New User Joins for first time.
+        // New user Joins for first time celebratory firework
         if (!player.hasPlayedBefore()) {
             Firework firework = (Firework) event.getPlayer().getWorld().spawn(event.getPlayer().getLocation(), Firework.class);
             FireworkMeta fireworkmeta = firework.getFireworkMeta();
@@ -50,32 +54,49 @@ public class PlayerOnJoin implements Listener {
             }
         }
 
-        // Adding join information to YML file.
-        if (!player.hasPlayedBefore()) {
-            plugin.getConfig().set("players" + "." + player.getDisplayName() + ".joins", 0);
-            plugin.getConfig().set("players" + "." + player.getDisplayName() + ".leaves", 0);
-            plugin.getConfig().set("players" + "." + player.getDisplayName() + ".deaths", 0);
-            plugin.getConfig().set("players" + "." + player.getDisplayName() + ".lastseen", null);
-            plugin.getConfig().set("players" + "." + player.getDisplayName() + ".uuid", null);
-            plugin.getConfig().set("players" + "." + player.getDisplayName() + ".ipaddress", null);
+        //
+        // Database Query
+        // Create a new player profile in Database.
+        //
+        try {
+            PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM " + plugin.getConfig().getString("database.playerdatatable") + " WHERE uuid=?");
+            findstatement.setString(1, player.getUniqueId().toString());
+            ResultSet results = findstatement.executeQuery();
+            if (!results.next()) {
+                plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + " " + player.getDisplayName() + " is a new player, creating a player profile.");
+                String ip = player.getPlayer().getAddress().toString().replaceAll("/", "");
+                PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO " + plugin.getConfig().getString("database.playerdatatable") + " (uuid, username, joins, deaths, status, lastseen, isVerified, ipaddress) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+
+                insertstatement.setString(1, player.getUniqueId().toString());
+                insertstatement.setString(2, player.getDisplayName());
+                insertstatement.setString(3, "0");
+                insertstatement.setString(4, "0");
+                insertstatement.setString(5, "Currently Online");
+                insertstatement.setString(6, "Currently Online");
+                insertstatement.setString(7, "false");
+                insertstatement.setString(8, ip);
+
+                insertstatement.executeUpdate();
+                plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + " Inserted information into " + player.getDisplayName() + "'s profile");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
-        int joined = plugin.getConfig().getInt("players" + "." + player.getDisplayName() + ".joins");
-        plugin.getConfig().set("players" + "." + player.getDisplayName() + ".joins", joined + 1);
-        plugin.saveConfig();
-
-        // Create UUID field in config.
-        String playerUUID = player.getPlayer().getUniqueId().toString();
-        plugin.getConfig().set("players" + "." + player.getDisplayName() + ".uuid", playerUUID);
-        plugin.saveConfig();
-
-        // Create IP Address field config.
-        String ip = player.getPlayer().getAddress().toString().replaceAll("/", "");
-        plugin.getConfig().set("players" + "." + player.getDisplayName() + ".ipaddress", ip);
-        plugin.saveConfig();
-
-        // Changes Last Seen to Currently Online.
-        plugin.getConfig().set("players" + "." + player.getDisplayName() + ".lastseen", ChatColor.GREEN.toString() + ChatColor.BOLD + "Currently Online" + ChatColor.RESET);
-        plugin.saveConfig();
+        //
+        // Database Query
+        // Add +1 to joins, set player to currently online and update IP address on login.
+        //
+        try {
+            String ip = player.getPlayer().getAddress().toString().replaceAll("/", "");
+            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE " + plugin.getConfig().getString("database.playerdatatable") + " SET joins = joins+1, ipaddress = ?, lastseen = ?, status = ? WHERE uuid=?");
+            updatestatement.setString(1, ip);
+            updatestatement.setString(2, "Currently Online");
+            updatestatement.setString(3, "Currently Online");
+            updatestatement.setString(4, player.getUniqueId().toString());
+            updatestatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
