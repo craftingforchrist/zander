@@ -25,7 +25,6 @@ import java.sql.SQLException;
 public final class ZanderMain extends JavaPlugin {
     private Connection connection;
     public static ZanderMain plugin;
-    public JDA jda;
     public static String prefix = "!";
 
     @Override
@@ -101,8 +100,15 @@ public final class ZanderMain extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        TextChannel textChannel = jda.getTextChannelsByName(plugin.getConfig().getString("discord.chatchannel"), true).get(0);
-        textChannel.sendMessage(":x: Server is offline **").queue();
+        try {
+            TextChannel textChannel = DiscordMain.getInstance().getJda()
+                    .getTextChannelsByName(plugin.getConfig().getString("discord.chatchannel"), true).get(0);
+            textChannel.sendMessage(":x: Server is offline **").queue();
+
+            DiscordMain.getInstance().getJda().shutdownNow();
+        } catch(NullPointerException npe) {
+            npe.printStackTrace();
+        }
 
         getServer().getConsoleSender().sendMessage(ChatColor.RED + "\n\nZander has been disabled.\n");
         loadConfiguration();
