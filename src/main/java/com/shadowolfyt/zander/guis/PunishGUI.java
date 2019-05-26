@@ -2,6 +2,7 @@ package com.shadowolfyt.zander.guis;
 
 import com.shadowolfyt.zander.ZanderMain;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,15 +20,21 @@ public class PunishGUI implements Listener {
     ZanderMain plugin;
     Inventory inv = Bukkit.createInventory(null, 9, "Punishment GUI");
 
+    Player player;
+    Player target;
 
-    public PunishGUI(ZanderMain instance) {
-        plugin = instance;
-    }
-
-    public PunishGUI(Player player) {
-        if (player == null) {
+    public PunishGUI(Player player, Player target) {
+        if (player == null || target == null) {
             return;
         }
+
+        this.plugin = ZanderMain.plugin;
+
+        this.player = player;
+        this.target = target;
+
+        // Listen
+        plugin.getServer().getPluginManager().registerEvents(this, this.plugin);
 
         // Kick
         ItemStack kick = new ItemStack(LEATHER_BOOTS);
@@ -57,6 +64,7 @@ public class PunishGUI implements Listener {
         switch (event.getCurrentItem().getType()) {
             case LEATHER_BOOTS:
                 player.closeInventory();
+                this.target.kickPlayer(ChatColor.RED + "You have been kicked by an administrator: " + this.player.getDisplayName());
                 break;
 
             default:

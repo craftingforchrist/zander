@@ -24,7 +24,7 @@ public class punish implements CommandExecutor {
                 player.sendMessage(ChatColor.RED + "That player could not be located.");
                 return true;
             } else {
-                new PunishGUI(player);
+                new PunishGUI(player, target);
                 return true;
             }
         } else {
