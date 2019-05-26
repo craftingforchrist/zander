@@ -7,9 +7,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 public class PlayerOnQuit implements Listener {
     ZanderMain plugin;
 
@@ -18,7 +15,7 @@ public class PlayerOnQuit implements Listener {
     }
 
     @EventHandler
-    public void onQuit(PlayerQuitEvent event){
+    public void onQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
 
         event.setQuitMessage("");

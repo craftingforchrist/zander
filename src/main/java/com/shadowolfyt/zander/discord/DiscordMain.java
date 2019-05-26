@@ -21,7 +21,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import javax.security.auth.login.LoginException;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,8 +35,8 @@ public class DiscordMain extends ListenerAdapter implements Listener {
     @Getter
     private JDA jda;
     private ZanderMain plugin;
-	
-	public HashMap<UUID, String> uuidCodeMap;
+
+    public HashMap<UUID, String> uuidCodeMap;
     public HashMap<UUID, String> uuididMap;
     public List<UUID> verifiedMembers;
     public Guild guild;
@@ -50,15 +49,15 @@ public class DiscordMain extends ListenerAdapter implements Listener {
         this.uuidCodeMap = new HashMap<>();
         this.uuididMap = new HashMap<>();
         this.verifiedMembers = new ArrayList<>();
-        Bukkit.getScheduler().runTaskLater(plugin, ()-> guild = jda.getGuilds().get(0), 100L);
+        Bukkit.getScheduler().runTaskLater(plugin, () -> guild = jda.getGuilds().get(0), 100L);
 
         if (startBot()) {
             setGame(Game.GameType.DEFAULT, plugin.getConfig().getString("discord.status", "rednaz"));
             registerDiscordEventListeners();
-			//plugin.getCommand("verify").setExecutor(this);
+            //plugin.getCommand("verify").setExecutor(this);
         } else {
-			// failure
-		}			
+            // failure
+        }
     }
 
     private void registerDiscordEventListeners() {
@@ -173,7 +172,7 @@ public class DiscordMain extends ListenerAdapter implements Listener {
                 return;
             }
 
-            String randomcode = new Random().nextInt(800000)+200000+"DVC"; // DVC is Disoord Verification Code
+            String randomcode = new Random().nextInt(800000) + 200000 + "DVC"; // DVC is Disoord Verification Code
             uuidCodeMap.put(target.getUniqueId(), randomcode);
             uuididMap.put(target.getUniqueId(), event.getAuthor().getId());
             event.getAuthor().openPrivateChannel().complete().sendMessage("Your verification code has been generated!\n Use this command in game `/verify " + randomcode + "`").queue();
@@ -182,7 +181,7 @@ public class DiscordMain extends ListenerAdapter implements Listener {
 
     /**
      * Be very careful about this, a rate limit of 5 per minute is enforced
-     *
+     * <p>
      * See Presence.setGame
      *
      * @param type "type of game" so streaming, playing, etc.

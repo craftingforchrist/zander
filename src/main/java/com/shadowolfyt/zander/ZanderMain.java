@@ -3,7 +3,10 @@ package com.shadowolfyt.zander;
 import com.shadowolfyt.zander.commands.*;
 import com.shadowolfyt.zander.discord.DiscordMain;
 import com.shadowolfyt.zander.events.*;
-import com.shadowolfyt.zander.guis.*;
+import com.shadowolfyt.zander.guis.JukeboxGUI;
+import com.shadowolfyt.zander.guis.PunishGUI;
+import com.shadowolfyt.zander.guis.WhitelistGUI;
+import com.shadowolfyt.zander.guis.WhitelistListGUI;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.md_5.bungee.api.ChatColor;
@@ -17,7 +20,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public final class ZanderMain extends JavaPlugin {
