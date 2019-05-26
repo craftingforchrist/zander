@@ -25,6 +25,11 @@ public class PlayerOnJoin implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
+        if(event.getPlayer().isBanned()) {
+            event.getPlayer().kickPlayer("You are banned!");
+            return;
+        }
+
         Player player = event.getPlayer();
 
         TitleAPI.sendTitle(player, 40, 50, 40, "Welcome " + ChatColor.AQUA + player.getDisplayName(), ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.titleSubText")));
