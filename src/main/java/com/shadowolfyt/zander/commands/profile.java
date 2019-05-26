@@ -35,9 +35,11 @@ public class profile implements CommandExecutor {
                     sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Last Seen: " + ChatColor.RESET + results.getString("lastseen"));
                     sender.sendMessage("\n");
                     return true;
+                } else {
+                    sender.sendMessage(ChatColor.RED + "Profile not found.");
                 }
             } catch (SQLException e) {
-                sender.sendMessage(ChatColor.RED + "This player cannot be found in the database.");
+                sender.sendMessage(ChatColor.RED + "An error occurred while looking up this information. Please try again later.");
                 e.printStackTrace();
             }
         }
