@@ -71,7 +71,7 @@ public final class ZanderMain extends JavaPlugin {
     public void establishConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(
+            this.connection = DriverManager.getConnection(
                     "jdbc:mysql://" + getConfig().getString(
                             "database.ip") + ":" + getConfig().getString(
                             "database.port") + "/" + getConfig().getString("database.databasename"),
@@ -88,6 +88,9 @@ public final class ZanderMain extends JavaPlugin {
     }
 
     public Connection getConnection() {
+        if(this.connection == null) {
+            establishConnection();
+        }
         return connection;
     }
 
