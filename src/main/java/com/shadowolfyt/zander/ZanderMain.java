@@ -46,9 +46,9 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new WhitelistListGUI(null), this);
         getServer().getPluginManager().registerEvents(new JukeboxGUI(this), this);
         getServer().getPluginManager().registerEvents(new PunishGUI(this), this);
-        // Discord Events Registry
-        getServer().getPluginManager().registerEvents(new DiscordMain(this), this);
         getServer().getPluginManager().registerEvents(new PlayerGamemodeChange(), this);
+        // Discord Events Registry
+        DiscordMain discordMain = new DiscordMain(this);// DiscordMain registers itself as an event listener, no need to do it again!
 
         // Command Registry
         this.getCommand("heal").setExecutor((CommandExecutor) new heal());
@@ -105,7 +105,7 @@ public final class ZanderMain extends JavaPlugin {
                     .getTextChannelsByName(plugin.getConfig().getString("discord.chatchannel"), true).get(0);
             textChannel.sendMessage(":x: Server is offline **").queue();
 
-            DiscordMain.getInstance().getJda().shutdownNow();
+            DiscordMain.getInstance().getJda().shutdown();
         } catch(NullPointerException npe) {
             npe.printStackTrace();
         }

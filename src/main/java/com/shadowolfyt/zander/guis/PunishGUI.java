@@ -42,7 +42,7 @@ public class PunishGUI implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent event) {
-        if (!event.getInventory().getName().equalsIgnoreCase("Punishment GUI")) {
+        if (!event.getView().getTitle().equalsIgnoreCase("Punishment GUI")) {
             return;
         }
 

@@ -36,11 +36,11 @@ public class fly implements CommandExecutor {
     private boolean toggleUserFly(Player player) {
         if (player == null) return false;
 
-        boolean fly = player.isFlying() || player.getAllowFlight();
+        boolean flyable = player.getAllowFlight();
 
-        player.setAllowFlight(!fly);
-        player.setFlying(!fly);
-        player.sendMessage(ChatColor.GREEN + "You are " + (!fly ? "no longer" : "now") + " flying.");
+        player.setAllowFlight(!flyable);
+        player.setFlying(!flyable);
+        player.sendMessage(ChatColor.GREEN + "You can " + (!flyable ? "no longer" : "now") + " flying.");
 
         return true;
     }

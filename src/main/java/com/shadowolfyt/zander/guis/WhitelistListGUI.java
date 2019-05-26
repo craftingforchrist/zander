@@ -40,7 +40,7 @@ public class WhitelistListGUI implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent event) {
-        if (!event.getInventory().getName().equalsIgnoreCase("Whitelisted Players")) {
+        if (!event.getView().getTitle().equalsIgnoreCase("Whitelisted Players")) {
             return;
         }
 

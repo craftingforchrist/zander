@@ -47,7 +47,7 @@ public class WhitelistGUI implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent event) {
-        if (!event.getInventory().getName().equalsIgnoreCase("Whitelist Manager")) {
+        if (!event.getView().getTitle().equalsIgnoreCase("Whitelist Manager")) {
             return;
         }
 
