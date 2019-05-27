@@ -1,6 +1,6 @@
 # zander
 Zander is a Minecraft plugin that I use as an Administration tool for my Minecraft Servers.
-The main goal of the Zander project is to allow me tolearn Java and the Spigot library.
+The main goal of the Zander project is to allow me to learn Java and the Spigot library.
 
 ### Need Help?
 If you are having trouble and need help or have issues with using zander, shoot me a message on Discord `shadowolf#9212`
