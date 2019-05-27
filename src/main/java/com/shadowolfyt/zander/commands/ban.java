@@ -71,19 +71,6 @@ public class ban implements CommandExecutor {
                             p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("prefix")) + " " + target.getDisplayName() + " has been banned by " + player.getDisplayName() + " for " + reason);
                         }
                     }
-
-                    //
-                    // Database Query
-                    // Set users isBanned to true
-                    //
-                    try {
-                        PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE playerdata SET isBanned = ? WHERE uuid=?");
-                        updatestatement.setString(1, "true");
-                        updatestatement.setString(2, player.getUniqueId().toString());
-                        updatestatement.executeUpdate();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

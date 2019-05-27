@@ -11,10 +11,9 @@ discord:
   commandprefix: "!"
   chatprefix: "&f&l[&9&lDISCORD&f&l]&r"
   chatchannel: "server-chat"
-  status: "zander"
+  status: "Minecraft"
   broadcastprefix: "&l&c[&BROADCAST&f]&r"
   broadcastchannel: "announcements"
-  setgamemessage: "Minecraft"
 server:
   motdFirstLine: '&b&l[zander]&r&3 My Minecraft Server'
   motdSecondLine: '&eJust another Minecraft Server'

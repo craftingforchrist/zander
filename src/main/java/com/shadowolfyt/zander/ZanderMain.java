@@ -62,6 +62,7 @@ public final class ZanderMain extends JavaPlugin {
         this.getCommand("whitelist").setExecutor((CommandExecutor) new whitelist());
         this.getCommand("jukebox").setExecutor((CommandExecutor) new jukebox());
         this.getCommand("punish").setExecutor((CommandExecutor) new punish());
+        this.getCommand("kick").setExecutor((CommandExecutor) new kick(this));
         this.getCommand("discord").setExecutor((CommandExecutor) new discord(this));
 
         // Recipe Registry

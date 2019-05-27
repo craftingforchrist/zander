@@ -40,7 +40,7 @@ public class fly implements CommandExecutor {
 
         player.setAllowFlight(!flyable);
         player.setFlying(!flyable);
-        player.sendMessage(ChatColor.GREEN + "You can " + (!flyable ? "no longer" : "now") + " flying.");
+        player.sendMessage(ChatColor.GREEN + "You can " + (!flyable ? "now" : "no longer") + " fly.");
 
         return true;
     }

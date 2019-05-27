@@ -11,14 +11,19 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 import static org.bukkit.Material.LEATHER_BOOTS;
+import static org.bukkit.Material.PAPER;
 
 public class PunishGUI implements Listener {
 
     ZanderMain plugin;
-    Inventory inv = Bukkit.createInventory(null, 9, "Punishment GUI");
+    Inventory inv = Bukkit.createInventory(null, 9, "Punish Player");
 
     Player player;
     Player target;
@@ -29,27 +34,25 @@ public class PunishGUI implements Listener {
         }
 
         this.plugin = ZanderMain.plugin;
-
         this.player = player;
         this.target = target;
 
-        // Listen
         plugin.getServer().getPluginManager().registerEvents(this, this.plugin);
 
         // Kick
-        ItemStack kick = new ItemStack(LEATHER_BOOTS);
-        ItemMeta kickMeta = kick.getItemMeta();
-        kickMeta.setDisplayName("Kick Player");
-        kickMeta.setLore(Arrays.asList("Kick player from the Server."));
-        kick.setItemMeta(kickMeta);
-        inv.setItem(1, kick);
-
+        // Chat: Spamming
+        ItemStack kickspam = new ItemStack(PAPER);
+        ItemMeta kickspamMeta = kickspam.getItemMeta();
+        kickspamMeta.setDisplayName("Spamming");
+        kickspamMeta.setLore(Arrays.asList("Chat Related Punishment: Spam"));
+        kickspam.setItemMeta(kickspamMeta);
+        inv.setItem(1, kickspam);
         player.openInventory(inv);
     }
 
     @EventHandler
     public void onClick(InventoryClickEvent event) {
-        if (!event.getView().getTitle().equalsIgnoreCase("Punishment GUI")) {
+        if (!event.getView().getTitle().equalsIgnoreCase("Punish Player")) {
             return;
         }
 
@@ -62,9 +65,41 @@ public class PunishGUI implements Listener {
         }
 
         switch (event.getCurrentItem().getType()) {
-            case LEATHER_BOOTS:
+            case PAPER:
                 player.closeInventory();
-                this.target.kickPlayer(ChatColor.RED + "You have been kicked by an administrator: " + this.player.getDisplayName());
+
+                //
+                // Database Query
+                // Add new punishment to database.
+                //
+                try {
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+                    Date date = new Date(System.currentTimeMillis());
+                    String reason = "Spamming";
+
+                    PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO punishments (punisheduseruuid, punishedusername, punisheruuid, punisherusername, punishtype, reason, punishtimestamp) VALUES (?, ?, ?, ?, ?, ?, ?)");
+
+                    insertstatement.setString(1, this.target.getUniqueId().toString());
+                    insertstatement.setString(2, this.target.getDisplayName());
+                    insertstatement.setString(3, player.getUniqueId().toString());
+                    insertstatement.setString(4, player.getDisplayName());
+                    insertstatement.setString(5, "KICK");
+                    insertstatement.setString(6, reason);
+                    insertstatement.setString(7, formatter.format(date));
+
+                    insertstatement.executeUpdate();
+                    plugin.getServer().getConsoleSender().sendMessage(net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + " " + target.getDisplayName() + " has been punished. Adding punishment record to database.");
+                    this.target.kickPlayer(ChatColor.RED + "You have been kicked by " + player.getDisplayName() + "\n Reason: " + reason);
+
+                    for (Player p : Bukkit.getOnlinePlayers()){
+                        if (p.hasPermission("zander.punishnotify")) {
+                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("prefix")) + " " + this.target.getDisplayName() + " has been kicked by " + player.getDisplayName() + " for " + reason);
+                        }
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
                 break;
 
             default:

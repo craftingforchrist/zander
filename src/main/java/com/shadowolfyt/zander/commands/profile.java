@@ -23,17 +23,18 @@ public class profile implements CommandExecutor {
             sender.sendMessage(ChatColor.RED + "Correct Usage: /profile [PlayerName]");
         } else {
             try {
-                PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM " + plugin.getConfig().getString("database.playerdatatable") + " WHERE username=?");
+                PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM playerdata WHERE username=?");
                 findstatement.setString(1, args[0]);
                 ResultSet results = findstatement.executeQuery();
                 if (results.next()) {
                     sender.sendMessage("\n");
                     sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + results.getString("username") + "'s Profile");
                     sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Joins: " + ChatColor.RESET + results.getInt("joins"));
-                    sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Leaves: " + ChatColor.RESET + results.getInt("leaves"));
                     sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Deaths: " + ChatColor.RESET + results.getInt("deaths"));
+                    sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Status: " + ChatColor.RESET + results.getInt("status"));
                     sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Last Seen: " + ChatColor.RESET + results.getString("lastseen"));
                     sender.sendMessage("\n");
+                    sender.sendMessage(ChatColor.BLUE + "View " + results.getString("username") + "'s profile here: " + plugin.getConfig().getString("web.siteaddress") + "/profile/" + args[0]);
                     return true;
                 } else {
                     sender.sendMessage(ChatColor.RED + "Profile not found.");
@@ -44,9 +45,5 @@ public class profile implements CommandExecutor {
             }
         }
         return true;
-    }
-
-    private static boolean doesProfileExist(String username) {
-        return ZanderMain.plugin.getConfig().getConfigurationSection("players." + username) != null;
     }
 }

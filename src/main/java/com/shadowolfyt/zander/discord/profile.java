@@ -35,7 +35,7 @@ public class profile extends ListenerAdapter {
                 ResultSet results = findstatement.executeQuery();
                 if (!results.next()) {
                     EmbedBuilder embed = new EmbedBuilder();
-                    embed.setTitle(results.getString("username") + "Player's Profile");
+                    embed.setTitle(results.getString("username") + "'s Profile");
                     embed.addField("Joins", String.valueOf(results.getInt("joins")), true);
                     embed.addField("Deaths", String.valueOf(results.getInt("deaths")), true);
                     embed.addField("Status", results.getString("status"), false);

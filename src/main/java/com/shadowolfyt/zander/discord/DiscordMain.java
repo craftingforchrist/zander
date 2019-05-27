@@ -29,9 +29,7 @@ import java.util.*;
 import static org.bukkit.Bukkit.getServer;
 
 public class DiscordMain extends ListenerAdapter implements Listener {
-    @Getter
-    private static DiscordMain instance;
-
+    @lombok.Getter private static DiscordMain instance;
     @Getter
     private JDA jda;
     private ZanderMain plugin;
@@ -52,7 +50,7 @@ public class DiscordMain extends ListenerAdapter implements Listener {
         Bukkit.getScheduler().runTaskLater(plugin, () -> guild = jda.getGuilds().get(0), 100L);
 
         if (startBot()) {
-            setGame(Game.GameType.DEFAULT, plugin.getConfig().getString("discord.status", "rednaz"));
+            setGame(Game.GameType.DEFAULT, plugin.getConfig().getString("discord.status"));
             registerDiscordEventListeners();
             //plugin.getCommand("verify").setExecutor(this);
         } else {
@@ -78,7 +76,7 @@ public class DiscordMain extends ListenerAdapter implements Listener {
         try {
             // Build JDA/bot connection
             this.jda = new JDABuilder(AccountType.BOT).setToken(plugin.getConfig().getString("discord.token")).build().awaitReady();
-            jda.getPresence().setGame(Game.playing(this.plugin.getConfig().getString("discord.status", "zander Community SMP")));
+            jda.getPresence().setGame(Game.playing(this.plugin.getConfig().getString("discord.status")));
 
             // Show signs of life
             getServer().getConsoleSender().sendMessage(ChatColor.BLUE + "[Discord] " + ChatColor.GREEN + "Zander is now connected to Discord.");
@@ -191,26 +189,26 @@ public class DiscordMain extends ListenerAdapter implements Listener {
         DiscordMain.getInstance().getJda().getPresence().setGame(Game.of(type, text));
     }
 
-    @EventHandler
-    public void onJoinVerification(PlayerJoinEvent event) {
-        try {
-            PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM " + plugin.getConfig().getString("database.playerdatatable") + " WHERE uuid=?");
-            findstatement.setString(1, event.getPlayer().getUniqueId().toString());
-            ResultSet results = findstatement.executeQuery();
-            if (!results.next()) {
-                if (results.getString("isVerified") == "true") {
-                    getServer().getConsoleSender().sendMessage("This player is verified with Discord.");
-                    return;
-                } else {
-                    getServer().getConsoleSender().sendMessage("This player is not registered or verified with Discord, their not going anywhere.");
-                    return;
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
+//    @EventHandler
+//    public void onJoinVerification(PlayerJoinEvent event) {
+//        try {
+//            PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM playerdata WHERE uuid=?");
+//            findstatement.setString(1, event.getPlayer().getUniqueId().toString());
+//            ResultSet results = findstatement.executeQuery();
+//            if (!results.next()) {
+//                if (results.getString("isVerified") == "true") {
+//                    getServer().getConsoleSender().sendMessage("This player is verified with Discord.");
+//                    return;
+//                } else {
+//                    getServer().getConsoleSender().sendMessage("This player is not registered or verified with Discord, their not going anywhere.");
+//                    return;
+//                }
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
 //
 //    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 //        if (!(sender instanceof Player)){

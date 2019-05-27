@@ -25,29 +25,12 @@ public class PlayerOnJoin implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        if(event.getPlayer().isBanned()) {
-            event.getPlayer().kickPlayer("You are banned!");
+        if (event.getPlayer().isBanned()) {
+            event.getPlayer().kickPlayer("You are banned from this server");
             return;
         }
 
         Player player = event.getPlayer();
-
-        //
-        // Database Query
-        // Check the database to see if the user is banned.
-        //
-        try {
-            PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM playerdata WHERE uuid=?");
-            findstatement.setString(1, player.getUniqueId().toString());
-            ResultSet results = findstatement.executeQuery();
-            if (results.next()) {
-                if (results.getBoolean("isBanned") == true) {
-                    player.getPlayer().kickPlayer(ChatColor.RED + "You are banned, so.. yeah.");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
         TitleAPI.sendTitle(player, 40, 50, 40, "Welcome " + ChatColor.AQUA + player.getDisplayName(), ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.titleSubText")));
         TitleAPI.sendTabTitle(player, ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.tablineHeader")), ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.tablineFooter")));

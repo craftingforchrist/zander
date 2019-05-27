@@ -25,7 +25,7 @@ public class PlayerDeath implements Listener {
         // Add +1 to deaths on death.
         //
         try {
-            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE " + plugin.getConfig().getString("database.playerdatatable") + " SET deaths = deaths+1 WHERE uuid=?");
+            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE playerdata SET deaths = deaths+1 WHERE uuid=?");
             updatestatement.setString(1, player.getUniqueId().toString());
             updatestatement.executeUpdate();
         } catch (SQLException e) {

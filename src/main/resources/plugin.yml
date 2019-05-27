@@ -60,6 +60,9 @@ commands:
   ban:
     description: Ban Command.
     usage: /ban [target] [reason]
+  vanish:
+    description: Vanish Command.
+    usage: /vanish [target]
 
 permissions:
   zander.heal:
@@ -91,4 +94,6 @@ permissions:
   zander.kick:
     default: op
   zander.punishnotify:
+    default: op
+  zander.vanish:
     default: op
