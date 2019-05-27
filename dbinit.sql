@@ -14,8 +14,19 @@ CREATE TABLE playerdata (
   deaths TEXT,
   status TEXT,
   lastseen TEXT,
-  ipaddress TEXT,
   isVerified TEXT,
+  isBanned TEXT,
   discordid VARCHAR(18),
   discorddiscriminator TEXT
+);
+
+CREATE TABLE punishments (
+  id int AUTO_INCREMENT not null primary key,
+  punisheduseruuid VARCHAR(36),
+  punishedusername TEXT,
+  punisheruuid VARCHAR(36),
+  punisherusername TEXT,
+  punishtype TEXT,
+  reason TEXT,
+  punishtimestamp TEXT
 );

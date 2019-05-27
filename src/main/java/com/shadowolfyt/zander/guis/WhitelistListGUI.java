@@ -34,7 +34,6 @@ public class WhitelistListGUI implements Listener {
             inv.setItem(slot, listedplayer);
             slot += 1;
         }
-
         player.openInventory(inv);
     }
 

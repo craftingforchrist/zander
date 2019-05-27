@@ -32,6 +32,23 @@ public class PlayerOnJoin implements Listener {
 
         Player player = event.getPlayer();
 
+        //
+        // Database Query
+        // Check the database to see if the user is banned.
+        //
+        try {
+            PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM playerdata WHERE uuid=?");
+            findstatement.setString(1, player.getUniqueId().toString());
+            ResultSet results = findstatement.executeQuery();
+            if (results.next()) {
+                if (results.getBoolean("isBanned") == true) {
+                    player.getPlayer().kickPlayer(ChatColor.RED + "You are banned, so.. yeah.");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         TitleAPI.sendTitle(player, 40, 50, 40, "Welcome " + ChatColor.AQUA + player.getDisplayName(), ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.titleSubText")));
         TitleAPI.sendTabTitle(player, ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.tablineHeader")), ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.tablineFooter")));
 
@@ -64,22 +81,17 @@ public class PlayerOnJoin implements Listener {
         // Create a new player profile in Database.
         //
         try {
-            PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM " + plugin.getConfig().getString("database.playerdatatable") + " WHERE uuid=?");
+            PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM playerdata WHERE uuid=?");
             findstatement.setString(1, player.getUniqueId().toString());
             ResultSet results = findstatement.executeQuery();
             if (!results.next()) {
                 plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + " " + player.getDisplayName() + " is a new player, creating a player profile.");
-                String ip = player.getPlayer().getAddress().toString().replaceAll("/", "");
-                PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO " + plugin.getConfig().getString("database.playerdatatable") + " (uuid, username, joins, deaths, status, lastseen, isVerified, ipaddress) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO playerdata (uuid, username, joins, deaths, status, lastseen) VALUES (?, ?, ?, ?)");
 
                 insertstatement.setString(1, player.getUniqueId().toString());
                 insertstatement.setString(2, player.getDisplayName());
                 insertstatement.setString(3, "0");
                 insertstatement.setString(4, "0");
-                insertstatement.setString(5, "Currently Online");
-                insertstatement.setString(6, "Currently Online");
-                insertstatement.setString(7, "false");
-                insertstatement.setString(8, ip);
 
                 insertstatement.executeUpdate();
                 plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + " Inserted information into " + player.getDisplayName() + "'s profile");
@@ -90,15 +102,13 @@ public class PlayerOnJoin implements Listener {
 
         //
         // Database Query
-        // Add +1 to joins, set player to currently online and update IP address on login.
+        // Add +1 to joins, set player to currently online.
         //
         try {
-            String ip = player.getPlayer().getAddress().toString().replaceAll("/", "");
-            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE " + plugin.getConfig().getString("database.playerdatatable") + " SET joins = joins+1, ipaddress = ?, lastseen = ?, status = ? WHERE uuid=?");
-            updatestatement.setString(1, ip);
+            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE playerdata SET joins = joins+1, lastseen = ?, status = ? WHERE uuid=?");
+            updatestatement.setString(1, "Currently Online");
             updatestatement.setString(2, "Currently Online");
-            updatestatement.setString(3, "Currently Online");
-            updatestatement.setString(4, player.getUniqueId().toString());
+            updatestatement.setString(3, player.getUniqueId().toString());
             updatestatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

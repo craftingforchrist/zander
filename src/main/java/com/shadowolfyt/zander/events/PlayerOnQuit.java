@@ -7,6 +7,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 public class PlayerOnQuit implements Listener {
     ZanderMain plugin;
 
@@ -15,7 +18,7 @@ public class PlayerOnQuit implements Listener {
     }
 
     @EventHandler
-    public void onQuit(PlayerQuitEvent event){
+    public void onQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
 
         event.setQuitMessage("");
@@ -23,6 +26,21 @@ public class PlayerOnQuit implements Listener {
             event.setQuitMessage(ChatColor.GOLD + "Server Operator " + player.getName() + " has left the server");
         } else {
             event.setQuitMessage(ChatColor.YELLOW + player.getName() + " has left the server");
+        }
+
+        //
+        // Database Query
+        // Add +1 to joins, set player to currently online and update IP address on login.
+        //
+        try {
+            String ip = player.getPlayer().getAddress().toString().replaceAll("/", "");
+            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE playerdata SET lastseen = ?, status = ? WHERE uuid=?");
+            updatestatement.setString(1, "Currently Online");
+            updatestatement.setString(2, "Offline");
+            updatestatement.setString(3, player.getUniqueId().toString());
+            updatestatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

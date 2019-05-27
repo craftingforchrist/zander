@@ -47,16 +47,19 @@ commands:
     usage: /jukebox
   punish:
     description: Punish Command.
-    usage: /punish
-  discord:
-    description: Discord Command.
-    usage: /discord
+    usage: /punish [target]
   verify:
     description: Discord Command.
-    usage: /verify
+    usage: /verify [token]
   freeze:
     description: Freeze Command.
-    usage: /freeze
+    usage: /freeze [target]
+  kick:
+    description: Kick Command.
+    usage: /kick [target] [reason]
+  ban:
+    description: Ban Command.
+    usage: /ban [target] [reason]
 
 permissions:
   zander.heal:
@@ -84,4 +87,8 @@ permissions:
   zander.punish:
     default: op
   zander.freeze:
+    default: op
+  zander.kick:
+    default: op
+  zander.punishnotify:
     default: op

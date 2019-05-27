@@ -26,7 +26,6 @@ public class adventure implements CommandExecutor {
                 }
             }
 
-            // Something to come back to: If the targeted player is already in said gamemode it won't complete the operation and will display a message.
             Player target = Bukkit.getServer().getPlayer(args[0]);
             GameMode tgamemode = target.getGameMode();
             if (target == null) {
