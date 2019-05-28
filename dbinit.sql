@@ -15,7 +15,6 @@ CREATE TABLE playerdata (
   status TEXT,
   lastseen TEXT,
   isVerified TEXT,
-  isVanished TEXT,
   discordid VARCHAR(18),
   discorddiscriminator TEXT
 );
