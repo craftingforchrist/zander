@@ -46,6 +46,7 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new WhitelistListGUI(null), this);
         getServer().getPluginManager().registerEvents(new JukeboxGUI(this), this);
         getServer().getPluginManager().registerEvents(new PlayerGamemodeChange(), this);
+        getServer().getPluginManager().registerEvents(new FallIntoEndVoidListener(), this);
         // Discord Events Registry
         DiscordMain discordMain = new DiscordMain(this);// DiscordMain registers itself as an event listener, no need to do it again!
 
