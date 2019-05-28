@@ -50,20 +50,21 @@ public final class ZanderMain extends JavaPlugin {
         DiscordMain discordMain = new DiscordMain(this);// DiscordMain registers itself as an event listener, no need to do it again!
 
         // Command Registry
-        this.getCommand("heal").setExecutor((CommandExecutor) new heal());
-        this.getCommand("feed").setExecutor((CommandExecutor) new feed());
-        this.getCommand("starve").setExecutor((CommandExecutor) new starve());
-        this.getCommand("adventure").setExecutor((CommandExecutor) new adventure());
-        this.getCommand("creative").setExecutor((CommandExecutor) new creative());
-        this.getCommand("survival").setExecutor((CommandExecutor) new survival());
-        this.getCommand("spectator").setExecutor((CommandExecutor) new spectator());
-        this.getCommand("fly").setExecutor((CommandExecutor) new fly());
-        this.getCommand("profile").setExecutor((CommandExecutor) new profile(this));
-        this.getCommand("whitelist").setExecutor((CommandExecutor) new whitelist());
-        this.getCommand("jukebox").setExecutor((CommandExecutor) new jukebox());
-        this.getCommand("punish").setExecutor((CommandExecutor) new punish());
-        this.getCommand("kick").setExecutor((CommandExecutor) new kick(this));
-        this.getCommand("discord").setExecutor((CommandExecutor) new discord(this));
+        this.getCommand("heal").setExecutor(new heal());
+        this.getCommand("feed").setExecutor(new feed());
+        this.getCommand("starve").setExecutor(new starve());
+        this.getCommand("adventure").setExecutor(new adventure());
+        this.getCommand("creative").setExecutor(new creative());
+        this.getCommand("survival").setExecutor(new survival());
+        this.getCommand("spectator").setExecutor(new spectator());
+        this.getCommand("fly").setExecutor(new fly());
+        this.getCommand("profile").setExecutor(new profile(this));
+        this.getCommand("whitelist").setExecutor(new whitelist());
+        this.getCommand("jukebox").setExecutor(new jukebox());
+        this.getCommand("punish").setExecutor(new punish());
+        this.getCommand("kick").setExecutor(new kick(this));
+        this.getCommand("discord").setExecutor(new discord(this));
+        this.getCommand("freeze").setExecutor(new freeze());
 
         // Recipe Registry
         Bukkit.addRecipe(new FurnaceRecipe(new NamespacedKey(plugin, "furnace_flesh_leather"), new ItemStack(Material.LEATHER), Material.ROTTEN_FLESH, 0, 1200));

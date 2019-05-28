@@ -63,6 +63,9 @@ commands:
   vanish:
     description: Vanish Command.
     usage: /vanish [target]
+  discord:
+    description: Get discord command.
+    usage: /discord
 
 permissions:
   zander.heal:
