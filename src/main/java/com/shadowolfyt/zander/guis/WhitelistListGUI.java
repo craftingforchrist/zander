@@ -1,6 +1,7 @@
 package com.shadowolfyt.zander.guis;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -29,7 +30,7 @@ public class WhitelistListGUI implements Listener {
             ItemStack listedplayer = new ItemStack(Material.PLAYER_HEAD);
             ItemMeta listedplayermeta = listedplayer.getItemMeta();
             listedplayermeta.setDisplayName(all.getName());
-            listedplayermeta.setLore(Arrays.asList("This player is whitelisted."));
+            listedplayermeta.setLore(Arrays.asList(ChatColor.GREEN + "UUID: " + ChatColor.YELLOW + player.getUniqueId().toString() + ChatColor.GREEN + "\n Banned: " + ChatColor.YELLOW + player.isBanned()));
             listedplayer.setItemMeta(listedplayermeta);
             inv.setItem(slot, listedplayer);
             slot += 1;

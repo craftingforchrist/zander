@@ -31,7 +31,7 @@ public class profile extends ListenerAdapter {
             //
             try {
                 PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM playerdata WHERE username=?");
-                findstatement.setString(1, args[1]);
+                findstatement.setString(1, args[0]);
                 ResultSet results = findstatement.executeQuery();
                 if (!results.next()) {
                     EmbedBuilder embed = new EmbedBuilder();

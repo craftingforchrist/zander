@@ -3,6 +3,7 @@ package com.shadowolfyt.zander.events;
 import com.connorlinfoot.titleapi.TitleAPI;
 import com.shadowolfyt.zander.ZanderMain;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.entity.Firework;
@@ -15,6 +16,8 @@ import org.bukkit.inventory.meta.FireworkMeta;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class PlayerOnJoin implements Listener {
     ZanderMain plugin;
@@ -26,7 +29,11 @@ public class PlayerOnJoin implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         if (event.getPlayer().isBanned()) {
-            event.getPlayer().kickPlayer("You are banned from this server");
+            for (Player p : Bukkit.getOnlinePlayers()){
+                if (p.hasPermission("zander.punishnotify")) {
+                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("prefix")) + " " + event.getPlayer().getDisplayName() + " attempted to login but is banned.");
+                }
+            }
             return;
         }
 
@@ -34,6 +41,9 @@ public class PlayerOnJoin implements Listener {
 
         TitleAPI.sendTitle(player, 40, 50, 40, "Welcome " + ChatColor.AQUA + player.getDisplayName(), ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.titleSubText")));
         TitleAPI.sendTabTitle(player, ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.tablineHeader")), ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.tablineFooter")));
+
+        event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("motd")) + "\n");
+
 
         event.setJoinMessage("");
         // New user Joins for first time celebratory firework
@@ -69,12 +79,13 @@ public class PlayerOnJoin implements Listener {
             ResultSet results = findstatement.executeQuery();
             if (!results.next()) {
                 plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + " " + player.getDisplayName() + " is a new player, creating a player profile.");
-                PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO playerdata (uuid, username, joins, deaths, status, lastseen) VALUES (?, ?, ?, ?)");
+                PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO playerdata (uuid, username, joins, deaths, status) VALUES (?, ?, ?, ?, ?)");
 
                 insertstatement.setString(1, player.getUniqueId().toString());
                 insertstatement.setString(2, player.getDisplayName());
                 insertstatement.setString(3, "0");
                 insertstatement.setString(4, "0");
+                insertstatement.setString(5, "Currently Online");
 
                 insertstatement.executeUpdate();
                 plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + " Inserted information into " + player.getDisplayName() + "'s profile");

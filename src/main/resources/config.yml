@@ -21,4 +21,5 @@ server:
   tablineHeader: '&6My Minecraft Server'
   tablineFooter: '&5zander enabled server'
 web:
-  siteaddress: 'http://zander.shadowolf.ml/'
+  siteaddress: 'http://zander.example.com/'
+motd: '&l This is an example message of the day [MOTD].\n You can use this to communicate messages to players as they login.'

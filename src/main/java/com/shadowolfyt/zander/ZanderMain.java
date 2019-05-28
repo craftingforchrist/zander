@@ -3,10 +3,7 @@ package com.shadowolfyt.zander;
 import com.shadowolfyt.zander.commands.*;
 import com.shadowolfyt.zander.discord.DiscordMain;
 import com.shadowolfyt.zander.events.*;
-import com.shadowolfyt.zander.guis.JukeboxGUI;
-import com.shadowolfyt.zander.guis.PunishGUI;
-import com.shadowolfyt.zander.guis.WhitelistGUI;
-import com.shadowolfyt.zander.guis.WhitelistListGUI;
+import com.shadowolfyt.zander.guis.*;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.md_5.bungee.api.ChatColor;
@@ -42,8 +39,9 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ServerListPing(this), this);
         getServer().getPluginManager().registerEvents(new PlayerDeath(this), this);
         getServer().getPluginManager().registerEvents(new WhitelistListener(this), this);
-        getServer().getPluginManager().registerEvents(new WhitelistGUI(null), this);
+        getServer().getPluginManager().registerEvents(new WhitelistGUI(this), this);
         getServer().getPluginManager().registerEvents(new WhitelistListGUI(null), this);
+        getServer().getPluginManager().registerEvents(new DifficultyGUI(this), this);
         getServer().getPluginManager().registerEvents(new JukeboxGUI(this), this);
         getServer().getPluginManager().registerEvents(new PlayerGamemodeChange(), this);
         getServer().getPluginManager().registerEvents(new FallIntoEndVoidListener(), this);
@@ -66,6 +64,8 @@ public final class ZanderMain extends JavaPlugin {
         this.getCommand("kick").setExecutor(new kick(this));
         this.getCommand("discord").setExecutor(new discord(this));
         this.getCommand("freeze").setExecutor(new freeze());
+        this.getCommand("pardon").setExecutor(new pardon(this));
+        this.getCommand("difficulty").setExecutor(new difficulty(this));
 
         // Recipe Registry
         Bukkit.addRecipe(new FurnaceRecipe(new NamespacedKey(plugin, "furnace_flesh_leather"), new ItemStack(Material.LEATHER), Material.ROTTEN_FLESH, 0, 1200));
@@ -108,7 +108,7 @@ public final class ZanderMain extends JavaPlugin {
         try {
             TextChannel textChannel = DiscordMain.getInstance().getJda()
                     .getTextChannelsByName(plugin.getConfig().getString("discord.chatchannel"), true).get(0);
-            textChannel.sendMessage(":x: Server is offline **").queue();
+            textChannel.sendMessage("** :x: Server is offline **").queue();
 
             DiscordMain.getInstance().getJda().shutdown();
         } catch(NullPointerException npe) {

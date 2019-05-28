@@ -1,6 +1,8 @@
 package com.shadowolfyt.zander.commands;
 
+import com.shadowolfyt.zander.ZanderMain;
 import com.shadowolfyt.zander.guis.WhitelistGUI;
+import com.shadowolfyt.zander.guis.WhitelistListGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -22,7 +24,6 @@ public class whitelist implements CommandExecutor {
         }
 
         // Sender has 'zander.whitelist'
-
         if (args.length == 0 && (sender instanceof Player)) {
             new WhitelistGUI((Player) sender);
             return true;
@@ -38,7 +39,7 @@ public class whitelist implements CommandExecutor {
 
             if (target != null) {
                 if (target.isWhitelisted()) {
-                    sender.sendMessage(ChatColor.RED + "This player is already whitelist.");
+                    sender.sendMessage(ChatColor.RED + " This player is already whitelist.");
                 } else {
                     target.setWhitelisted(true);
                     Bukkit.getServer().reloadWhitelist();
@@ -58,7 +59,7 @@ public class whitelist implements CommandExecutor {
 
             if (target != null) {
                 if (!target.isWhitelisted()) {
-                    sender.sendMessage(ChatColor.RED + "This player is not in the whitelist.");
+                    sender.sendMessage( ChatColor.RED + "This player is not in the whitelist.");
 
                 } else {
                     target.setWhitelisted(false);
@@ -68,11 +69,8 @@ public class whitelist implements CommandExecutor {
             } else {
                 sender.sendMessage(EN_ERR_PLAYER_DOES_NOT_EXIST);
             }
-
-
         } else if (args[0].equalsIgnoreCase("list")) {
-            sender.sendMessage(ChatColor.YELLOW + "Currently whitelisted: ");
-            Bukkit.getServer().getWhitelistedPlayers().forEach(p -> sender.sendMessage(p.getPlayer().getDisplayName()));
+            new WhitelistListGUI((Player) sender);
             return true;
         }
         return true;

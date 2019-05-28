@@ -1,6 +1,7 @@
 package com.shadowolfyt.zander.guis;
 
 import com.shadowolfyt.zander.ZanderMain;
+import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -17,8 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
-import static org.bukkit.Material.LEATHER_BOOTS;
-import static org.bukkit.Material.PAPER;
+import static org.bukkit.Material.*;
 
 public class PunishGUI implements Listener {
 
@@ -48,6 +48,16 @@ public class PunishGUI implements Listener {
         kickspam.setItemMeta(kickspamMeta);
         inv.setItem(1, kickspam);
         player.openInventory(inv);
+
+        // Ban
+        // Permanent Ban
+        ItemStack permban = new ItemStack(BEDROCK);
+        ItemMeta permbanMeta = permban.getItemMeta();
+        permbanMeta.setDisplayName("Permanent Ban");
+        permbanMeta.setLore(Arrays.asList("General Punishment"));
+        permban.setItemMeta(permbanMeta);
+        inv.setItem(3, permban);
+        player.openInventory(inv);
     }
 
     @EventHandler
@@ -75,7 +85,7 @@ public class PunishGUI implements Listener {
                 try {
                     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
                     Date date = new Date(System.currentTimeMillis());
-                    String reason = "Spamming";
+                    String reason = "[AUTO] Spamming";
 
                     PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO punishments (punisheduseruuid, punishedusername, punisheruuid, punisherusername, punishtype, reason, punishtimestamp) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
@@ -94,6 +104,44 @@ public class PunishGUI implements Listener {
                     for (Player p : Bukkit.getOnlinePlayers()){
                         if (p.hasPermission("zander.punishnotify")) {
                             p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("prefix")) + " " + this.target.getDisplayName() + " has been kicked by " + player.getDisplayName() + " for " + reason);
+                        }
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
+
+            case BEDROCK:
+                player.closeInventory();
+
+                //
+                // Database Query
+                // Add new punishment to database.
+                //
+                try {
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+                    Date date = new Date(System.currentTimeMillis());
+                    String reason = "[AUTO] Permanent Ban";
+
+                    PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO punishments (punisheduseruuid, punishedusername, punisheruuid, punisherusername, punishtype, reason, punishtimestamp) VALUES (?, ?, ?, ?, ?, ?, ?)");
+
+                    insertstatement.setString(1, this.target.getUniqueId().toString());
+                    insertstatement.setString(2, this.target.getDisplayName());
+                    insertstatement.setString(3, player.getUniqueId().toString());
+                    insertstatement.setString(4, player.getDisplayName());
+                    insertstatement.setString(5, "BAN");
+                    insertstatement.setString(6, reason);
+                    insertstatement.setString(7, formatter.format(date));
+
+                    insertstatement.executeUpdate();
+                    plugin.getServer().getConsoleSender().sendMessage(net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + " " + target.getDisplayName() + " has been punished. Adding punishment record to database.");
+                    this.target.kickPlayer(ChatColor.RED + "You have been" + ChatColor.BOLD + " PERMANENTLY " + ChatColor.RESET + ChatColor.RED + "banned by " + player.getDisplayName() + "\n Reason: " + reason);
+                    Bukkit.getBanList(BanList.Type.NAME).addBan(target.getName(), reason, null, player.getName());
+
+                    for (Player p : Bukkit.getOnlinePlayers()){
+                        if (p.hasPermission("zander.punishnotify")) {
+                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("prefix")) + " " + this.target.getDisplayName() + " has been permanently banned by " + player.getDisplayName() + " for " + reason);
                         }
                     }
 

@@ -23,3 +23,8 @@ The jukebox radio comes with the /jukebox command `zander.jukebox` will open a G
 It basically explains it all in the title, a simple recipe added to allow users to smelt Rotten Flesh to Leather, to give it more purpose.
 
 [![video](https://i.gyazo.com/69202523a46fd45fc2685d25d9a8c09a.png)](https://i.gyazo.com/0eea23fc0a9348e6d18e1b4347095bec.mp4)
+
+#### End Void Safety
+If a player is to jump or fall into the void, they will be teleported back to the overworld to either the world spawn or their spawn point and die.
+
+[![video](https://i.gyazo.com/616932cfeaee02e312e3cdcd6608ea20.jpg)](https://i.gyazo.com/bfefaef7f7ca75bc22cd4ae81cf154d5.mp4)
