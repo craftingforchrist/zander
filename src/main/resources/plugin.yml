@@ -2,7 +2,7 @@ main: com.shadowolfyt.zander.ZanderMain
 name: zander
 version: 1.0
 author: shadowolfyt
-api-version: 1.13
+api-version: 1.14.2
 softdepend:
 - TitleAPI
 
@@ -45,6 +45,7 @@ commands:
   jukebox:
     description: Jukebox Command.
     usage: /jukebox
+    aliases: [play]
   punish:
     description: Punish Command.
     usage: /punish [target]
@@ -91,8 +92,6 @@ permissions:
   zander.spectator:
     default: op
   zander.fly:
-    default: op
-  zander.displaydeveloperinformation:
     default: op
   zander.whitelist:
     default: op
