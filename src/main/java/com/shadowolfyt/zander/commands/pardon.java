@@ -26,13 +26,11 @@ public class pardon implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player player = (Player) sender;
         if (player.hasPermission("zander.pardon")) {
-
             if (args.length == 0) {
                 player.sendMessage(ChatColor.RED + "Please specify a player to pardon.");
                 return true;
             }
 
-            // TODO: Make this to get offline player.
             Player target = getServer().getPlayer(args[0]);
             if (target == null) {
                 player.sendMessage(ChatColor.RED + "That player could not be located.");

@@ -31,7 +31,7 @@ public class profile implements CommandExecutor {
                     sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + results.getString("username") + "'s Profile");
                     sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Joins: " + ChatColor.RESET + results.getInt("joins"));
                     sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Deaths: " + ChatColor.RESET + results.getInt("deaths"));
-                    sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Status: " + ChatColor.RESET + results.getInt("status"));
+                    sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Status: " + ChatColor.RESET + results.getString("status"));
                     sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Last Seen: " + ChatColor.RESET + results.getString("lastseen"));
                     sender.sendMessage("\n");
                     sender.sendMessage(ChatColor.BLUE + "View " + results.getString("username") + "'s profile here: " + plugin.getConfig().getString("web.siteaddress") + "/profile/" + args[0]);

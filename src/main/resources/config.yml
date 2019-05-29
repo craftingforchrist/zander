@@ -8,7 +8,6 @@ prefix: "&b&l[zander]&r"
 developmentprefix: "&b&l[DEV]&r"
 discord:
   token: "TOKEN"
-  commandprefix: "!"
   chatprefix: "&f&l[&9&lDISCORD&f&l]&r"
   chatchannel: "server-chat"
   status: "Minecraft"

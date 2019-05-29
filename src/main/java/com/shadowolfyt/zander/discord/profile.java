@@ -16,7 +16,7 @@ public class profile extends ListenerAdapter {
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         String[] args = event.getMessage().getContentRaw().split("\\s+");
 
-        if (args[0].equalsIgnoreCase(plugin.prefix + "profile")) {
+        if (args[0].equalsIgnoreCase("!profile")) {
             if (args.length == 0) {
                 EmbedBuilder embed = new EmbedBuilder();
                 embed.setTitle("Error");

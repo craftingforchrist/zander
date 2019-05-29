@@ -42,7 +42,7 @@ public class PlayerOnJoin implements Listener {
         TitleAPI.sendTitle(player, 40, 50, 40, "Welcome " + ChatColor.AQUA + player.getDisplayName(), ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.titleSubText")));
         TitleAPI.sendTabTitle(player, ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.tablineHeader")), ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.tablineFooter")));
 
-        event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("motd")) + "\n");
+        event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("motd")));
 
 
         event.setJoinMessage("");

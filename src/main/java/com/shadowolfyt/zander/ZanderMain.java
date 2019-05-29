@@ -22,7 +22,6 @@ import java.sql.SQLException;
 public final class ZanderMain extends JavaPlugin {
     private Connection connection;
     public static ZanderMain plugin;
-    public static String prefix = "!";
 
     @Override
     public void onEnable() {
