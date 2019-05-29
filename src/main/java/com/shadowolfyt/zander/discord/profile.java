@@ -30,7 +30,7 @@ public class profile extends ListenerAdapter {
             // Get data from players profile.
             //
             try {
-                PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM playerdata WHERE username=?");
+                PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM playerdata WHERE username = ?");
                 // NOTE: I changed args[0] here to args[1], because args[0] would refer to "[PREFIX]profile", not the username requested.
                 findstatement.setString(1, args[1]);
                 ResultSet results = findstatement.executeQuery();
@@ -47,8 +47,8 @@ public class profile extends ListenerAdapter {
                 if (!results.next()) {
                     EmbedBuilder embed = new EmbedBuilder();
                     embed.setTitle(results.getString("username") + "'s Profile");
-                    embed.addField("Joins", String.valueOf(results.getInt("joins")), true);
-                    embed.addField("Deaths", String.valueOf(results.getInt("deaths")), true);
+                    embed.addField("Joins", results.getString("joins"), true);
+                    embed.addField("Deaths", results.getString("deaths"), true);
                     embed.addField("Status", results.getString("status"), false);
                     embed.addField("Last Seen", results.getString("lastseen"), true);
                     event.getChannel().sendMessage(embed.build()).queue();
