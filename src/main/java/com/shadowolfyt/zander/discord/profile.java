@@ -11,7 +11,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class profile extends ListenerAdapter {
-    private ZanderMain plugin;
+    ZanderMain plugin;
+
+    public profile(ZanderMain plugin) {
+        this.plugin = plugin;
+    }
 
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         String[] args = event.getMessage().getContentRaw().split("\\s+");
@@ -31,11 +35,8 @@ public class profile extends ListenerAdapter {
             //
             try {
                 PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM playerdata WHERE username = ?");
-                // NOTE: I changed args[0] here to args[1], because args[0] would refer to "[PREFIX]profile", not the username requested.
                 findstatement.setString(1, args[1]);
                 ResultSet results = findstatement.executeQuery();
-                // If there are no such players.
-                // NOTE: I'm not sure whether line 39 will work, because I don't know exactly what the query will return if there's nothing, and have no way to test and find out.
                 if (results == null) {
                     EmbedBuilder embed = new EmbedBuilder();
                     embed.setTitle("Error");
@@ -43,7 +44,6 @@ public class profile extends ListenerAdapter {
                     embed.setDescription("The player " + args[1] + " does not exist on this server!");
                     event.getChannel().sendMessage(embed.build()).queue();
                 }
-                // If there is exactly one such result, indicating that this is the player requested.
                 if (!results.next()) {
                     EmbedBuilder embed = new EmbedBuilder();
                     embed.setTitle(results.getString("username") + "'s Profile");
