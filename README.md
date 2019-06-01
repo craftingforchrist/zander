@@ -14,6 +14,9 @@ I super appreciate any form of help.
 An addon that is in Development is a web server side to integrate with the MySQL database.
 
 ## Features
+#### Swear Filter
+Using the `FilteredWords` option, you can censor words that apply across in-game and on Discord.
+
 #### Jukebox Radio
 The jukebox radio comes with the /jukebox command `zander.jukebox` will open a GUI where you can select and play any disc that is currently in the game. Personally, I have been using this with a custom resource pack and putting other music over it.
 
