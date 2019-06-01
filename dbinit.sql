@@ -14,9 +14,11 @@ CREATE TABLE playerdata (
   deaths int,
   status TEXT,
   lastseen TEXT,
+  totalplaytime TEXT,
   isVerified TEXT,
   discordid VARCHAR(18),
-  discorddiscriminator TEXT
+  discorddiscriminator TEXT,
+  mobdeath_creeper int
 );
 
 CREATE TABLE punishments (

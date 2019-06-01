@@ -28,3 +28,8 @@ It basically explains it all in the title, a simple recipe added to allow users 
 If a player is to jump or fall into the void, they will be teleported back to the overworld to either the world spawn or their spawn point and die.
 
 [![video](https://i.gyazo.com/616932cfeaee02e312e3cdcd6608ea20.jpg)](https://i.gyazo.com/bfefaef7f7ca75bc22cd4ae81cf154d5.mp4)
+
+#### Ender Dragon Death Display
+On the death of the Ender Dragon, a public message will be broadcasted to all players (in that chat) and the killer will get a title screen message (as shown in the GIF).
+
+[![video](https://i.gyazo.com/087bacc308ac68b1a9503ea9b62ef056.png)](https://imgur.com/G9aIOUT)
