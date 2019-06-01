@@ -33,6 +33,7 @@ public class profile implements CommandExecutor {
                     sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Deaths: " + ChatColor.RESET + results.getInt("deaths"));
                     sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Status: " + ChatColor.RESET + results.getString("status"));
                     sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Last Seen: " + ChatColor.RESET + results.getString("lastseen"));
+                    sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.ITALIC + "Total Playtime: " + ChatColor.RESET + results.getString("totalplaytime"));
                     sender.sendMessage("\n");
                     sender.sendMessage(ChatColor.BLUE + "View " + results.getString("username") + "'s profile here: " + plugin.getConfig().getString("web.siteaddress") + "/profile/" + args[0]);
                     return true;

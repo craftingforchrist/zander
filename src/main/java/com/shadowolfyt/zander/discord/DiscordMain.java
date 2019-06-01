@@ -56,6 +56,7 @@ public class DiscordMain extends ListenerAdapter implements Listener {
     private void registerDiscordEventListeners() {
         this.jda.addEventListener(this);
         this.jda.addEventListener(new profile(null));
+        this.jda.addEventListener(new SwearFilter());
     }
 
     /**
