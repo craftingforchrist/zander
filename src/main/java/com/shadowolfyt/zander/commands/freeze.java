@@ -41,7 +41,11 @@ public class freeze implements CommandExecutor {
         Freezer f = getFreezer(resolve);
         f.setFrozen(!f.isFrozen());
 
-        sender.sendMessage(ChatColor.YELLOW + resolve.getName() + " was frozen.");
+        if (f.isFrozen()) {
+            sender.sendMessage(ChatColor.YELLOW + resolve.getName() + " was frozen.");
+        } else {
+            sender.sendMessage(ChatColor.YELLOW + resolve.getName() + " is no longer frozen.");
+        }
         return true;
     }
 

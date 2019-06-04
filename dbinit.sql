@@ -18,7 +18,9 @@ CREATE TABLE playerdata (
   isVerified TEXT,
   discordid VARCHAR(18),
   discorddiscriminator TEXT,
-  mobdeath_creeper int
+  ipaddress TEXT,
+  bedlocation TEXT,
+  mobdeath_creeper int not null default 0
 );
 
 CREATE TABLE punishments (

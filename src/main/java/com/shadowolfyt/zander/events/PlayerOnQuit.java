@@ -30,12 +30,12 @@ public class PlayerOnQuit implements Listener {
 
         //
         // Database Query
-        // Add +1 to joins, set player to currently online and update IP address on login.
+        // Set player to Offline.
         //
         try {
             String ip = player.getPlayer().getAddress().toString().replaceAll("/", "");
             PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE playerdata SET lastseen = ?, status = ? WHERE uuid=?");
-            updatestatement.setString(1, "Currently Online");
+            updatestatement.setString(1, "Offline");
             updatestatement.setString(2, "Offline");
             updatestatement.setString(3, player.getUniqueId().toString());
             updatestatement.executeUpdate();

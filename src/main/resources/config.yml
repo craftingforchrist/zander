@@ -10,6 +10,8 @@ discord:
   token: "TOKEN"
   chatprefix: "&f&l[&9&lDISCORD&f&l]&r"
   chatchannel: "server-chat"
+  adminchannel: "admin-log"
+  consolechannel: "console"
   status: "Minecraft"
   broadcastprefix: "&l&c[&BROADCAST&f]&r"
   broadcastchannel: "announcements"

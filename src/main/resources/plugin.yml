@@ -62,10 +62,6 @@ commands:
   ban:
     description: Ban Command.
     usage: /ban [target] [reason]
-  pardon:
-    description: Paron Command.
-    usage: /pardon [target]
-    aliases: [unban]
   vanish:
     description: Vanish Command.
     usage: /vanish [target]
@@ -106,8 +102,6 @@ permissions:
   zander.punishnotify:
     default: op
   zander.vanish:
-    default: op
-  zander.pardon:
     default: op
   zander.difficulty:
     default: op

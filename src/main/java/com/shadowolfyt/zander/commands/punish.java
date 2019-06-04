@@ -1,5 +1,6 @@
 package com.shadowolfyt.zander.commands;
 
+import com.shadowolfyt.zander.ZanderMain;
 import com.shadowolfyt.zander.guis.PunishGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -9,6 +10,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class punish implements CommandExecutor {
+
+    ZanderMain plugin;
+
+    public punish(ZanderMain instance) {
+        plugin = instance;
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player player = (Player) sender;
