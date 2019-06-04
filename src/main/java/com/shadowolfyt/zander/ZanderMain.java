@@ -4,13 +4,11 @@ import com.shadowolfyt.zander.commands.*;
 import com.shadowolfyt.zander.discord.DiscordMain;
 import com.shadowolfyt.zander.events.*;
 import com.shadowolfyt.zander.guis.*;
-import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -62,11 +60,10 @@ public final class ZanderMain extends JavaPlugin {
         this.getCommand("profile").setExecutor(new profile(this));
         this.getCommand("whitelist").setExecutor(new whitelist());
         this.getCommand("jukebox").setExecutor(new jukebox());
-        this.getCommand("punish").setExecutor(new punish());
+        this.getCommand("punish").setExecutor(new punish(this));
         this.getCommand("kick").setExecutor(new kick(this));
         this.getCommand("discord").setExecutor(new discord(this));
         this.getCommand("freeze").setExecutor(new freeze());
-        this.getCommand("pardon").setExecutor(new pardon(this));
         this.getCommand("difficulty").setExecutor(new difficulty(this));
 
         // Recipe Registry

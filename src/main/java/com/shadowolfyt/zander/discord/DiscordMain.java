@@ -55,7 +55,7 @@ public class DiscordMain extends ListenerAdapter implements Listener {
 
     private void registerDiscordEventListeners() {
         this.jda.addEventListener(this);
-        this.jda.addEventListener(new profile(null));
+        this.jda.addEventListener(new profile(plugin));
         this.jda.addEventListener(new SwearFilter());
     }
 
@@ -153,8 +153,7 @@ public class DiscordMain extends ListenerAdapter implements Listener {
     public static void setGame(Game.GameType type, String text) {
         DiscordMain.getInstance().getJda().getPresence().setGame(Game.of(type, text));
     }
-
-
+}
 
 //    @EventHandler(priority = EventPriority.MONITOR)
 //    public void onPlayerAdvancementDone(PlayerAdvancementDoneEvent event) {
@@ -163,4 +162,3 @@ public class DiscordMain extends ListenerAdapter implements Listener {
 //        TextChannel textChannel = jda.getTextChannelsByName(plugin.getConfig().getString("discord.chatchannel"), true).get(0);
 //        textChannel.sendMessage(":medal: **" +  event.getPlayer().getDisplayName() + " has made the advancement " + name + "**").queue();
 //    }
-}

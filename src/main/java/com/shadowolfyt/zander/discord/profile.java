@@ -11,11 +11,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class profile extends ListenerAdapter {
-    ZanderMain plugin;
-
+    private ZanderMain plugin;
     public profile(ZanderMain plugin) {
         this.plugin = plugin;
     }
+
 
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         String[] args = event.getMessage().getContentRaw().split("\\s+");
@@ -37,20 +37,21 @@ public class profile extends ListenerAdapter {
                 PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM playerdata WHERE username = ?");
                 findstatement.setString(1, args[1]);
                 ResultSet results = findstatement.executeQuery();
-                if (results == null) {
+                if (!results.next()) {
                     EmbedBuilder embed = new EmbedBuilder();
                     embed.setTitle("Error");
                     embed.setColor(Color.red);
                     embed.setDescription("The player " + args[1] + " does not exist on this server!");
                     event.getChannel().sendMessage(embed.build()).queue();
-                }
-                if (!results.next()) {
+                } else {
                     EmbedBuilder embed = new EmbedBuilder();
-                    embed.setTitle(results.getString("username") + "'s Profile");
+                    embed.setTitle(results.getString("username") + "'s Profile", plugin.getConfig().getString("web.siteaddress") + results.getString("username"));
+                    embed.setThumbnail("https://crafatar.com/avatars/" + results.getString("uuid") + "?overlay");
                     embed.addField("Joins", results.getString("joins"), true);
                     embed.addField("Deaths", results.getString("deaths"), true);
-                    embed.addField("Status", results.getString("status"), false);
+                    embed.addField("Status", results.getString("status"), true);
                     embed.addField("Last Seen", results.getString("lastseen"), true);
+//                    embed.addField("Total Playtime", results.getString("totalplaytime"), true);
                     event.getChannel().sendMessage(embed.build()).queue();
                 }
             // If there is a SQL exception.
