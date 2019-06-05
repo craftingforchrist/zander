@@ -20,7 +20,15 @@ CREATE TABLE playerdata (
   discorddiscriminator TEXT,
   ipaddress TEXT,
   bedlocation TEXT,
-  mobdeath_creeper int not null default 0
+  mobdeath_player int not null default 0,
+  mobdeath_creeper int not null default 0,
+  mobdeath_enderdragon int not null default 0,
+  mobdeath_wither int not null default 0,
+  mobdeath_elderguardian int not null default 0,
+  mobdeath_witherskeleton int not null default 0,
+  mobdeath_shulker int not null default 0,
+  mobdeath_evoker int not null default 0,
+  mobdeath_bat int not null default 0
 );
 
 CREATE TABLE punishments (
@@ -29,6 +37,7 @@ CREATE TABLE punishments (
   punishedusername TEXT,
   punisheruuid VARCHAR(36),
   punisherusername TEXT,
+  punishplatform TEXT,
   punishtype TEXT,
   reason TEXT,
   punishtimestamp TEXT
