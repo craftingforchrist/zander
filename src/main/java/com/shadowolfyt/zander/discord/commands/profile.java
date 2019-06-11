@@ -1,4 +1,4 @@
-package com.shadowolfyt.zander.discord;
+package com.shadowolfyt.zander.discord.commands;
 
 import com.shadowolfyt.zander.ZanderMain;
 import net.dv8tion.jda.core.EmbedBuilder;

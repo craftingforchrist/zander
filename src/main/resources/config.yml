@@ -10,11 +10,9 @@ discord:
   token: "TOKEN"
   chatprefix: "&f&l[&9&lDISCORD&f&l]&r"
   chatchannel: "server-chat"
-  adminchannel: "admin-log"
+  adminlogchannel: "admin-log"
   consolechannel: "console"
   status: "Minecraft"
-  broadcastprefix: "&l&c[&BROADCAST&f]&r"
-  broadcastchannel: "announcements"
 server:
   motdFirstLine: '&b&l[zander]&r&3 My Minecraft Server'
   motdSecondLine: '&eJust another Minecraft Server'
@@ -23,4 +21,9 @@ server:
   tablineFooter: '&5zander enabled server'
 web:
   siteaddress: 'http://zander.example.com/'
-motd: '&l This is an example message of the day [MOTD].\n You can use this to communicate messages to players as they login.'
+motd:
+  - '&b&l ====== zander ====== &r'
+  - '&e Welcome to a zander operated Minecraft Server.'
+  - ''
+  - 'It seems that the Server Operator has not changed the MOTD, they should probably
+    change this the config.yml file.'

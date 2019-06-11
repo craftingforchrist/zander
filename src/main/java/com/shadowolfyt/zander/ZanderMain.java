@@ -1,6 +1,7 @@
 package com.shadowolfyt.zander;
 
 import com.shadowolfyt.zander.commands.*;
+import com.shadowolfyt.zander.discord.moderation.BlockPlaceAdminLog;
 import com.shadowolfyt.zander.discord.DiscordMain;
 import com.shadowolfyt.zander.events.*;
 import com.shadowolfyt.zander.guis.*;
@@ -45,8 +46,10 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new MobDeathListener(this), this);
         getServer().getPluginManager().registerEvents(new EnderDragonDeathListener(this), this);
         getServer().getPluginManager().registerEvents(new SwearFilter(), this);
-        // Discord Events Registry
-        DiscordMain discordMain = new DiscordMain(this);// DiscordMain registers itself as an event listener, no need to do it again!
+        getServer().getPluginManager().registerEvents(new BlockPlaceAdminLog(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerEnterBed(this), this);
+
+        DiscordMain DiscordMain = new DiscordMain(this);
 
         // Command Registry
         this.getCommand("heal").setExecutor(new heal());
@@ -105,8 +108,7 @@ public final class ZanderMain extends JavaPlugin {
     @Override
     public void onDisable() {
         try {
-            TextChannel textChannel = DiscordMain.getInstance().getJda()
-                    .getTextChannelsByName(plugin.getConfig().getString("discord.chatchannel"), true).get(0);
+            TextChannel textChannel = DiscordMain.getInstance().getJda().getTextChannelsByName(plugin.getConfig().getString("discord.chatchannel"), true).get(0);
             textChannel.sendMessage("** :x: Server is offline **").queue();
 
             DiscordMain.getInstance().getJda().shutdown();
