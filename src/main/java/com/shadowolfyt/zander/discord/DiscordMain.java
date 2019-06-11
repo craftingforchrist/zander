@@ -1,34 +1,24 @@
 package com.shadowolfyt.zander.discord;
 
 import com.shadowolfyt.zander.ZanderMain;
+import com.shadowolfyt.zander.discord.commands.discord;
+import com.shadowolfyt.zander.discord.commands.profile;
 import lombok.Getter;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.md_5.bungee.api.ChatColor;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerAdvancementDoneEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.*;
 
 import javax.security.auth.login.LoginException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.*;
-import java.util.stream.Collectors;
 
 import static org.bukkit.Bukkit.getServer;
 
@@ -48,8 +38,6 @@ public class DiscordMain extends ListenerAdapter implements Listener {
             setGame(Game.GameType.DEFAULT, plugin.getConfig().getString("discord.status"));
             registerDiscordEventListeners();
             //plugin.getCommand("verify").setExecutor(this);
-        } else {
-            // failure
         }
     }
 
@@ -57,6 +45,7 @@ public class DiscordMain extends ListenerAdapter implements Listener {
         this.jda.addEventListener(this);
         this.jda.addEventListener(new profile(plugin));
         this.jda.addEventListener(new SwearFilter());
+        this.jda.addEventListener(new discord(plugin));
     }
 
     /**
@@ -142,6 +131,36 @@ public class DiscordMain extends ListenerAdapter implements Listener {
         textChannel.sendMessage("** :skull: " + event.getDeathMessage() + " **").queue();
     }
 
+    //
+    // Player Advancement Event
+    //
+    @EventHandler
+//    public void PlayerAdvancementDoneEvent (PlayerAdvancementDoneEvent event) {
+//        if (event.getAdvancement() == null || event.getAdvancement().getKey().getKey().contains("recipe/") || event.getPlayer() == null) return;
+//
+//        JsonObject obj = new Gson().fromJson(ClassLoader.getSystemResourceAsStream("assets/minecraft/lang/en_us.json"), JsonObject.class);
+//
+//        try {
+//            Object craftAdvancement = ((Object) event.getAdvancement()).getClass().getMethod("getHandle").invoke(event.getAdvancement());
+//            Object advancementDisplay = craftAdvancement.getClass().getMethod("c").invoke(craftAdvancement);
+//            boolean display = (boolean) advancementDisplay.getClass().getMethod("i").invoke(advancementDisplay);
+//            if (!display) return;
+//        } catch (NullPointerException e) {
+//            return;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return;
+//        }
+//
+//        String rawAdvancementName = event.getAdvancement().getKey().getKey();
+//        String advancementName = Arrays.stream(rawAdvancementName.substring(rawAdvancementName.lastIndexOf("/") + 1).toLowerCase().split("_"))
+//                .map(s -> s.substring(0, 1).toUpperCase() + s.substring(1))
+//                .collect(Collectors.joining(" "));
+//
+//        TextChannel textChannel = jda.getTextChannelsByName(plugin.getConfig().getString("discord.chatchannel"), true).get(0);
+//        textChannel.sendMessage("** :medal: " + event.getPlayer().getDisplayName() + " gained the advancement: " + advancementName + " **").queue();
+//    }
+
     /**
      * Be very careful about this, a rate limit of 5 per minute is enforced
      * <p>
@@ -154,11 +173,3 @@ public class DiscordMain extends ListenerAdapter implements Listener {
         DiscordMain.getInstance().getJda().getPresence().setGame(Game.of(type, text));
     }
 }
-
-//    @EventHandler(priority = EventPriority.MONITOR)
-//    public void onPlayerAdvancementDone(PlayerAdvancementDoneEvent event) {
-//        String name = event.getAdvancement().getKey().getKey();
-//
-//        TextChannel textChannel = jda.getTextChannelsByName(plugin.getConfig().getString("discord.chatchannel"), true).get(0);
-//        textChannel.sendMessage(":medal: **" +  event.getPlayer().getDisplayName() + " has made the advancement " + name + "**").queue();
-//    }
