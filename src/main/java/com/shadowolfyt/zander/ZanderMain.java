@@ -3,6 +3,7 @@ package com.shadowolfyt.zander;
 import com.shadowolfyt.zander.commands.*;
 import com.shadowolfyt.zander.discord.moderation.BlockPlaceAdminLog;
 import com.shadowolfyt.zander.discord.DiscordMain;
+import com.shadowolfyt.zander.discord.moderation.TNTLightAdminLog;
 import com.shadowolfyt.zander.events.*;
 import com.shadowolfyt.zander.guis.*;
 import net.dv8tion.jda.core.entities.TextChannel;
@@ -48,6 +49,7 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new SwearFilter(), this);
         getServer().getPluginManager().registerEvents(new BlockPlaceAdminLog(this), this);
         getServer().getPluginManager().registerEvents(new PlayerEnterBed(this), this);
+        getServer().getPluginManager().registerEvents(new TNTLightAdminLog(this), this);
 
         DiscordMain DiscordMain = new DiscordMain(this);
 
