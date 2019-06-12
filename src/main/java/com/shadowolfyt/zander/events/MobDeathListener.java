@@ -23,6 +23,8 @@ public class MobDeathListener implements Listener {
 
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
+        if (event.getEntity().getKiller() == null) return;
+
         if (event.getEntityType() == EntityType.PLAYER) {
             try {
                 PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE playerdata SET mobdeath_player = mobdeath_player+1 WHERE uuid=?");
