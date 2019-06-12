@@ -40,8 +40,8 @@ public class PlayerOnJoin implements Listener {
 
         Player player = event.getPlayer();
 
-        TitleAPI.sendTitle(player, 40, 50, 40, "Welcome " + ChatColor.AQUA + player.getDisplayName(), ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.titleSubText")));
-        TitleAPI.sendTabTitle(player, ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.tablineHeader")), ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("server.tablineFooter")));
+        TitleAPI.sendTitle(player, 40, 50, 40, "Welcome " + ChatColor.AQUA + player.getDisplayName(), ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("server.titleSubText")));
+        TitleAPI.sendTabTitle(player, ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("server.tablineHeader")), ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("server.tablineFooter")));
 
         event.getPlayer().sendMessage(" ");
         List<String> motd = plugin.getConfig().getStringList("motd");
@@ -83,7 +83,7 @@ public class PlayerOnJoin implements Listener {
             findstatement.setString(1, player.getUniqueId().toString());
             ResultSet results = findstatement.executeQuery();
             if (!results.next()) {
-                plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + " " + player.getDisplayName() + " is a new player, creating a player profile.");
+                plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("developmentprefix")) + " " + player.getDisplayName() + " is a new player, creating a player profile.");
                 PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO playerdata (uuid, username, status, ipaddress) VALUES (?, ?, ?, ?)");
 
                 insertstatement.setString(1, player.getUniqueId().toString());
@@ -92,7 +92,7 @@ public class PlayerOnJoin implements Listener {
                 insertstatement.setString(4, "Currently Online");
 
                 insertstatement.executeUpdate();
-                plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + " Inserted information into " + player.getDisplayName() + "'s profile");
+                plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("developmentprefix")) + " Inserted information into " + player.getDisplayName() + "'s profile");
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,0 +1,11 @@
+main:
+  pluginprefix: '&b&l[zander]&r'
+  developmentprefix: '&b&l[DEV]&r'
+server:
+  motdFirstLine: '&b&l[zander]&r&3 My Minecraft Server'
+  motdSecondLine: '&eJust another Minecraft Server'
+  titleSubText: 'Enjoy your stay!'
+  tablineHeader: '&6My Minecraft Server'
+  tablineFooter: '&5zander enabled server'
+discord:
+  chatprefix: '&f&l[&9&lDISCORD&f&l]&r'

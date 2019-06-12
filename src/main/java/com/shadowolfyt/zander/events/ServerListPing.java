@@ -15,6 +15,6 @@ public class ServerListPing implements Listener {
 
     @EventHandler
     public void onServerPing(ServerListPingEvent event) {
-        event.setMotd(ChatColor.translateAlternateColorCodes('&', ZanderMain.plugin.getConfig().getString("server.motdFirstLine") + "\n" + ZanderMain.plugin.getConfig().getString("server.motdSecondLine")));
+        event.setMotd(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("server.motdFirstLine") + "\n" + plugin.configurationManager.getlang().getString("server.motdSecondLine")));
     }
 }

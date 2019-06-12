@@ -15,7 +15,6 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -23,15 +22,16 @@ import java.sql.SQLException;
 public final class ZanderMain extends JavaPlugin {
     private Connection connection;
     public static ZanderMain plugin;
+    public ConfigurationManager configurationManager;
 
     @Override
     public void onEnable() {
         plugin = this;
         establishConnection();
-        loadConfiguration();
+        loadConfigurationManager();
 
         // Init Message
-        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "\n\nZander has been enabled.\nRunning Version " + plugin.getDescription().getVersion() + "\nGitHub Repository: https://github.com/shadowolfyt/zander\nCreated by shadowolfyt\n\n");
+        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "\n\nZander has been enabled.\nRunning Version " + plugin.getDescription().getVersion() + "\nGitHub Repository: https://github.com/benrobson8/zander\nCreated by Ben Robson\n\n");
 
         // Events Registry
         getServer().getPluginManager().registerEvents(new PlayerOnJoin(this), this);
@@ -77,6 +77,15 @@ public final class ZanderMain extends JavaPlugin {
         Bukkit.addRecipe(new FurnaceRecipe(new NamespacedKey(plugin, "furnace_flesh_leather"), new ItemStack(Material.LEATHER), Material.ROTTEN_FLESH, 0, 1200));
     }
 
+    public void loadConfigurationManager() {
+        configurationManager = new ConfigurationManager(plugin);
+        configurationManager.loadlocalConfiguration(); // Loading the config.yml
+
+        // Loading the lang.yml
+        configurationManager.setuplang();
+        configurationManager.reloadlang();
+    }
+
     public void establishConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -88,25 +97,19 @@ public final class ZanderMain extends JavaPlugin {
                     getConfig().getString("database.password"));
             getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Database connection was successful.");
         } catch (SQLException e) {
-            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + ChatColor.RED + " Database connection failed!");
+            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', configurationManager.getlang().getString("developmentprefix")) + ChatColor.RED + " Database connection failed!");
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + ChatColor.RED + " Database connection failed!");
+            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', configurationManager.getlang().getString("developmentprefix")) + ChatColor.RED + " Database connection failed!");
             e.printStackTrace();
         }
     }
 
     public Connection getConnection() {
-        if(this.connection == null) {
+        if (this.connection == null) {
             establishConnection();
         }
         return connection;
-    }
-
-    private void loadConfiguration() {
-        plugin.saveDefaultConfig();
-        plugin.reloadConfig();
-        plugin.saveConfig();
     }
 
     @Override
@@ -121,6 +124,6 @@ public final class ZanderMain extends JavaPlugin {
         }
 
         getServer().getConsoleSender().sendMessage(ChatColor.RED + "\n\nZander has been disabled.\n");
-        loadConfiguration();
+        loadConfigurationManager();
     }
 }
