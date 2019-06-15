@@ -49,7 +49,6 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new EnderDragonDeathListener(this), this);
         getServer().getPluginManager().registerEvents(new SwearFilter(), this);
         getServer().getPluginManager().registerEvents(new BlockPlaceAdminLog(this), this);
-        getServer().getPluginManager().registerEvents(new PlayerEnterBed(this), this);
         getServer().getPluginManager().registerEvents(new TNTLightAdminLog(this), this);
         getServer().getPluginManager().registerEvents(new CommandAdminLog(this), this);
 
@@ -83,7 +82,11 @@ public final class ZanderMain extends JavaPlugin {
 
         // Loading the lang.yml
         configurationManager.setuplang();
-        configurationManager.reloadlang();
+//        configurationManager.reloadlang();
+
+        // Loading the filter.yml
+        configurationManager.setupfilter();
+//        configurationManager.reloadfilter();
     }
 
     public void establishConnection() {

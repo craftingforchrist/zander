@@ -15,6 +15,8 @@ public class ConfigurationManager {
 
     public FileConfiguration langFile;
     public File langfile;
+    public FileConfiguration filterFile;
+    public File filterfile;
 
     public void loadlocalConfiguration() {
         plugin.saveDefaultConfig();
@@ -22,6 +24,9 @@ public class ConfigurationManager {
         plugin.saveConfig();
     }
 
+    //
+    // Language File
+    //
     public void setuplang() {
         if (!plugin.getDataFolder().exists()) {
             plugin.getDataFolder().mkdir();
@@ -42,6 +47,30 @@ public class ConfigurationManager {
     public void reloadlang() {
         langFile = YamlConfiguration.loadConfiguration(langfile);
         Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "The lang.yml file has been reloaded.");
+    }
 
+    //
+    // Filter File
+    //
+    public void setupfilter() {
+        if (!plugin.getDataFolder().exists()) {
+            plugin.getDataFolder().mkdir();
+        }
+        filterfile = new File(plugin.getDataFolder(), "filter.yml");
+
+        if (!filterfile.exists()) {
+            plugin.saveResource("filter.yml", false);
+            Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "The filter.yml file has been created.");
+        }
+        filterFile = YamlConfiguration.loadConfiguration(filterfile);
+    }
+
+    public FileConfiguration getfilter() {
+        return filterFile;
+    }
+
+    public void reloadfilter() {
+        langFile = YamlConfiguration.loadConfiguration(langfile);
+        Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "The lang.yml file has been reloaded.");
     }
 }
