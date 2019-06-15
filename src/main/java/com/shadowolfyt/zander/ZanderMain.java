@@ -80,13 +80,9 @@ public final class ZanderMain extends JavaPlugin {
         configurationManager = new ConfigurationManager(plugin);
         configurationManager.loadlocalConfiguration(); // Loading the config.yml
 
-        // Loading the lang.yml
         configurationManager.setuplang();
-//        configurationManager.reloadlang();
-
-        // Loading the filter.yml
         configurationManager.setupfilter();
-//        configurationManager.reloadfilter();
+        configurationManager.setupmotd();
     }
 
     public void establishConnection() {

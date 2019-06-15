@@ -17,6 +17,8 @@ public class ConfigurationManager {
     public File langfile;
     public FileConfiguration filterFile;
     public File filterfile;
+    public FileConfiguration motdFile;
+    public File motdfile;
 
     public void loadlocalConfiguration() {
         plugin.saveDefaultConfig();
@@ -44,11 +46,6 @@ public class ConfigurationManager {
         return langFile;
     }
 
-    public void reloadlang() {
-        langFile = YamlConfiguration.loadConfiguration(langfile);
-        Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "The lang.yml file has been reloaded.");
-    }
-
     //
     // Filter File
     //
@@ -69,8 +66,23 @@ public class ConfigurationManager {
         return filterFile;
     }
 
-    public void reloadfilter() {
-        langFile = YamlConfiguration.loadConfiguration(langfile);
-        Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "The lang.yml file has been reloaded.");
+    //
+    // MOTD File
+    //
+    public void setupmotd() {
+        if (!plugin.getDataFolder().exists()) {
+            plugin.getDataFolder().mkdir();
+        }
+        motdfile = new File(plugin.getDataFolder(), "motd.yml");
+
+        if (!motdfile.exists()) {
+            plugin.saveResource("motd.yml", false);
+            Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "The motd.yml file has been created.");
+        }
+        motdFile = YamlConfiguration.loadConfiguration(motdfile);
+    }
+
+    public FileConfiguration getmotd() {
+        return motdFile;
     }
 }

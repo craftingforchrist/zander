@@ -1,0 +1,6 @@
+motd:
+  - "&b&l ============ zander ============ &r"
+  - "&e Welcome to a zander operated Minecraft Server."
+  - " "
+  - "It seems the Server Operator has not changed the MOTD, they should probably change this the motd.yml file."
+  - "Check out the Open Source project on GitHub: https://github.com/benrobson8/zander/"

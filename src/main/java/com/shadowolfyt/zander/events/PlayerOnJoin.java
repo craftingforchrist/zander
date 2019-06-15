@@ -44,7 +44,7 @@ public class PlayerOnJoin implements Listener {
         TitleAPI.sendTabTitle(player, ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("server.tablineHeader")), ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("server.tablineFooter")));
 
         event.getPlayer().sendMessage(" ");
-        List<String> motd = plugin.getConfig().getStringList("motd");
+        List<String> motd = plugin.configurationManager.getmotd().getStringList("motd");
         for (String s : motd) {
             event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', s));
         }

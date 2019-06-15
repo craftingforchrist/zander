@@ -3,6 +3,7 @@ package com.shadowolfyt.zander.discord;
 import com.shadowolfyt.zander.ZanderMain;
 import com.shadowolfyt.zander.discord.commands.discord;
 import com.shadowolfyt.zander.discord.commands.profile;
+import com.shadowolfyt.zander.discord.moderation.SwearFilter;
 import lombok.Getter;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;

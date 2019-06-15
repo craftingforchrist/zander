@@ -12,9 +12,3 @@ discord:
   status: "Minecraft"
 web:
   siteaddress: 'http://zander.example.com/'
-motd:
-  - '&b&l ====== zander ====== &r'
-  - '&e Welcome to a zander operated Minecraft Server.'
-  - ''
-  - 'It seems that the Server Operator has not changed the MOTD, they should probably
-    change this the config.yml file.'

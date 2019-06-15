@@ -1,4 +1,4 @@
-package com.shadowolfyt.zander.discord;
+package com.shadowolfyt.zander.discord.moderation;
 
 import com.shadowolfyt.zander.ZanderMain;
 import net.dv8tion.jda.core.EmbedBuilder;
@@ -33,5 +33,3 @@ public class SwearFilter extends ListenerAdapter {
         }
     }
 }
-
-
