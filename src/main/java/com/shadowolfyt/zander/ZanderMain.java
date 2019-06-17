@@ -7,6 +7,8 @@ import com.shadowolfyt.zander.discord.moderation.CommandAdminLog;
 import com.shadowolfyt.zander.discord.moderation.TNTLightAdminLog;
 import com.shadowolfyt.zander.events.*;
 import com.shadowolfyt.zander.guis.*;
+import com.shadowolfyt.zander.recipes.RabbitSkinRecipe;
+import com.shadowolfyt.zander.recipes.TridentRecipe;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
@@ -14,10 +16,13 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 public final class ZanderMain extends JavaPlugin {
     private Connection connection;
@@ -73,7 +78,13 @@ public final class ZanderMain extends JavaPlugin {
         this.getCommand("difficulty").setExecutor(new difficulty(this));
 
         // Recipe Registry
-        Bukkit.addRecipe(new FurnaceRecipe(new NamespacedKey(plugin, "furnace_flesh_leather"), new ItemStack(Material.LEATHER), Material.ROTTEN_FLESH, 0, 1200));
+//        Bukkit.addRecipe(new FurnaceRecipe(new NamespacedKey(plugin, "furnace_flesh_leather"), new ItemStack(Material.LEATHER), Material.ROTTEN_FLESH, 0, 1200));
+        // Trident Recipe
+        TridentRecipe tr = new TridentRecipe(this);
+        tr.TridentRecipe();
+        // Trident Recipe
+        RabbitSkinRecipe rsr = new RabbitSkinRecipe(this);
+        rsr.RabbitSkinRecipe();
     }
 
     public void loadConfigurationManager() {
