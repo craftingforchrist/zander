@@ -10,7 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.Arrays;
 
@@ -28,8 +28,8 @@ public class WhitelistListGUI implements Listener {
         int slot = 0;
         for (OfflinePlayer all : Bukkit.getWhitelistedPlayers()) {
             ItemStack listedplayer = new ItemStack(Material.PLAYER_HEAD);
-            ItemMeta listedplayermeta = listedplayer.getItemMeta();
-            listedplayermeta.setDisplayName(all.getName());
+            SkullMeta listedplayermeta = (SkullMeta) listedplayer.getItemMeta();
+            listedplayermeta.setOwningPlayer(all);
             listedplayermeta.setLore(Arrays.asList(ChatColor.GREEN + "UUID: " + ChatColor.YELLOW + player.getUniqueId().toString(), ChatColor.GREEN + "Banned: " + ChatColor.YELLOW + player.isBanned()));
             listedplayer.setItemMeta(listedplayermeta);
             inv.setItem(slot, listedplayer);
