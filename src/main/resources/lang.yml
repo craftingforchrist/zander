@@ -9,3 +9,6 @@ server:
   tablineFooter: '&5zander enabled server'
 discord:
   chatprefix: '&f&l[&9&lDISCORD&f&l]&r'
+punish:
+  bantagline: 'You have been banned from this server.'
+  appealcontact: 'Appeal your punishment by contacting the Server Operator.'
