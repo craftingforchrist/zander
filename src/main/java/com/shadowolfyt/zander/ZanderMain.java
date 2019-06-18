@@ -11,18 +11,10 @@ import com.shadowolfyt.zander.recipes.RabbitSkinRecipe;
 import com.shadowolfyt.zander.recipes.TridentRecipe;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.inventory.FurnaceRecipe;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Arrays;
 
 public final class ZanderMain extends JavaPlugin {
     private Connection connection;
@@ -44,6 +36,7 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ServerListPing(this), this);
         getServer().getPluginManager().registerEvents(new PlayerDeath(this), this);
         getServer().getPluginManager().registerEvents(new WhitelistListener(this), this);
+        getServer().getPluginManager().registerEvents(new BanListener(this), this);
         getServer().getPluginManager().registerEvents(new WhitelistGUI(this), this);
         getServer().getPluginManager().registerEvents(new WhitelistListGUI(null), this);
         getServer().getPluginManager().registerEvents(new DifficultyGUI(this), this);
@@ -52,7 +45,7 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new FallIntoEndVoidListener(), this);
         getServer().getPluginManager().registerEvents(new MobDeathListener(this), this);
         getServer().getPluginManager().registerEvents(new EnderDragonDeathListener(this), this);
-        getServer().getPluginManager().registerEvents(new SwearFilter(), this);
+        getServer().getPluginManager().registerEvents(new SwearFilter(this), this);
         getServer().getPluginManager().registerEvents(new BlockPlaceAdminLog(this), this);
         getServer().getPluginManager().registerEvents(new TNTLightAdminLog(this), this);
         getServer().getPluginManager().registerEvents(new CommandAdminLog(this), this);

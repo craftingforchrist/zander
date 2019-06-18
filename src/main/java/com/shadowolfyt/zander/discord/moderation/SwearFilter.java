@@ -6,6 +6,8 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 import java.awt.*;
+import java.util.List;
+import static org.apache.commons.lang.StringUtils.containsIgnoreCase;
 
 public class SwearFilter extends ListenerAdapter {
     private ZanderMain plugin;
@@ -15,20 +17,19 @@ public class SwearFilter extends ListenerAdapter {
 
     @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
-        String[] FilteredWords = {plugin.configurationManager.getfilter().getString("filteredwords")};
-        String[] message = event.getMessage().getContentRaw().split(" ");
+        List<String> FilteredWords = plugin.configurationManager.getfilter().getStringList("filteredwords");
+        String message = event.getMessage().getContentRaw();
 
-        for(int i = 0;i < message.length;i++){
-            for(int b = 0; b < FilteredWords.length;b++){
-                if (message[i].equalsIgnoreCase(FilteredWords[b])) {
-                    event.getMessage().delete().queue();
+        for (String word: FilteredWords){
+            if (containsIgnoreCase(message, word)){
+                event.getMessage().delete().queue();
 
-                    EmbedBuilder embed = new EmbedBuilder();
-                    embed.setTitle("Foul Language");
-                    embed.setColor(Color.red);
-                    embed.setDescription(event.getMember().getUser().getName() + " you cannot use that word!");
-                    event.getChannel().sendMessage(embed.build()).queue();
-                }
+                EmbedBuilder embed = new EmbedBuilder();
+                embed.setTitle("Foul Language");
+                embed.setColor(Color.red);
+                embed.setDescription(event.getMember().getUser().getName() + " you cannot use that word!");
+                event.getChannel().sendMessage(embed.build()).queue();
+                break;
             }
         }
     }
