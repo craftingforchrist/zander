@@ -14,12 +14,12 @@ public class ExperienceBottleRecipe implements Listener {
     }
 
     public void ExperienceBottleRecipe() {
-        ItemStack item = new ItemStack(Material.EXPERIENCE_BOTTLE, 3);
+        ItemStack item = new ItemStack(Material.EXPERIENCE_BOTTLE, 1);
         NamespacedKey key = new NamespacedKey(plugin, "ExperienceBottle");
         ShapedRecipe ebr = new ShapedRecipe(key, item);
 
         ebr.shape("$@$","$@$","$#$");
-        ebr.setIngredient('$', Material.SMOOTH_QUARTZ);
+        ebr.setIngredient('$', Material.QUARTZ);
         ebr.setIngredient('@', Material.GLOWSTONE_DUST);
         ebr.setIngredient('#', Material.POTION);
         plugin.getServer().addRecipe(ebr);
