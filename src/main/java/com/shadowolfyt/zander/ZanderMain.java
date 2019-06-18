@@ -7,6 +7,7 @@ import com.shadowolfyt.zander.discord.moderation.CommandAdminLog;
 import com.shadowolfyt.zander.discord.moderation.TNTLightAdminLog;
 import com.shadowolfyt.zander.events.*;
 import com.shadowolfyt.zander.guis.*;
+import com.shadowolfyt.zander.recipes.ExperienceBottleRecipe;
 import com.shadowolfyt.zander.recipes.RabbitSkinRecipe;
 import com.shadowolfyt.zander.recipes.TridentRecipe;
 import net.dv8tion.jda.core.entities.TextChannel;
@@ -75,9 +76,12 @@ public final class ZanderMain extends JavaPlugin {
         // Trident Recipe
         TridentRecipe tr = new TridentRecipe(this);
         tr.TridentRecipe();
-        // Trident Recipe
+        // Rabbit Skin Recipe
         RabbitSkinRecipe rsr = new RabbitSkinRecipe(this);
         rsr.RabbitSkinRecipe();
+        // Experience Bottle Recipe
+        ExperienceBottleRecipe ebr = new ExperienceBottleRecipe(this);
+        ebr.ExperienceBottleRecipe();
     }
 
     public void loadConfigurationManager() {
