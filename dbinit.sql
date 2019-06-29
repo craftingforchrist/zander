@@ -13,9 +13,6 @@ CREATE TABLE playerdata (
   uuid VARCHAR(36),
   username VARCHAR(16),
   joined TIMESTAMP NOT NULL DEFAULT NOW(),
-  isVerified BOOLEAN DEFAULT false,
-  discordid VARCHAR(18),
-  discorddiscriminator VARCHAR(35),
   bedlocation   POINT NULL
  );
 create index playerdata_username on playerdata (username);
@@ -59,7 +56,6 @@ CREATE TABLE punishments (
   id int AUTO_INCREMENT PRIMARY KEY NOT NULL,
   punisheduser_id INT NOT NULL DEFAULT 0,
   punisher_id INT NOT NULL DEFAULT 0,
-  punishplatform ENUM('SERVER', 'DISCORD'),
   punishtype ENUM('KICK', 'BAN', 'TEMP BAN'),
   reason TEXT,
   punishtimestamp TIMESTAMP NOT NULL DEFAULT NOW(),
