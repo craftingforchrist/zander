@@ -29,15 +29,6 @@ public class PlayerOnJoin implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        if (event.getPlayer().isBanned()) {
-            for (Player p : Bukkit.getOnlinePlayers()){
-                if (p.hasPermission("zander.punishnotify")) {
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("prefix")) + " " + event.getPlayer().getDisplayName() + " attempted to login but is banned.");
-                }
-            }
-            return;
-        }
-
         Player player = event.getPlayer();
 
         TitleAPI.sendTitle(player, 40, 50, 40, "Welcome " + ChatColor.AQUA + player.getDisplayName(), ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("server.titleSubText")));
@@ -83,16 +74,14 @@ public class PlayerOnJoin implements Listener {
             findstatement.setString(1, player.getUniqueId().toString());
             ResultSet results = findstatement.executeQuery();
             if (!results.next()) {
-                plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("developmentprefix")) + " " + player.getDisplayName() + " is a new player, creating a player profile.");
-                PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO playerdata (uuid, username, status, ipaddress) VALUES (?, ?, ?, ?)");
+                plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.developmentprefix")) + " " + player.getDisplayName() + " is a new player, creating a player profile.");
+                PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO playerdata (uuid, username) VALUES (?, ?)");
 
                 insertstatement.setString(1, player.getUniqueId().toString());
                 insertstatement.setString(2, player.getDisplayName());
-                insertstatement.setString(3, player.getAddress().getAddress().toString());
-                insertstatement.setString(4, "Currently Online");
 
                 insertstatement.executeUpdate();
-                plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("developmentprefix")) + " Inserted information into " + player.getDisplayName() + "'s profile");
+                plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.developmentprefix")) + " Inserted information into " + player.getDisplayName() + "'s profile");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -100,15 +89,14 @@ public class PlayerOnJoin implements Listener {
 
         //
         // Database Query
-        // Add +1 to joins, sets their ip address and sets player to currently online.
+        // Start the players session.
         //
         try {
-            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE playerdata SET joins = joins+1, lastseen = ?, status = ?, ipaddress = ? WHERE uuid=?");
-            updatestatement.setString(1, "Currently Online");
-            updatestatement.setString(2, "Currently Online");
-            updatestatement.setString(3, player.getAddress().getAddress().toString());
-            updatestatement.setString(4, player.getUniqueId().toString());
-            updatestatement.executeUpdate();
+            PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO sessions (player_id, ipaddress) VALUES ((select id from playerdata where uuid = ?), ?)");
+            insertstatement.setString(1, player.getUniqueId().toString());
+            insertstatement.setString(2, player.getAddress().getAddress().getHostAddress());
+            insertstatement.executeUpdate();
+            plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.developmentprefix")) + " " + player.getDisplayName() + " has started a session, beginning their session.");
         } catch (SQLException e) {
             e.printStackTrace();
         }

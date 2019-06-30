@@ -12,7 +12,6 @@ import java.sql.SQLException;
 
 public class PlayerOnQuit implements Listener {
     ZanderMain plugin;
-
     public PlayerOnQuit(ZanderMain instance) {
         plugin = instance;
     }
@@ -30,15 +29,13 @@ public class PlayerOnQuit implements Listener {
 
         //
         // Database Query
-        // Set player to Offline.
+        // End the players session.
         //
         try {
-            String ip = player.getPlayer().getAddress().toString().replaceAll("/", "");
-            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE playerdata SET lastseen = ?, status = ? WHERE uuid=?");
-            updatestatement.setString(1, "Offline");
-            updatestatement.setString(2, "Offline");
-            updatestatement.setString(3, player.getUniqueId().toString());
+            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE sessions SET sessionend = NOW() where player_id = (select id from playerdata where uuid = ?) AND sessionend is null");
+            updatestatement.setString(1, player.getUniqueId().toString());
             updatestatement.executeUpdate();
+            plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.developmentprefix")) + " " + player.getDisplayName() + "'s session has ended, logging in the database.");
         } catch (SQLException e) {
             e.printStackTrace();
         }

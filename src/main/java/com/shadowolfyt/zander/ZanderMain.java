@@ -42,7 +42,7 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new WhitelistListGUI(null), this);
         getServer().getPluginManager().registerEvents(new DifficultyGUI(this), this);
         getServer().getPluginManager().registerEvents(new JukeboxGUI(this), this);
-        getServer().getPluginManager().registerEvents(new PlayerGamemodeChange(), this);
+        getServer().getPluginManager().registerEvents(new PlayerGamemodeChange(this), this);
         getServer().getPluginManager().registerEvents(new FallIntoEndVoidListener(), this);
         getServer().getPluginManager().registerEvents(new MobDeathListener(this), this);
         getServer().getPluginManager().registerEvents(new EnderDragonDeathListener(this), this);
@@ -50,6 +50,7 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BlockPlaceAdminLog(this), this);
         getServer().getPluginManager().registerEvents(new TNTLightAdminLog(this), this);
         getServer().getPluginManager().registerEvents(new CommandAdminLog(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerSleepEvent(this), this);
 
         DiscordMain DiscordMain = new DiscordMain(this);
 
