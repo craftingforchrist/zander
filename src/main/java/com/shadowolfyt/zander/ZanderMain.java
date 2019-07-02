@@ -15,6 +15,7 @@ import net.md_5.bungee.api.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public final class ZanderMain extends JavaPlugin {
@@ -27,6 +28,17 @@ public final class ZanderMain extends JavaPlugin {
         plugin = this;
         establishConnection();
         loadConfigurationManager();
+
+        //
+        // Database Query
+        // End all players sessions that are NULL.
+        //
+        try {
+            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE sessions SET sessionend = NOW() where sessionend is null");
+            updatestatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         // Init Message
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "\n\nZander has been enabled.\nRunning Version " + plugin.getDescription().getVersion() + "\nGitHub Repository: https://github.com/benrobson8/zander\nCreated by Ben Robson\n\n");
