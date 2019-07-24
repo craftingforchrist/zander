@@ -38,7 +38,6 @@ public class DiscordMain extends ListenerAdapter implements Listener {
         if (startBot()) {
             setGame(Game.GameType.DEFAULT, plugin.getConfig().getString("discord.status"));
             registerDiscordEventListeners();
-            //plugin.getCommand("verify").setExecutor(this);
         }
     }
 
@@ -66,10 +65,7 @@ public class DiscordMain extends ListenerAdapter implements Listener {
 
             // Show signs of life
             getServer().getConsoleSender().sendMessage(ChatColor.BLUE + "[Discord] " + ChatColor.GREEN + "Zander is now connected to Discord.");
-            TextChannel textChannel = this.jda.getTextChannelsByName(
-                    this.plugin.getConfig().getString("discord.chatchannel"),
-                    true
-            ).get(0);
+            TextChannel textChannel = this.jda.getTextChannelsByName(this.plugin.getConfig().getString("discord.chatchannel"),true).get(0);
             textChannel.sendMessage("** :white_check_mark: Server has started **").queue();
 
             return true;
@@ -98,9 +94,7 @@ public class DiscordMain extends ListenerAdapter implements Listener {
         if (channel == textChannel) {
             String message = event.getMessage().getContentRaw();
             User user = event.getAuthor();
-            Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("discord.chatprefix")) + " " + user.getName() + "#" + user.getDiscriminator() + ": " + message);
-        } else {
-            return;
+            Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("discord.chatprefix")) + " " + user.getName() + "#" + user.getDiscriminator() + ": " + message);
         }
     }
 
