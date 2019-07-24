@@ -27,7 +27,7 @@ public class EndCrystalPercentDrop implements Listener {
                 entity.getLocation().getWorld().dropItem(entity.getLocation(), new ItemStack(Material.END_CRYSTAL, 1));
                 return;
             } else {
-                entity.getLocation().getWorld().dropItem(entity.getLocation(), new ItemStack(Material.LEATHER, 1));
+                entity.getLocation().getWorld().dropItem(entity.getLocation(), new ItemStack(Material.BONE, 1));
                 return;
             }
         }

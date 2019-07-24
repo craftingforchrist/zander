@@ -13,12 +13,12 @@ CREATE TABLE playerdata (
   uuid VARCHAR(36),
   username VARCHAR(16),
   joined TIMESTAMP NOT NULL DEFAULT NOW(),
-  bedlocation   POINT NULL
+  deaths int DEFAULT 0,
+  bedlocation POINT NULL
  );
 create index playerdata_username on playerdata (username);
 
-
- CREATE TABLE sessions (
+CREATE TABLE sessions (
   id int AUTO_INCREMENT PRIMARY KEY NOT NULL,
   player_id INT NOT NULL DEFAULT 0,
   sessionstart TIMESTAMP NOT NULL DEFAULT NOW(),
@@ -29,28 +29,6 @@ create index playerdata_username on playerdata (username);
 create index sessions_player_id    on sessions (player_id);
 create index sessions_sessionstart on sessions (sessionstart);
 create index sessions_sessionend   on sessions (sessionend);
-
-
- CREATE TABLE mobtypes (
-  id int AUTO_INCREMENT PRIMARY KEY NOT NULL,
-  displayorder INT NULL,
-  mobtype VARCHAR(32) NOT NULL
-);
-create index mobtypes_mobtype on mobtypes (mobtype);
-insert into mobtypes (displayorder, mobtype) values (1, 'Player'), (2, 'Creeper'), (3, 'Ender Dragon'), (4, 'Wither'), (5, 'Elder Guardian'), (6, 'Wither Skeleton'), (7, 'Shulker'), (8, 'Evoker'), (9, 'Bat');
-
-
- CREATE TABLE mobdeath (
-  death_time TIMESTAMP NOT NULL DEFAULT NOW(),
-  killer_id INT NULL,
-  mobtype_id INT NOT NULL DEFAULT 0,
-  killed_id INT NULL,
-  location POINT NULL,
-  FOREIGN KEY (killer_id) REFERENCES playerdata (id),
-  FOREIGN KEY (killed_id) REFERENCES playerdata (id),
-  FOREIGN KEY (mobtype_id) REFERENCES mobtypes (id)
-);
-
 
 CREATE TABLE punishments (
   id int AUTO_INCREMENT PRIMARY KEY NOT NULL,

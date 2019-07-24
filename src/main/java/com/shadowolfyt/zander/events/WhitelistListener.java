@@ -20,8 +20,8 @@ public class WhitelistListener implements Listener {
         Player player = event.getPlayer();
 
         if (event.getResult() == PlayerLoginEvent.Result.KICK_WHITELIST) {
-            event.setKickMessage(ChatColor.AQUA.toString() + ChatColor.BOLD + "[zander] " + ChatColor.RESET.toString() + ChatColor.RED + "You are not whitelisted on this server!");
-            Bukkit.broadcastMessage(ChatColor.AQUA.toString() + ChatColor.BOLD + "[zander] " + ChatColor.RED + player.getDisplayName() + " attempted to login but is not whitelisted.");
+            event.setKickMessage(ChatColor.AQUA.toString() + ChatColor.BOLD + ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.pluginprefix")) + ChatColor.RESET.toString() + ChatColor.RED + " " + ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("server.whitelisttagline")) + "\n\n" + ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("server.whitelistcontact")));
+            Bukkit.broadcastMessage(ChatColor.AQUA.toString() + ChatColor.BOLD + ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.pluginprefix")) + " " + ChatColor.RED + player.getDisplayName() + " attempted to login but is not whitelisted.");
         }
     }
 }

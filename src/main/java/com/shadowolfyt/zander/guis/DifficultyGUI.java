@@ -77,28 +77,28 @@ public class DifficultyGUI implements Listener {
         switch (event.getCurrentItem().getType()) {
             // Peaceful
             case FEATHER:
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("prefix")) + " Server difficulty has been set to Peaceful.");
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.pluginprefix")) + " Server difficulty has been set to Peaceful.");
                 player.getWorld().setDifficulty(Difficulty.PEACEFUL);
                 player.closeInventory();
                 break;
 
             // Easy
             case WOODEN_SWORD:
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("prefix")) + " Server difficulty has been set to Easy.");
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.pluginprefix")) + " Server difficulty has been set to Easy.");
                 player.getWorld().setDifficulty(Difficulty.EASY);
                 player.closeInventory();
                 break;
 
             // Normal
             case IRON_SWORD:
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("prefix")) + " Server difficulty has been set to Normal.");
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.pluginprefix")) + " Server difficulty has been set to Normal.");
                 player.getWorld().setDifficulty(Difficulty.NORMAL);
                 player.closeInventory();
                 break;
 
             // Hard
             case DIAMOND_SWORD:
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("prefix")) + " Server difficulty has been set to Hard.");
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.pluginprefix")) + " Server difficulty has been set to Hard.");
                 player.getWorld().setDifficulty(Difficulty.HARD);
                 player.closeInventory();
                 break;

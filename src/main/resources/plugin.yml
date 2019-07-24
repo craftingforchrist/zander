@@ -1,7 +1,7 @@
 main: com.shadowolfyt.zander.ZanderMain
 name: zander
 version: 1.0
-author: shadowolfyt
+author: Ben Robson
 api-version: 1.13
 softdepend:
 - TitleAPI
@@ -50,9 +50,6 @@ commands:
     description: Punish Command.
     usage: /punish [target]
     aliases: [p]
-  verify:
-    description: Discord Command.
-    usage: /verify [token]
   freeze:
     description: Freeze Command.
     usage: /freeze [target]
@@ -62,9 +59,6 @@ commands:
   ban:
     description: Ban Command.
     usage: /ban [target] [reason]
-  vanish:
-    description: Vanish Command.
-    usage: /vanish [target]
   discord:
     description: Discord command.
     usage: /discord
@@ -99,9 +93,9 @@ permissions:
     default: op
   zander.kick:
     default: op
-  zander.punishnotify:
+  zander.ban:
     default: op
-  zander.vanish:
+  zander.punishnotify:
     default: op
   zander.difficulty:
     default: op

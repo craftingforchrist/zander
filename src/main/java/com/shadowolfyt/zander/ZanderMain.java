@@ -56,13 +56,15 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new JukeboxGUI(this), this);
         getServer().getPluginManager().registerEvents(new PlayerGamemodeChange(this), this);
         getServer().getPluginManager().registerEvents(new FallIntoEndVoidListener(), this);
-        getServer().getPluginManager().registerEvents(new MobDeathListener(this), this);
         getServer().getPluginManager().registerEvents(new EnderDragonDeathListener(this), this);
         getServer().getPluginManager().registerEvents(new SwearFilter(this), this);
         getServer().getPluginManager().registerEvents(new BlockPlaceAdminLog(this), this);
         getServer().getPluginManager().registerEvents(new TNTLightAdminLog(this), this);
         getServer().getPluginManager().registerEvents(new CommandAdminLog(this), this);
         getServer().getPluginManager().registerEvents(new PlayerSleepEvent(this), this);
+        getServer().getPluginManager().registerEvents(new CraftDisable(this), this);
+        getServer().getPluginManager().registerEvents(new EndCrystalPercentDrop(this), this);
+        getServer().getPluginManager().registerEvents(new ChargedCreeperHeadDrop(this), this);
 
         DiscordMain DiscordMain = new DiscordMain(this);
 
@@ -80,6 +82,7 @@ public final class ZanderMain extends JavaPlugin {
         this.getCommand("jukebox").setExecutor(new jukebox());
         this.getCommand("punish").setExecutor(new punish(this));
         this.getCommand("kick").setExecutor(new kick(this));
+        this.getCommand("ban").setExecutor(new ban(this));
         this.getCommand("discord").setExecutor(new discord(this));
         this.getCommand("freeze").setExecutor(new freeze());
         this.getCommand("difficulty").setExecutor(new difficulty(this));

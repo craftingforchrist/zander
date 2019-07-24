@@ -96,7 +96,7 @@ public class PlayerOnJoin implements Listener {
             insertstatement.setString(1, player.getUniqueId().toString());
             insertstatement.setString(2, player.getAddress().getAddress().getHostAddress());
             insertstatement.executeUpdate();
-            plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.developmentprefix")) + " " + player.getDisplayName() + " has started a session, beginning their session.");
+            plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.developmentprefix")) + " " + player.getDisplayName() + " has logged in, beginning their session.");
         } catch (SQLException e) {
             e.printStackTrace();
         }

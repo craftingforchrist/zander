@@ -25,10 +25,9 @@ public class SwearFilter implements Listener {
         String message = event.getMessage();
 
         for (String word: FilteredWords){
-            if (containsIgnoreCase(message, word)){
-                player.sendMessage(ChatColor.RED + "You cannot speak that foul language!");
+            if (message.toLowerCase().contains(word)){
+                player.sendMessage(ChatColor.RED + plugin.configurationManager.getlang().getString("punish.swearfilteringameprompt"));
                 event.setCancelled(true);
-                break;
             }
         }
     }

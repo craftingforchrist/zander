@@ -7,8 +7,11 @@ server:
   titleSubText: 'Enjoy your stay!'
   tablineHeader: '&6My Minecraft Server'
   tablineFooter: '&5zander enabled server'
+  whitelisttagline: 'You are not whitelisted on this server!'
+  whitelistcontact: 'Please contact the server operator.'
 discord:
   chatprefix: '&f&l[&9&lDISCORD&f&l]&r'
 punish:
   bantagline: 'You have been banned from this server.'
   appealcontact: 'Appeal your punishment by contacting the Server Operator.'
+  swearfilteringameprompt: 'You can not speak that foul language.'

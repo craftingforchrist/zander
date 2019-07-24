@@ -71,14 +71,14 @@ public class WhitelistGUI implements Listener {
             case EMERALD_BLOCK:
                 Bukkit.setWhitelist(true);
                 player.sendMessage(ChatColor.GREEN + "You have enabled the whitelist.");
-                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("prefix")) + " The server whitelist has been enabled.");
+                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.pluginprefix")) + " The server whitelist has been enabled.");
                 break;
 
             // Disable
             case REDSTONE_BLOCK:
                 Bukkit.setWhitelist(false);
                 player.sendMessage(ChatColor.RED + "You have disabled the whitelist.");
-                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("prefix")) + " The server whitelist has been disabled.");
+                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.pluginprefix")) + " The server whitelist has been disabled.");
                 break;
 
             // List

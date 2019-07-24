@@ -7,7 +7,6 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 import java.awt.*;
 import java.util.List;
-import static org.apache.commons.lang.StringUtils.containsIgnoreCase;
 
 public class SwearFilter extends ListenerAdapter {
     private ZanderMain plugin;
@@ -21,15 +20,17 @@ public class SwearFilter extends ListenerAdapter {
         String message = event.getMessage().getContentRaw();
 
         for (String word: FilteredWords){
-            if (containsIgnoreCase(message, word)){
-                event.getMessage().delete().queue();
-
-                EmbedBuilder embed = new EmbedBuilder();
-                embed.setTitle("Foul Language");
-                embed.setColor(Color.red);
-                embed.setDescription(event.getMember().getUser().getName() + " you cannot use that word!");
-                event.getChannel().sendMessage(embed.build()).queue();
-                break;
+            if (message.toLowerCase().contains(word)){
+                if (event.getAuthor().isBot() && event.getMessage().getContentRaw().contains(word)){
+                    event.getMessage().delete().queue();
+                } else {
+                    event.getMessage().delete().queue();
+                    EmbedBuilder embed = new EmbedBuilder();
+                    embed.setTitle("Foul Language");
+                    embed.setColor(Color.red);
+                    embed.setDescription(event.getAuthor().getName() + " you cannot use that word!");
+                    event.getChannel().sendMessage(embed.build()).queue();
+                }
             }
         }
     }

@@ -30,7 +30,8 @@ public class WhitelistListGUI implements Listener {
             ItemStack listedplayer = new ItemStack(Material.PLAYER_HEAD);
             SkullMeta listedplayermeta = (SkullMeta) listedplayer.getItemMeta();
             listedplayermeta.setOwningPlayer(all);
-            listedplayermeta.setLore(Arrays.asList(ChatColor.GREEN + "UUID: " + ChatColor.YELLOW + player.getUniqueId().toString(), ChatColor.GREEN + "Banned: " + ChatColor.YELLOW + player.isBanned()));
+            listedplayermeta.setDisplayName(all.getName());
+            listedplayermeta.setLore(Arrays.asList(ChatColor.GREEN + "UUID: " + ChatColor.YELLOW + all.getUniqueId(), ChatColor.GREEN + "Banned: " + ChatColor.YELLOW + all.isBanned()));
             listedplayer.setItemMeta(listedplayermeta);
             inv.setItem(slot, listedplayer);
             slot += 1;
