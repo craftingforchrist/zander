@@ -17,6 +17,7 @@ CREATE TABLE playerdata (
   bedlocation POINT NULL
  );
 create index playerdata_username on playerdata (username);
+INSERT INTO playerdata (uuid, username) VALUES ('f78a4d8d-d51b-4b39-98a3-230f2de0c670', 'CONSOLE');
 
 CREATE TABLE sessions (
   id int AUTO_INCREMENT PRIMARY KEY NOT NULL,

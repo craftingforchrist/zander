@@ -59,6 +59,10 @@ commands:
   ban:
     description: Ban Command.
     usage: /ban [target] [reason]
+  pardon:
+    description: Pardon/Unban a user from the server.
+    usage: /pardon [target]
+    aliases: [unban]
   discord:
     description: Discord command.
     usage: /discord

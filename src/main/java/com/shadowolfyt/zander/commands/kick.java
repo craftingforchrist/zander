@@ -26,62 +26,61 @@ public class kick implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        Player player = (Player) sender;
-        if (player.hasPermission("zander.kick")) {
+        if (sender.hasPermission("zander.kick")) {
 
             if (args.length == 0) {
-                player.sendMessage(ChatColor.RED + "Please specify a player to kick.");
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("punish.specifyplayerandreasoning")));
                 return true;
-            }
-
-            Player target = getServer().getPlayer(args[0]);
-            if (target == null) {
-                player.sendMessage(ChatColor.RED + "That player could not be located.");
-                return true;
+            } else if (args.length == 1) {
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("punish.specifyreason")));
             } else {
+                Player target = Bukkit.getPlayer(args[0]);
+
+                if (target == null) {
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("punish.playernotonline")));
+                    return true;
+                }
+
+                StringBuilder str = new StringBuilder();
+
+                for (int i = 1; i < args.length; i++) {
+                    str.append(args[i] + " ");
+                }
+
+                String kicker = "CONSOLE";
+                if (sender instanceof Player) {
+                    kicker = sender.getName();
+                }
+
+                for (Player p : Bukkit.getOnlinePlayers()){
+                    if (p.hasPermission("zander.punishnotify")) {
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.punishmentprefix")) + " " + target.getDisplayName() + " has been kicked by " + kicker + " for " + str.toString().trim());
+                    }
+                }
+
+                target.getPlayer().kickPlayer(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.pluginprefix")) + "\n" + ChatColor.YELLOW + "You have been kicked by " + ChatColor.RESET +  kicker + "\n" + "Reason: " + ChatColor.YELLOW +  str.toString().trim());
+
                 //
                 // Database Query
                 // Add new punishment to database.
                 //
                 try {
-                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-                    Date date = new Date(System.currentTimeMillis());
+                    PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO punishments (punisheduser_id, punisher_id, punishtype, reason) values ((select id from playerdata where username = ?), (select id from playerdata where username = ?), 'KICK', ?);");
 
-                    String reason = "";
-                    for (String s : args) {
-                        reason += s + " ";
-                    }
-                    reason = reason.replaceFirst(args[0], "");
-                    reason.trim();
-
-                    PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO punishments (punisheduseruuid, punishedusername, punisheruuid, punisherusername, punishtype, reason, punishtimestamp) VALUES (?, ?, ?, ?, ?, ?, ?)");
-
-                    insertstatement.setString(1, target.getUniqueId().toString());
-                    insertstatement.setString(2, target.getDisplayName());
-                    insertstatement.setString(3, player.getUniqueId().toString());
-                    insertstatement.setString(4, player.getDisplayName());
-                    insertstatement.setString(5, "KICK");
-                    insertstatement.setString(6, reason);
-                    insertstatement.setString(7, formatter.format(date));
+                    insertstatement.setString(1, target.getDisplayName());
+                    insertstatement.setString(2, kicker);
+                    insertstatement.setString(3, str.toString().trim());
 
                     insertstatement.executeUpdate();
-                    plugin.getServer().getConsoleSender().sendMessage(net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("developmentprefix")) + " " + target.getDisplayName() + " has been punished. Adding punishment record to database.");
-                    target.getPlayer().kickPlayer(ChatColor.YELLOW + "You have been kicked by " + ChatColor.RESET +  player.getDisplayName() + "\nReason: " + ChatColor.YELLOW +  reason);
-
-                    for (Player p : Bukkit.getOnlinePlayers()){
-                        if (p.hasPermission("zander.punishnotify")) {
-                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("prefix")) + " " + target.getDisplayName() + " has been kicked by " + player.getDisplayName() + " for " + reason);
-                        }
-                    }
-
+                    plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.developmentprefix")) + " " + target.getDisplayName() + " has been kicked. Adding punishment record to database.");
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                return true;
             }
         } else {
-            player.sendMessage(ChatColor.RED + "You do not have permission to use this command.");
+            sender.sendMessage(ChatColor.RED + "You do not have permission to use this command.");
             return true;
         }
+        return true;
     }
 }
