@@ -69,6 +69,9 @@ commands:
   difficulty:
     description: Difficulty command.
     usage: /difficulty
+  rules:
+    description: Rules command.
+    usage: /rules
 
 permissions:
   zander.heal:
@@ -76,6 +79,8 @@ permissions:
   zander.feed:
     default: op
   zander.starve:
+    default: op
+  zander.pardon:
     default: op
   zander.survival:
     default: op

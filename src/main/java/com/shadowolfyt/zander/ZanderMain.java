@@ -12,11 +12,14 @@ import com.shadowolfyt.zander.recipes.RabbitSkinRecipe;
 import com.shadowolfyt.zander.recipes.TridentRecipe;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Iterator;
 
 public final class ZanderMain extends JavaPlugin {
     private Connection connection;
@@ -62,7 +65,7 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new TNTLightAdminLog(this), this);
         getServer().getPluginManager().registerEvents(new CommandAdminLog(this), this);
         getServer().getPluginManager().registerEvents(new PlayerSleepEvent(this), this);
-        getServer().getPluginManager().registerEvents(new CraftDisable(this), this);
+//        getServer().getPluginManager().registerEvents(new CraftDisable(this), this);
         getServer().getPluginManager().registerEvents(new EndCrystalPercentDrop(this), this);
         getServer().getPluginManager().registerEvents(new ChargedCreeperHeadDrop(this), this);
 
@@ -87,6 +90,7 @@ public final class ZanderMain extends JavaPlugin {
         this.getCommand("discord").setExecutor(new discord(this));
         this.getCommand("freeze").setExecutor(new freeze());
         this.getCommand("difficulty").setExecutor(new difficulty(this));
+        this.getCommand("rules").setExecutor(new rules(this));
 
         // Recipe Registry
 //        Bukkit.addRecipe(new FurnaceRecipe(new NamespacedKey(plugin, "furnace_flesh_leather"), new ItemStack(Material.LEATHER), Material.ROTTEN_FLESH, 0, 1200));

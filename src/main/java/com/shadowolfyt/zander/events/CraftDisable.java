@@ -21,6 +21,7 @@ public class CraftDisable implements Listener {
     public void CraftDisable(PrepareItemCraftEvent event) {
         Material itemType = event.getRecipe().getResult().getType();
         Byte itemData = event.getRecipe().getResult().getData().getData();
+
         if (itemType == Material.END_CRYSTAL) {
             event.getInventory().setResult(new ItemStack(Material.AIR));
             for (HumanEntity he : event.getViewers()) {
@@ -30,6 +31,6 @@ public class CraftDisable implements Listener {
                 }
                 return;
             }
-        } else return;
+        }
     }
 }
