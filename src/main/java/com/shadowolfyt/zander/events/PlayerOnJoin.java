@@ -55,6 +55,13 @@ public class PlayerOnJoin implements Listener {
                     .build());
             fireworkmeta.setPower(3);
             firework.setFireworkMeta(fireworkmeta);
+
+            List<String> newplayermotd = plugin.configurationManager.getmotd().getStringList("newplayermotd");
+            for (String s : newplayermotd) {
+                event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', s));
+            }
+            event.getPlayer().sendMessage(" ");
+
             event.setJoinMessage(ChatColor.LIGHT_PURPLE + player.getDisplayName() + ChatColor.YELLOW + " has joined for the first time!");
         } else {
             // Join Chat Message.

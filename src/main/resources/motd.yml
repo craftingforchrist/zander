@@ -4,3 +4,7 @@ motd:
   - " "
   - "It seems the Server Operator has not changed the MOTD, they should probably change this the motd.yml file."
   - "Check out the Open Source project on GitHub: https://github.com/benrobson8/zander/"
+newplayermotd:
+  - "&e&lLooks like you are new around these parts of town.."
+  - "Have fun, but not too much fun.."
+  - "Make sure you read the rules. &cUse /rules to read the rules.&r"
