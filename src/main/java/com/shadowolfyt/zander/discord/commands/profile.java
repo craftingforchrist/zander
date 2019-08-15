@@ -9,6 +9,7 @@ import java.awt.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class profile extends ListenerAdapter {
     private ZanderMain plugin;
@@ -34,26 +35,31 @@ public class profile extends ListenerAdapter {
             // Get data from players profile.
             //
             try {
-                PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM playerdata WHERE username = ?");
-                findstatement.setString(1, args[1]);
-                ResultSet results = findstatement.executeQuery();
-                if (!results.next()) {
-                    EmbedBuilder embed = new EmbedBuilder();
-                    embed.setTitle("Error");
-                    embed.setColor(Color.red);
-                    embed.setDescription("The player " + args[1] + " does not exist on this server!");
-                    event.getChannel().sendMessage(embed.build()).queue();
-                } else {
-                    EmbedBuilder embed = new EmbedBuilder();
-                    embed.setTitle(results.getString("username") + "'s Profile", plugin.getConfig().getString("web.siteaddress") + results.getString("username"));
-                    embed.setThumbnail("https://crafatar.com/avatars/" + results.getString("uuid") + "?overlay");
-                    embed.addField("Joins", results.getString("joins"), true);
-                    embed.addField("Deaths", results.getString("deaths"), true);
-                    embed.addField("Status", results.getString("status"), true);
-                    embed.addField("Last Seen", results.getString("lastseen"), true);
-//                    embed.addField("Total Playtime", results.getString("totalplaytime"), true);
-                    event.getChannel().sendMessage(embed.build()).queue();
-                }
+//                PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM playerdata WHERE username = ?");
+//                findstatement.setString(1, args[1]);
+//                ResultSet results = findstatement.executeQuery();
+//                if (!results.next()) {
+//                    EmbedBuilder embed = new EmbedBuilder();
+//                    embed.setTitle("Error");
+//                    embed.setColor(Color.red);
+//                    embed.setDescription("The player " + args[1] + " does not exist on this server!");
+//                    event.getChannel().sendMessage(embed.build()).queue();
+//                } else {
+//                    EmbedBuilder embed = new EmbedBuilder();
+//                    embed.setTitle(results.getString("username") + "'s Profile", plugin.getConfig().getString("web.siteaddress") + results.getString("username"));
+//                    embed.setThumbnail("https://crafatar.com/avatars/" + results.getString("uuid") + "?overlay");
+//                    embed.addField("Joins", results.getString("joins"), true);
+//                    embed.addField("Deaths", results.getString("deaths"), true);
+//                    embed.addField("Status", results.getString("status"), true);
+//                    embed.addField("Last Seen", results.getString("lastseen"), true);
+////                    embed.addField("Total Playtime", results.getString("totalplaytime"), true);
+//                    event.getChannel().sendMessage(embed.build()).queue();
+//                }
+
+                Statement findstatement = plugin.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+                plugin.getConnection().setAutoCommit(false);
+
             // If there is a SQL exception.
             } catch (SQLException e) {
                 e.printStackTrace();
