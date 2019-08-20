@@ -1,12 +1,11 @@
 package com.shadowolfyt.zander.events;
 
 import com.shadowolfyt.zander.ZanderMain;
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 
 public class BanListener implements Listener {
     ZanderMain plugin;
@@ -16,12 +15,14 @@ public class BanListener implements Listener {
     }
 
     @EventHandler
-    public void onPlayerLogin(PlayerLoginEvent event) {
-        Player player = event.getPlayer();
-
-        if (event.getResult() == PlayerLoginEvent.Result.KICK_BANNED) {
-            event.setKickMessage(ChatColor.RED + plugin.configurationManager.getlang().getString("punish.bantagline") + "\n\n" + ChatColor.YELLOW + event.getKickMessage() + "\n\n" + ChatColor.YELLOW + plugin.configurationManager.getlang().getString("punish.appealcontact"));
-            Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.pluginprefix")) + " " + ChatColor.RED + player.getDisplayName() + " attempted to login but is banned.");
+    public void onPlayerLogin(AsyncPlayerPreLoginEvent event) {
+        if (event.getLoginResult() == AsyncPlayerPreLoginEvent.Result.KICK_BANNED) {
+            event.disallow(event.getLoginResult(), "prefix" + "\n" + "You have been banned" + "\n\n&r"+ event.getKickMessage() + "\n\n" + "Contact someone to be unbanned.");
+            Bukkit.broadcastMessage(color(plugin.configurationManager.getlang().getString("main.punishmentprefix")) + " " + ChatColor.RED + event.getName() + " attempted to login but is banned.");
         }
+    }
+
+    private String color(String text) {
+        return ChatColor.translateAlternateColorCodes('&', text);
     }
 }
