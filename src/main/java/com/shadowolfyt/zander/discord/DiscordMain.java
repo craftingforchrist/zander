@@ -1,7 +1,6 @@
 package com.shadowolfyt.zander.discord;
 
 import com.shadowolfyt.zander.ZanderMain;
-import com.shadowolfyt.zander.discord.commands.profile;
 import com.shadowolfyt.zander.discord.moderation.SwearFilter;
 import lombok.Getter;
 import net.dv8tion.jda.core.AccountType;
@@ -42,7 +41,6 @@ public class DiscordMain extends ListenerAdapter implements Listener {
 
     private void registerDiscordEventListeners() {
         this.jda.addEventListener(this);
-        this.jda.addEventListener(new profile(plugin));
         this.jda.addEventListener(new SwearFilter(plugin));
     }
 
