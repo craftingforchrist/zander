@@ -7,6 +7,7 @@ import com.shadowolfyt.zander.discord.moderation.CommandAdminLog;
 import com.shadowolfyt.zander.discord.moderation.TNTLightAdminLog;
 import com.shadowolfyt.zander.events.*;
 import com.shadowolfyt.zander.guis.*;
+import com.shadowolfyt.zander.recipes.ElytraRecipe;
 import com.shadowolfyt.zander.recipes.ExperienceBottleRecipe;
 import com.shadowolfyt.zander.recipes.RabbitSkinRecipe;
 import com.shadowolfyt.zander.recipes.TridentRecipe;
@@ -29,15 +30,15 @@ public final class ZanderMain extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
-        establishConnection();
         loadConfigurationManager();
+        establishConnection();
 
         //
         // Database Query
-        // End all players sessions that are NULL.
+        // End all players game sessions that are NULL.
         //
         try {
-            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE sessions SET sessionend = NOW() where sessionend is null");
+            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE gamesessions SET sessionend = NOW() where sessionend is null");
             updatestatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -103,6 +104,9 @@ public final class ZanderMain extends JavaPlugin {
         // Experience Bottle Recipe
         ExperienceBottleRecipe ebr = new ExperienceBottleRecipe(this);
         ebr.ExperienceBottleRecipe();
+        // Elytra Recipe
+        ElytraRecipe er = new ElytraRecipe(this);
+        er.ElytraRecipe();
     }
 
     public void loadConfigurationManager() {
@@ -123,12 +127,12 @@ public final class ZanderMain extends JavaPlugin {
                             "database.port") + "/" + getConfig().getString("database.databasename"),
                     getConfig().getString("database.username"),
                     getConfig().getString("database.password"));
-            getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Database connection was successful.");
+            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', configurationManager.getlang().getString("main.developmentprefix")) + ChatColor.GREEN + " Database connection was successful.");
         } catch (SQLException e) {
-            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', configurationManager.getlang().getString("developmentprefix")) + ChatColor.RED + " Database connection failed!");
+            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', configurationManager.getlang().getString("main.developmentprefix")) + ChatColor.RED + " Database connection failed!");
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', configurationManager.getlang().getString("developmentprefix")) + ChatColor.RED + " Database connection failed!");
+            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', configurationManager.getlang().getString("main.developmentprefix")) + ChatColor.RED + " Database connection failed!");
             e.printStackTrace();
         }
     }

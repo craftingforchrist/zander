@@ -96,10 +96,10 @@ public class PlayerOnJoin implements Listener {
 
         //
         // Database Query
-        // Start the players session.
+        // Start the players game session.
         //
         try {
-            PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO sessions (player_id, ipaddress) VALUES ((select id from playerdata where uuid = ?), ?)");
+            PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO gamesessions (player_id, ipaddress) VALUES ((select id from playerdata where uuid = ?), ?)");
             insertstatement.setString(1, player.getUniqueId().toString());
             insertstatement.setString(2, player.getAddress().getAddress().getHostAddress());
             insertstatement.executeUpdate();

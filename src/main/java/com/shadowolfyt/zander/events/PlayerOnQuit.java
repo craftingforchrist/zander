@@ -32,7 +32,7 @@ public class PlayerOnQuit implements Listener {
         // End the players session.
         //
         try {
-            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE sessions SET sessionend = NOW() where player_id = (select id from playerdata where uuid = ?) AND sessionend is null");
+            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE gamesessions SET sessionend = NOW() where player_id = (select id from playerdata where uuid = ?) AND sessionend is null");
             updatestatement.setString(1, player.getUniqueId().toString());
             updatestatement.executeUpdate();
             plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.developmentprefix")) + " " + player.getDisplayName() + "'s session has ended, logging in the database.");
