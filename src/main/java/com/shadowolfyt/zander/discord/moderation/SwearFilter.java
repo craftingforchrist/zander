@@ -20,7 +20,7 @@ public class SwearFilter extends ListenerAdapter {
         String message = event.getMessage().getContentRaw();
 
         for (String word: FilteredWords){
-            if (message.toLowerCase().contains(word)){
+            if (message.toLowerCase().matches("^" + word + "$")){
                 if (event.getAuthor().isBot() && event.getMessage().getContentRaw().contains(word)){
                     event.getMessage().delete().queue();
                 } else {
