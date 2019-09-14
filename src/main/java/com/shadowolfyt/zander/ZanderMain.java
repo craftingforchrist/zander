@@ -4,6 +4,7 @@ import com.shadowolfyt.zander.commands.*;
 import com.shadowolfyt.zander.discord.moderation.BlockPlaceAdminLog;
 import com.shadowolfyt.zander.discord.DiscordMain;
 import com.shadowolfyt.zander.discord.moderation.CommandAdminLog;
+import com.shadowolfyt.zander.discord.moderation.LinkFilter;
 import com.shadowolfyt.zander.discord.moderation.TNTLightAdminLog;
 import com.shadowolfyt.zander.events.*;
 import com.shadowolfyt.zander.guis.*;
@@ -115,6 +116,7 @@ public final class ZanderMain extends JavaPlugin {
 
         configurationManager.setuplang();
         configurationManager.setupfilter();
+        configurationManager.setuplinksfilter();
         configurationManager.setupmotd();
     }
 
@@ -139,6 +141,13 @@ public final class ZanderMain extends JavaPlugin {
 
     public Connection getConnection() {
         if (this.connection == null) {
+            establishConnection();
+        } else {
+            try {
+                this.connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             establishConnection();
         }
         return connection;

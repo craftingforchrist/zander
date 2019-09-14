@@ -19,6 +19,8 @@ public class ConfigurationManager {
     public File filterfile;
     public FileConfiguration motdFile;
     public File motdfile;
+    public FileConfiguration linksfilterFile;
+    public File linksfilterfile;
 
     public void loadlocalConfiguration() {
         plugin.saveDefaultConfig();
@@ -84,5 +86,25 @@ public class ConfigurationManager {
 
     public FileConfiguration getmotd() {
         return motdFile;
+    }
+
+    //
+    // Links Filter File
+    //
+    public void setuplinksfilter() {
+        if (!plugin.getDataFolder().exists()) {
+            plugin.getDataFolder().mkdir();
+        }
+        linksfilterfile = new File(plugin.getDataFolder(), "linksfilter.yml");
+
+        if (!linksfilterfile.exists()) {
+            plugin.saveResource("linksfilter.yml", false);
+            Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "The linksfilter.yml file has been created.");
+        }
+        linksfilterFile = YamlConfiguration.loadConfiguration(linksfilterfile);
+    }
+
+    public FileConfiguration getlinksfilter() {
+        return linksfilterFile;
     }
 }

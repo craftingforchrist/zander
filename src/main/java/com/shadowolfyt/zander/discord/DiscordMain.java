@@ -1,6 +1,7 @@
 package com.shadowolfyt.zander.discord;
 
 import com.shadowolfyt.zander.ZanderMain;
+import com.shadowolfyt.zander.discord.moderation.LinkFilter;
 import com.shadowolfyt.zander.discord.moderation.SwearFilter;
 import lombok.Getter;
 import net.dv8tion.jda.core.AccountType;
@@ -42,6 +43,7 @@ public class DiscordMain extends ListenerAdapter implements Listener {
     private void registerDiscordEventListeners() {
         this.jda.addEventListener(this);
         this.jda.addEventListener(new SwearFilter(plugin));
+        this.jda.addEventListener(new LinkFilter(plugin));
     }
 
     /**
