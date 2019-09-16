@@ -95,11 +95,11 @@ public class ConfigurationManager {
         if (!plugin.getDataFolder().exists()) {
             plugin.getDataFolder().mkdir();
         }
-        linksfilterfile = new File(plugin.getDataFolder(), "linksfilter.yml");
+        linksfilterfile = new File(plugin.getDataFolder(), "linkfilter.yml");
 
         if (!linksfilterfile.exists()) {
-            plugin.saveResource("linksfilter.yml", false);
-            Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "The linksfilter.yml file has been created.");
+            plugin.saveResource("linkfilter.yml", false);
+            Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "The linkfilter.yml file has been created.");
         }
         linksfilterFile = YamlConfiguration.loadConfiguration(linksfilterfile);
     }
