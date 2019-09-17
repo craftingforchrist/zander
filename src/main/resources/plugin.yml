@@ -75,6 +75,9 @@ commands:
   warn:
     description: Warn Command.
     usage: /warn [target] [reason]
+  report:
+    description: Report Command.
+    usage: /report [target] [reason]
 
 permissions:
   zander.heal:
@@ -112,4 +115,6 @@ permissions:
   zander.difficulty:
     default: op
   zander.warn:
+    default: op
+  zander.reportnotify:
     default: op

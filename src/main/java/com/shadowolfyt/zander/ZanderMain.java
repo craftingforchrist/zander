@@ -89,6 +89,7 @@ public final class ZanderMain extends JavaPlugin {
         this.getCommand("kick").setExecutor(new kick(this));
         this.getCommand("ban").setExecutor(new ban(this));
         this.getCommand("warn").setExecutor(new warn(this));
+        this.getCommand("report").setExecutor(new report(this));
         this.getCommand("pardon").setExecutor(new pardon(this));
         this.getCommand("discord").setExecutor(new discord(this));
         this.getCommand("freeze").setExecutor(new freeze());
