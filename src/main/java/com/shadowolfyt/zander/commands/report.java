@@ -38,7 +38,7 @@ public class report implements CommandExecutor {
                 return true;
             }
 
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.reportprefix")) + " "  + ChatColor.GREEN + "Your report have been sent to the Server Staff.");
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.reportprefix")) + " "  + ChatColor.GREEN + "Your report has been sent to the Server Staff.");
 
             StringBuilder str = new StringBuilder();
 
