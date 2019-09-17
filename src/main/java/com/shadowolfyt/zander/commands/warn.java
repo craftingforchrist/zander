@@ -1,32 +1,27 @@
 package com.shadowolfyt.zander.commands;
 
-    import com.shadowolfyt.zander.ZanderMain;
-    import org.bukkit.Bukkit;
-    import org.bukkit.ChatColor;
-    import org.bukkit.command.Command;
-    import org.bukkit.command.CommandExecutor;
-    import org.bukkit.command.CommandSender;
-    import org.bukkit.entity.Player;
-    import org.bukkit.event.EventHandler;
+import com.connorlinfoot.titleapi.TitleAPI;
+import com.shadowolfyt.zander.ZanderMain;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
-    import java.sql.PreparedStatement;
-    import java.sql.ResultSet;
-    import java.sql.SQLException;
-    import java.text.SimpleDateFormat;
-    import java.util.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
-    import static org.bukkit.Bukkit.getServer;
-
-public class kick implements CommandExecutor {
+public class warn implements CommandExecutor {
     ZanderMain plugin;
 
-    public kick(ZanderMain instance) {
+    public warn(ZanderMain instance) {
         plugin = instance;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (sender.hasPermission("zander.kick")) {
+        if (sender.hasPermission("zander.warn")) {
 
             if (args.length == 0) {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("punish.specifyplayerandreasoning")));
@@ -47,32 +42,33 @@ public class kick implements CommandExecutor {
                     str.append(args[i] + " ");
                 }
 
-                String kicker = "CONSOLE";
+                String warner = "CONSOLE";
                 if (sender instanceof Player) {
-                    kicker = sender.getName();
+                    warner = sender.getName();
                 }
 
                 for (Player p : Bukkit.getOnlinePlayers()){
                     if (p.hasPermission("zander.punishnotify")) {
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.punishmentprefix")) + " " + target.getDisplayName() + " has been kicked by " + kicker + " for " + str.toString().trim());
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.punishmentprefix")) + " " + target.getDisplayName() + " has been warned by " + warner + " for " + str.toString().trim());
                     }
                 }
 
-                target.getPlayer().kickPlayer(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.pluginprefix")) + "\n" + ChatColor.YELLOW + "You have been kicked by " + ChatColor.RESET +  kicker + "\n" + "Reason: " + ChatColor.YELLOW +  str.toString().trim());
+                TitleAPI.sendTitle(target, 40, 50, 40, ChatColor.GOLD + "You have been warned!", ChatColor.WHITE + str.toString().trim());
+                target.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.pluginprefix")) + " You have been warned by " + warner + " for " + str.toString().trim());
 
                 //
                 // Database Query
                 // Add new punishment to database.
                 //
                 try {
-                    PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO gamepunishments (punisheduser_id, punisher_id, punishtype, reason) values ((select id from playerdata where username = ?), (select id from playerdata where username = ?), 'KICK', ?);");
+                    PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO gamepunishments (punisheduser_id, punisher_id, punishtype, reason) values ((select id from playerdata where username = ?), (select id from playerdata where username = ?), 'WARN', ?);");
 
                     insertstatement.setString(1, target.getDisplayName());
-                    insertstatement.setString(2, kicker);
+                    insertstatement.setString(2, warner);
                     insertstatement.setString(3, str.toString().trim());
 
                     insertstatement.executeUpdate();
-                    plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.developmentprefix")) + " " + target.getDisplayName() + " has been kicked. Adding punishment record to database.");
+                    plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.developmentprefix")) + " " + target.getDisplayName() + " has been warned. Adding punishment record to database.");
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

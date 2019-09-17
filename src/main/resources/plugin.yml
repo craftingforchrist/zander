@@ -72,6 +72,9 @@ commands:
   rules:
     description: Rules command.
     usage: /rules
+  warn:
+    description: Warn Command.
+    usage: /warn [target] [reason]
 
 permissions:
   zander.heal:
@@ -107,4 +110,6 @@ permissions:
   zander.punishnotify:
     default: op
   zander.difficulty:
+    default: op
+  zander.warn:
     default: op
