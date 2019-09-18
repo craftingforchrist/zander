@@ -20,7 +20,7 @@ public class LinkFilter extends ListenerAdapter {
         String message = event.getMessage().getContentRaw();
 
         for (String link: FilteredLinks){
-            if (message.toLowerCase().matches("^" + link + "$")){
+            if (message.toLowerCase().matches("/(discord\\.gg\\/)|(discordapp\\.com\\/invite\\/)/g")){
                 if (event.getAuthor().isBot() && event.getMessage().getContentRaw().contains(link)){
                     event.getMessage().delete().queue();
                 } else {

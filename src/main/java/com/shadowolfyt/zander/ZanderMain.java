@@ -4,7 +4,6 @@ import com.shadowolfyt.zander.commands.*;
 import com.shadowolfyt.zander.discord.moderation.BlockPlaceAdminLog;
 import com.shadowolfyt.zander.discord.DiscordMain;
 import com.shadowolfyt.zander.discord.moderation.CommandAdminLog;
-import com.shadowolfyt.zander.discord.moderation.LinkFilter;
 import com.shadowolfyt.zander.discord.moderation.TNTLightAdminLog;
 import com.shadowolfyt.zander.events.*;
 import com.shadowolfyt.zander.guis.*;
@@ -63,11 +62,12 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new FallIntoEndVoidListener(), this);
         getServer().getPluginManager().registerEvents(new EnderDragonDeathListener(this), this);
         getServer().getPluginManager().registerEvents(new SwearFilter(this), this);
+        getServer().getPluginManager().registerEvents(new LinkFilter(this), this);
         getServer().getPluginManager().registerEvents(new BlockPlaceAdminLog(this), this);
         getServer().getPluginManager().registerEvents(new TNTLightAdminLog(this), this);
         getServer().getPluginManager().registerEvents(new CommandAdminLog(this), this);
         getServer().getPluginManager().registerEvents(new PlayerSleepEvent(this), this);
-//        getServer().getPluginManager().registerEvents(new CraftDisable(this), this);
+        getServer().getPluginManager().registerEvents(new CraftDisable(this), this);
         getServer().getPluginManager().registerEvents(new EndCrystalPercentDrop(this), this);
         getServer().getPluginManager().registerEvents(new ChargedCreeperHeadDrop(this), this);
 
@@ -88,6 +88,8 @@ public final class ZanderMain extends JavaPlugin {
         this.getCommand("punish").setExecutor(new punish(this));
         this.getCommand("kick").setExecutor(new kick(this));
         this.getCommand("ban").setExecutor(new ban(this));
+        this.getCommand("warn").setExecutor(new warn(this));
+        this.getCommand("report").setExecutor(new report(this));
         this.getCommand("pardon").setExecutor(new pardon(this));
         this.getCommand("discord").setExecutor(new discord(this));
         this.getCommand("freeze").setExecutor(new freeze());
@@ -157,7 +159,7 @@ public final class ZanderMain extends JavaPlugin {
     public void onDisable() {
         try {
             TextChannel textChannel = DiscordMain.getInstance().getJda().getTextChannelsByName(plugin.getConfig().getString("discord.chatchannel"), true).get(0);
-            textChannel.sendMessage("** :x: Server is offline **").queue();
+            textChannel.sendMessage("** :x: Server is stopped **").queue();
 
             DiscordMain.getInstance().getJda().shutdown();
         } catch(NullPointerException npe) {

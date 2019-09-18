@@ -8,6 +8,7 @@ discord:
   token: "TOKEN"
   chatchannel: "server-chat"
   adminlogchannel: "admin-log"
+  reportchannel: "reports"
   consolechannel: "console"
   status: "Minecraft"
 web:

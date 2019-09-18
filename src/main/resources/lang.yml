@@ -2,6 +2,7 @@ main:
   pluginprefix: '&b&l[zander]&r'
   developmentprefix: '&b&l[DEV]&r'
   punishmentprefix: '&c&l[PUNISH]&r'
+  reportprefix: '&6&l[REPORT]&r'
 server:
   motdFirstLine: '&b&l[zander]&r&3 My Minecraft Server'
   motdSecondLine: '&eJust another Minecraft Server'
@@ -21,5 +22,6 @@ punish:
   bantagline: 'You have been banned from the server.'
   appealcontact: 'Appeal your punishment by contacting the Server Operator.'
   swearfilteringameprompt: '&cYou can not speak that foul language.'
+  linkfilteringameprompt: '&cYou can not advertise other Discord Servers.'
 error:
   nopermission: 'You do not have permission to use this command.'

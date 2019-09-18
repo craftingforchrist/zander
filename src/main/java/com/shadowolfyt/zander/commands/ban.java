@@ -4,6 +4,7 @@ import com.shadowolfyt.zander.ZanderMain;
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -22,7 +23,6 @@ public class ban implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (sender.hasPermission("zander.ban")) {
-
             if (args.length == 0) {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("punish.specifyplayerandreasoning")));
                 return true;
@@ -32,7 +32,6 @@ public class ban implements CommandExecutor {
                 Player target = Bukkit.getPlayer(args[0]);
 
                 StringBuilder str = new StringBuilder();
-
                 for (int i = 1; i < args.length; i++) {
                     str.append(args[i] + " ");
                 }
@@ -42,23 +41,25 @@ public class ban implements CommandExecutor {
                     banner = sender.getName();
                 }
 
-                for (Player p : Bukkit.getOnlinePlayers()){
-                    if (p.hasPermission("zander.punishnotify")) {
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.punishmentprefix")) + " " + target.getDisplayName() + " has been banned by " + banner + " for " + str.toString().trim());
-                    }
+                if (target == null) {
+                    target.getServer().getBanList(BanList.Type.NAME).addBan(args[0], ChatColor.WHITE + str.toString().trim(), null, banner);
+                } else {
+                    target.getServer().getBanList(BanList.Type.NAME).addBan(target.getDisplayName(), ChatColor.WHITE + str.toString().trim(), null, banner);
+                    target.getPlayer().kickPlayer(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.pluginprefix")) + "\n" + ChatColor.YELLOW + "You have been banned by " + ChatColor.RESET +  banner + "\n" + "Reason: " + ChatColor.YELLOW +  str.toString().trim());
                 }
 
-                // Send a kick message to kick the player off the server.
-                target.getPlayer().kickPlayer(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.pluginprefix")) + "\n" + ChatColor.YELLOW + "You have been banned by " + ChatColor.RESET +  banner + "\n" + "Reason: " + ChatColor.YELLOW +  str.toString().trim());
-                // Once the player is off the server, ban them.
-                target.getServer().getBanList(BanList.Type.NAME).addBan(target.getDisplayName(), str.toString().trim(), null, banner);
+                for (Player p : Bukkit.getOnlinePlayers()){
+                    if (p.hasPermission("zander.punishnotify")) {
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.punishmentprefix")) + " " + args[0] + " has been banned by " + banner + " for " + str.toString().trim());
+                    }
+                }
 
                 //
                 // Database Query
                 // Add new punishment to database.
                 //
                 try {
-                    PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO punishments (punisheduser_id, punisher_id, punishtype, reason) values ((select id from playerdata where username = ?), (select id from playerdata where username = ?), 'BAN', ?);");
+                    PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO gamepunishments (punisheduser_id, punisher_id, punishtype, reason) values ((select id from playerdata where username = ?), (select id from playerdata where username = ?), 'BAN', ?);");
 
                     insertstatement.setString(1, target.getDisplayName());
                     insertstatement.setString(2, banner);
