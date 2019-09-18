@@ -23,10 +23,9 @@ import javax.security.auth.login.LoginException;
 import static org.bukkit.Bukkit.getServer;
 
 public class DiscordMain extends ListenerAdapter implements Listener {
-    @lombok.Getter private static DiscordMain instance;
-    @Getter
-    private JDA jda;
-    private ZanderMain plugin;
+    @Getter private static DiscordMain instance;
+    @Getter private JDA jda;
+    @Getter private ZanderMain plugin;
 
     public DiscordMain(ZanderMain plugin) {
         instance = this;
