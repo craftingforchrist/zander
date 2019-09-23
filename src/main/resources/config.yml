@@ -10,6 +10,7 @@ discord:
   adminlogchannel: "admin-log"
   reportchannel: "reports"
   consolechannel: "console"
+  broadcastchannel: "general"
   status: "Minecraft"
 web:
   siteaddress: 'http://zander.example.com/'

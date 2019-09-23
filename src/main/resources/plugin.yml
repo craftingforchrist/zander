@@ -78,6 +78,10 @@ commands:
   report:
     description: Report Command.
     usage: /report [target] [reason]
+  announce:
+    description: Announce Command.
+    usage: /announce [content]
+    aliases: [broadcast]
 
 permissions:
   zander.heal:
@@ -117,4 +121,6 @@ permissions:
   zander.warn:
     default: op
   zander.reportnotify:
+    default: op
+  zander.announce:
     default: op

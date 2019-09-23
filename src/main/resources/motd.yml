@@ -1,3 +1,6 @@
+server:
+  motdFirstLine: '&b&l[zander]&r&3 My Minecraft Server'
+  motdSecondLine: '&eJust another Minecraft Server'
 motd:
   - "&b&l ============ zander ============ &r"
   - "&e Welcome to a zander operated Minecraft Server."

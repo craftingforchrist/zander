@@ -45,15 +45,9 @@ public class DiscordMain extends ListenerAdapter implements Listener {
         this.jda.addEventListener(new LinkFilter(plugin));
     }
 
-    /**
-     * Starts the Discord connection via JDA library
-     * <p>
-     * Blocks the current thread until the connection to Discord is successful.
-     * <p>
-     * See JDA#awaitReady
-     *
-     * @return True if connection is successful
-     */
+    //
+    // Start the Discord side bot
+    //
     private boolean startBot() {
         try {
             // Build JDA/bot connection
@@ -91,7 +85,7 @@ public class DiscordMain extends ListenerAdapter implements Listener {
         if (channel == textChannel) {
             String message = event.getMessage().getContentRaw();
             User user = event.getAuthor();
-            Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("discord.chatprefix")) + " " + user.getName() + "#" + user.getDiscriminator() + ": " + message);
+            Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.discordchatprefix")) + " " + user.getName() + "#" + user.getDiscriminator() + ": " + message);
         }
     }
 
@@ -129,43 +123,8 @@ public class DiscordMain extends ListenerAdapter implements Listener {
     }
 
     //
-    // Player Advancement Event
+    // Set the Game Status
     //
-    @EventHandler
-//    public void PlayerAdvancementDoneEvent (PlayerAdvancementDoneEvent event) {
-//        if (event.getAdvancement() == null || event.getAdvancement().getKey().getKey().contains("recipe/") || event.getPlayer() == null) return;
-//
-//        JsonObject obj = new Gson().fromJson(ClassLoader.getSystemResourceAsStream("assets/minecraft/lang/en_us.json"), JsonObject.class);
-//
-//        try {
-//            Object craftAdvancement = ((Object) event.getAdvancement()).getClass().getMethod("getHandle").invoke(event.getAdvancement());
-//            Object advancementDisplay = craftAdvancement.getClass().getMethod("c").invoke(craftAdvancement);
-//            boolean display = (boolean) advancementDisplay.getClass().getMethod("i").invoke(advancementDisplay);
-//            if (!display) return;
-//        } catch (NullPointerException e) {
-//            return;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return;
-//        }
-//
-//        String rawAdvancementName = event.getAdvancement().getKey().getKey();
-//        String advancementName = Arrays.stream(rawAdvancementName.substring(rawAdvancementName.lastIndexOf("/") + 1).toLowerCase().split("_"))
-//                .map(s -> s.substring(0, 1).toUpperCase() + s.substring(1))
-//                .collect(Collectors.joining(" "));
-//
-//        TextChannel textChannel = jda.getTextChannelsByName(plugin.getConfig().getString("discord.chatchannel"), true).get(0);
-//        textChannel.sendMessage("** :medal: " + event.getPlayer().getDisplayName() + " gained the advancement: " + advancementName + " **").queue();
-//    }
-
-    /**
-     * Be very careful about this, a rate limit of 5 per minute is enforced
-     * <p>
-     * See Presence.setGame
-     *
-     * @param type "type of game" so streaming, playing, etc.
-     * @param text Text to show
-     */
     public static void setGame(Game.GameType type, String text) {
         DiscordMain.getInstance().getJda().getPresence().setGame(Game.of(type, text));
     }

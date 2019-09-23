@@ -3,16 +3,14 @@ main:
   developmentprefix: '&b&l[DEV]&r'
   punishmentprefix: '&c&l[PUNISH]&r'
   reportprefix: '&6&l[REPORT]&r'
+  broadcastprefix: '&6&l[BROADCAST]&r'
+  discordchatprefix: '&f&l[&9&lDISCORD&f&l]&r'
 server:
-  motdFirstLine: '&b&l[zander]&r&3 My Minecraft Server'
-  motdSecondLine: '&eJust another Minecraft Server'
   titleSubText: 'Enjoy your stay!'
   tablineHeader: '&6My Minecraft Server'
   tablineFooter: '&5zander enabled server'
   whitelisttagline: 'You are not whitelisted on this server!'
   whitelistcontact: 'Please contact the server operator.'
-discord:
-  chatprefix: '&f&l[&9&lDISCORD&f&l]&r'
 punish:
   specifyplayerandreasoning: "&cPlease specify a player to punish and the reasoning."
   specifyreason: "&cSpecify a reason for this punishment."
@@ -25,3 +23,4 @@ punish:
   linkfilteringameprompt: '&cYou can not advertise other Discord Servers.'
 error:
   nopermission: 'You do not have permission to use this command.'
+  specifyannouncecontent: 'You must provide content to announce.'

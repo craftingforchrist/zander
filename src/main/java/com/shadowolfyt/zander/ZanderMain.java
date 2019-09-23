@@ -13,14 +13,11 @@ import com.shadowolfyt.zander.recipes.RabbitSkinRecipe;
 import com.shadowolfyt.zander.recipes.TridentRecipe;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Iterator;
 
 public final class ZanderMain extends JavaPlugin {
     private Connection connection;
@@ -95,6 +92,7 @@ public final class ZanderMain extends JavaPlugin {
         this.getCommand("freeze").setExecutor(new freeze());
         this.getCommand("difficulty").setExecutor(new difficulty(this));
         this.getCommand("rules").setExecutor(new rules(this));
+        this.getCommand("announce").setExecutor(new announce(this));
 
         // Trident Recipe
         TridentRecipe tr = new TridentRecipe(this);
