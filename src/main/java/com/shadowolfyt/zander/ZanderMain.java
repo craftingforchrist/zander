@@ -96,8 +96,6 @@ public final class ZanderMain extends JavaPlugin {
         this.getCommand("difficulty").setExecutor(new difficulty(this));
         this.getCommand("rules").setExecutor(new rules(this));
 
-        // Recipe Registry
-//        Bukkit.addRecipe(new FurnaceRecipe(new NamespacedKey(plugin, "furnace_flesh_leather"), new ItemStack(Material.LEATHER), Material.ROTTEN_FLESH, 0, 1200));
         // Trident Recipe
         TridentRecipe tr = new TridentRecipe(this);
         tr.TridentRecipe();
@@ -159,7 +157,7 @@ public final class ZanderMain extends JavaPlugin {
     public void onDisable() {
         try {
             TextChannel textChannel = DiscordMain.getInstance().getJda().getTextChannelsByName(plugin.getConfig().getString("discord.chatchannel"), true).get(0);
-            textChannel.sendMessage("** :x: Server is stopped **").queue();
+            textChannel.sendMessage("** :x: Server has closed **").queue();
 
             DiscordMain.getInstance().getJda().shutdown();
         } catch(NullPointerException npe) {

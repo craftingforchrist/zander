@@ -100,8 +100,13 @@ public class DiscordMain extends ListenerAdapter implements Listener {
     //
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        TextChannel textChannel = jda.getTextChannelsByName(plugin.getConfig().getString("discord.chatchannel"), true).get(0);
-        textChannel.sendMessage(":heavy_plus_sign: **" + event.getPlayer().getName() + " joined the server **").queue();
+        if (!event.getPlayer().hasPlayedBefore()) {
+            TextChannel textChannel = jda.getTextChannelsByName(plugin.getConfig().getString("discord.chatchannel"), true).get(0);
+            textChannel.sendMessage(":tada: **" + event.getPlayer().getName() + " joined for the first time! **").queue();
+        } else {
+            TextChannel textChannel = jda.getTextChannelsByName(plugin.getConfig().getString("discord.chatchannel"), true).get(0);
+            textChannel.sendMessage(":heavy_plus_sign: **" + event.getPlayer().getName() + " joined the server **").queue();
+        }
     }
 
     //
