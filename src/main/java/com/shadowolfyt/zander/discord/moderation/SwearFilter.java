@@ -22,9 +22,9 @@ public class SwearFilter extends ListenerAdapter {
 
 
 
-        if (event.getAuthor().isBot()) { //check if message was the foul language embed && event.getMessage().getContentDisplay().contains("Foul Language")
+        if (event.getAuthor().isBot() && message.matches("^Foul Language$")) {
             try {
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.SECONDS.sleep(3);
                 event.getMessage().delete().queue();
             } catch (InterruptedException e) {
                 e.printStackTrace();
