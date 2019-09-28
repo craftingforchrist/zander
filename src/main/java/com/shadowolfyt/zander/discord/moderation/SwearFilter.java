@@ -20,14 +20,16 @@ public class SwearFilter extends ListenerAdapter {
         List<String> FilteredWords = plugin.configurationManager.getfilter().getStringList("filteredwords");
         String message = event.getMessage().getContentRaw();
 
-//        if (event.getAuthor().isBot()) { //check if message was the foul language embed && event.getMessage().getContentDisplay().contains("Foul Language")
-//            try {
-//                TimeUnit.SECONDS.sleep(1);
-//                event.getMessage().delete().queue();
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
+
+
+        if (event.getAuthor().isBot() && message.matches("^Foul Language$")) {
+            try {
+                TimeUnit.SECONDS.sleep(3);
+                event.getMessage().delete().queue();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
         for (String word: FilteredWords){
             if (message.toLowerCase().matches("^" + word + "$")){
