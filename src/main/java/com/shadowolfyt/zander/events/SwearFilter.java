@@ -26,7 +26,7 @@ public class SwearFilter implements Listener {
 
         for (String word: FilteredWords){
             if (message.toLowerCase().matches("^" + word + "$")){
-                player.sendMessage(ChatColor.RED + plugin.configurationManager.getlang().getString("punish.swearfilteringameprompt"));
+                player.sendMessage(plugin.configurationManager.getlang().getString("punish.swearfilteringameprompt"));
                 event.setCancelled(true);
             }
         }

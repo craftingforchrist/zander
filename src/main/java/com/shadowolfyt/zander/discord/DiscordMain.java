@@ -1,6 +1,7 @@
 package com.shadowolfyt.zander.discord;
 
 import com.shadowolfyt.zander.ZanderMain;
+import com.shadowolfyt.zander.discord.commands.announce;
 import com.shadowolfyt.zander.discord.moderation.LinkFilter;
 import com.shadowolfyt.zander.discord.moderation.SwearFilter;
 import lombok.Getter;
@@ -43,6 +44,7 @@ public class DiscordMain extends ListenerAdapter implements Listener {
         this.jda.addEventListener(this);
         this.jda.addEventListener(new SwearFilter(plugin));
         this.jda.addEventListener(new LinkFilter(plugin));
+        this.jda.addEventListener(new announce(plugin));
     }
 
     //
@@ -61,7 +63,7 @@ public class DiscordMain extends ListenerAdapter implements Listener {
 
             return true;
         } catch (LoginException | InterruptedException e) {
-            getServer().getConsoleSender().sendMessage(ChatColor.RED + "Zander has encountered an error and can't login to Discord. The Discord Token may not be set, discord integrations might not function.");
+            getServer().getConsoleSender().sendMessage(ChatColor.RED + "Zander has encountered an error and can't login to Discord. The Discord Token may not be set, Discord integrations might not function.");
         }
         return false;
     }

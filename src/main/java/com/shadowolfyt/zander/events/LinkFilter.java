@@ -17,16 +17,16 @@ public class LinkFilter implements Listener {
 
     @EventHandler
     public void LinkFilter(AsyncPlayerChatEvent event) {
-        Player player = event.getPlayer();
-
-        List<String> FilteredLinks = plugin.configurationManager.getlinksfilter().getStringList("filteredlinks");
-        String message = event.getMessage();
-
-        for (String link: FilteredLinks){
-            if (message.toLowerCase().matches("^" + link + "$")){
-                player.sendMessage(ChatColor.RED + plugin.configurationManager.getlang().getString("punish.linkfilteringameprompt"));
-                event.setCancelled(true);
-            }
-        }
+//        Player player = event.getPlayer();
+//
+//        List<String> FilteredLinks = plugin.configurationManager.getlinksfilter().getStringList("filteredlinks");
+//        String message = event.getMessage();
+//
+//        for (String link: FilteredLinks){
+//            if (message.toLowerCase().matches("^" + link + "$")){
+//                player.sendMessage(ChatColor.RED + plugin.configurationManager.getlang().getString("punish.linkfilteringameprompt"));
+//                event.setCancelled(true);
+//            }
+//        }
     }
 }

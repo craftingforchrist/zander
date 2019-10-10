@@ -16,6 +16,7 @@ punish:
   specifyreason: "&cSpecify a reason for this punishment."
   playernotonline: "&cThis player is not online."
   playernotbanned: "&cThis player is not banned."
+  playernotexist: "&cThis player has never joined the server."
   kicktagline: 'You have been kicked from the server.'
   bantagline: 'You have been banned from the server.'
   appealcontact: 'Appeal your punishment by contacting the Server Operator.'

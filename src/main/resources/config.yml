@@ -6,6 +6,7 @@ database:
   password: Passwordzander321
 discord:
   token: "TOKEN"
+  prefix: "!"
   chatchannel: "server-chat"
   adminlogchannel: "admin-log"
   reportchannel: "reports"
@@ -13,4 +14,4 @@ discord:
   broadcastchannel: "general"
   status: "Minecraft"
 web:
-  siteaddress: 'http://zander.example.com/'
+  siteaddress: 'http://craftingforchrist.net/'
