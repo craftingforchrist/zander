@@ -1,5 +1,5 @@
 main:
-  pluginprefix: '&b&l[zander]&r'
+  pluginprefix: '&e&l[CFC]&r'
   developmentprefix: '&b&l[DEV]&r'
   punishmentprefix: '&c&l[PUNISH]&r'
   reportprefix: '&6&l[REPORT]&r'
@@ -7,8 +7,8 @@ main:
   discordchatprefix: '&f&l[&9&lDISCORD&f&l]&r'
 server:
   titleSubText: 'Enjoy your stay!'
-  tablineHeader: '&6My Minecraft Server'
-  tablineFooter: '&5zander enabled server'
+  tablineHeader: '&eCrafting For Christ'
+  tablineFooter: '&5https://www.craftingforchrist.net'
   whitelisttagline: 'You are not whitelisted on this server!'
   whitelistcontact: 'Please contact the server operator.'
 punish:
@@ -25,3 +25,5 @@ punish:
 error:
   nopermission: 'You do not have permission to use this command.'
   specifyannouncecontent: 'You must provide content to announce.'
+miscellaneous:
+  pigmanangermessage: "&cYou have angered the Pigmen."

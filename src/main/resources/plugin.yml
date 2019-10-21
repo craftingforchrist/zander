@@ -82,6 +82,9 @@ commands:
     description: Announce Command.
     usage: /announce [content]
     aliases: [broadcast]
+  ipban:
+    description: IP Ban Command.
+    usage: /ipban [target] [reason]
 
 permissions:
   zander.heal:
@@ -123,4 +126,6 @@ permissions:
   zander.reportnotify:
     default: op
   zander.announce:
+    default: op
+  zander.ipban:
     default: op

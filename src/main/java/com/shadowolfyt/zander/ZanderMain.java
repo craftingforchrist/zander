@@ -42,7 +42,7 @@ public final class ZanderMain extends JavaPlugin {
         }
 
         // Init Message
-        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "\n\nZander has been enabled.\nRunning Version " + plugin.getDescription().getVersion() + "\nGitHub Repository: https://github.com/benrobson8/zander\nCreated by Ben Robson\n\n");
+        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "\n\nZander has been enabled.\nRunning Version " + plugin.getDescription().getVersion() + "\nGitHub Repository: https://github.com/benrobson/zander\nCreated by Ben Robson\n\n");
 
         // Events Registry
         getServer().getPluginManager().registerEvents(new PlayerOnJoin(this), this);
@@ -67,6 +67,7 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new CraftDisable(this), this);
         getServer().getPluginManager().registerEvents(new EndCrystalPercentDrop(this), this);
         getServer().getPluginManager().registerEvents(new ChargedCreeperHeadDrop(this), this);
+        getServer().getPluginManager().registerEvents(new PigmanQuartzAgro(this), this);
 
         DiscordMain DiscordMain = new DiscordMain(this);
 
@@ -79,7 +80,7 @@ public final class ZanderMain extends JavaPlugin {
         this.getCommand("survival").setExecutor(new survival());
         this.getCommand("spectator").setExecutor(new spectator());
         this.getCommand("fly").setExecutor(new fly());
-        this.getCommand("profile").setExecutor(new profile(this));
+//        this.getCommand("profile").setExecutor(new profile(this));
         this.getCommand("whitelist").setExecutor(new whitelist());
         this.getCommand("jukebox").setExecutor(new jukebox());
         this.getCommand("punish").setExecutor(new punish(this));
@@ -93,6 +94,7 @@ public final class ZanderMain extends JavaPlugin {
         this.getCommand("difficulty").setExecutor(new difficulty(this));
         this.getCommand("rules").setExecutor(new rules(this));
         this.getCommand("announce").setExecutor(new announce(this));
+        this.getCommand("ipban").setExecutor(new ipban(this));
 
         // Trident Recipe
         TridentRecipe tr = new TridentRecipe(this);
