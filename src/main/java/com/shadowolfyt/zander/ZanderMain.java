@@ -50,7 +50,6 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ServerListPing(this), this);
         getServer().getPluginManager().registerEvents(new PlayerDeath(this), this);
         getServer().getPluginManager().registerEvents(new WhitelistListener(this), this);
-        getServer().getPluginManager().registerEvents(new BanListener(this), this);
         getServer().getPluginManager().registerEvents(new WhitelistGUI(this), this);
         getServer().getPluginManager().registerEvents(new WhitelistListGUI(null), this);
         getServer().getPluginManager().registerEvents(new DifficultyGUI(this), this);
@@ -68,6 +67,7 @@ public final class ZanderMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new EndCrystalPercentDrop(this), this);
         getServer().getPluginManager().registerEvents(new ChargedCreeperHeadDrop(this), this);
         getServer().getPluginManager().registerEvents(new PigmanQuartzAgro(this), this);
+        getServer().getPluginManager().registerEvents(new BanListener(this), this);
 
         DiscordMain DiscordMain = new DiscordMain(this);
 

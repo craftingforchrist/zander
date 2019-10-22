@@ -1,4 +1,5 @@
 main:
+  title: '&e&lCrafting For Christ&r'
   pluginprefix: '&e&l[CFC]&r'
   developmentprefix: '&b&l[DEV]&r'
   punishmentprefix: '&c&l[PUNISH]&r'

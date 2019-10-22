@@ -58,7 +58,7 @@ public class kick implements CommandExecutor {
                     }
                 }
 
-                target.getPlayer().kickPlayer(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.pluginprefix")) + "\n" + ChatColor.YELLOW + "You have been kicked by " + ChatColor.RESET +  kicker + "\n" + "Reason: " + ChatColor.YELLOW +  str.toString().trim());
+                target.getPlayer().kickPlayer(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.title")) + "\n" + ChatColor.YELLOW + "You have been kicked by " + ChatColor.RESET +  kicker + "\n" + "Reason: " + ChatColor.YELLOW +  str.toString().trim());
 
                 //
                 // Database Query

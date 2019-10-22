@@ -14,4 +14,5 @@ discord:
   broadcastchannel: "general"
   status: "Minecraft"
 web:
-  siteaddress: 'http://craftingforchrist.net/'
+  siteaddress: "http://craftingforchrist.net/"
+  email: "support@craftingforchrist.net"

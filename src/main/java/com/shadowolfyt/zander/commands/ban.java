@@ -44,7 +44,7 @@ public class ban implements CommandExecutor {
                     Bukkit.getServer().getBanList(BanList.Type.NAME).addBan(args[0], ChatColor.WHITE + str.toString().trim(), null, banner);
                 } else {
                     target.getServer().getBanList(BanList.Type.NAME).addBan(target.getDisplayName(), ChatColor.WHITE + str.toString().trim(), null, banner);
-                    target.getPlayer().kickPlayer(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.pluginprefix")) + "\n" + ChatColor.YELLOW + "You have been banned by " + ChatColor.RESET +  banner + "\n" + "Reason: " + ChatColor.YELLOW +  str.toString().trim());
+                    target.getPlayer().kickPlayer(ChatColor.translateAlternateColorCodes('&', plugin.configurationManager.getlang().getString("main.title")) + "\n" + ChatColor.YELLOW + "You have been banned by " + ChatColor.RESET +  banner + "\n" + "Reason: " + ChatColor.YELLOW +  str.toString().trim());
                 }
 
                 //
