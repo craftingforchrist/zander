@@ -9,9 +9,9 @@ main:
 server:
   titleSubText: 'Enjoy your stay!'
   tablineHeader: '&eCrafting For Christ'
-  tablineFooter: '&5https://www.craftingforchrist.net'
+  tablineFooter: '&6https://www.craftingforchrist.net'
   whitelisttagline: 'You are not whitelisted on this server!'
-  whitelistcontact: 'Please contact the server operator.'
+  whitelistcontact: 'Please contact an Administrator.'
 punish:
   specifyplayerandreasoning: "&cPlease specify a player to punish and the reasoning."
   specifyreason: "&cSpecify a reason for this punishment."
