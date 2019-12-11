@@ -1,4 +1,4 @@
-main: com.shadowolfyt.zander.ZanderMain
+main: com.benrobson.zander.ZanderMain
 name: zander
 version: 1.0
 author: Ben Robson

@@ -16,3 +16,8 @@ discord:
 web:
   siteaddress: "http://craftingforchrist.net/"
   email: "support@craftingforchrist.net"
+interval: 10
+announcements:
+  - "&1Message 1"
+  - "&2Message 2"
+  - "&3Message 3"
