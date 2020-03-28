@@ -1,23 +1,24 @@
+pluginprefix: '&e&l[CFC]&r'
+developmentprefix: '&b&l[DEV]&r'
 database:
-  ip: localhost
-  port: 3306
-  databasename: zander
+  host: database.benrobson.me
+  database: zander
   username: zander
-  password: Passwordzander321
+  password: "[W/8e3YZyXR!3-cW&`tNNMxN?`!{sdPa78,.mqn_c^2sF[Xu)~f-c9YM/Q*qa"
 discord:
   token: "TOKEN"
-  prefix: "!"
-  chatchannel: "server-chat"
-  adminlogchannel: "admin-log"
-  reportchannel: "reports"
-  consolechannel: "console"
-  broadcastchannel: "general"
-  status: "Minecraft"
 web:
-  siteaddress: "http://craftingforchrist.net/"
+  siteaddress: "https://craftingforchrist.net/"
   email: "support@craftingforchrist.net"
-interval: 10
-announcements:
-  - "&1Message 1"
-  - "&2Message 2"
-  - "&3Message 3"
+motd:
+  max: 3
+  0: "&e&l[CFC]&r&6 Crafting For Christ\n&eA Christian Minecraft Server."
+  1: "&e&l[CFC]&r&6 Crafting For Christ\n&eI feel God in this Minecraft Server tonight."
+  2: "&e&l[CFC]&r&6 Crafting For Christ\n&eJesus came to seek and save all those who are lost."
+  3: "&e&l[CFC]&r&6 Crafting For Christ\n&eNo Swearing on my Minecraft Server"
+## The interval timer works for BOTH the MOTD and the Announcer.
+#interval: 10
+#announcements:
+#  - "&1Message 1"
+#  - "&2Message 2"
+#  - "&3Message 3"
