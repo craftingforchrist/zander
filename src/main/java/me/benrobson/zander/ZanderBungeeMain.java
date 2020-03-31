@@ -6,13 +6,8 @@ import me.benrobson.zander.events.PlayerOnJoin;
 import me.benrobson.zander.events.PlayerOnVote;
 import me.benrobson.zander.events.ServerListPing;
 import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.Favicon;
 import net.md_5.bungee.api.plugin.Plugin;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,14 +17,12 @@ public class ZanderBungeeMain extends Plugin {
     private static ZanderBungeeMain plugin;
     public static ConfigurationManager configurationManager;
     private Connection connection;
-    Favicon favicon;
 
     @Override
     public void onEnable() {
         setInstance(this);
         configurationManager.initConfig(); // Create and load config.yml
         establishConnection(); // Connect to the database
-        initFavicon();
 
         //
         // Database Query
@@ -102,18 +95,5 @@ public class ZanderBungeeMain extends Plugin {
             establishConnection();
         }
         return connection;
-    }
-
-    public void initFavicon() {
-        File file = new File(this.getDataFolder(), "server-icon.png");
-        if (file.exists()) {
-            try {
-                BufferedImage bufferedImage = ImageIO.read(file);
-                this.favicon = Favicon.create(bufferedImage);
-            } catch (IOException var3) {
-                this.getLogger().warning("Favicon file is invalid or missing.");
-            }
-        }
-
     }
 }
