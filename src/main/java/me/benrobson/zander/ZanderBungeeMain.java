@@ -1,11 +1,9 @@
 package me.benrobson.zander;
 
 import me.benrobson.zander.commands.*;
-import me.benrobson.zander.events.PlayerOnDisconnect;
-import me.benrobson.zander.events.PlayerOnJoin;
-import me.benrobson.zander.events.PlayerOnVote;
-import me.benrobson.zander.events.ServerListPing;
+import me.benrobson.zander.events.*;
 import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 
 import java.sql.Connection;
@@ -13,7 +11,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class ZanderBungeeMain extends Plugin {
+public class ZanderBungeeMain extends Plugin implements Listener {
     private static ZanderBungeeMain plugin;
     public static ConfigurationManager configurationManager;
     private Connection connection;
@@ -42,12 +40,16 @@ public class ZanderBungeeMain extends Plugin {
         getProxy().getPluginManager().registerCommand(this, new discord());
         getProxy().getPluginManager().registerCommand(this, new build());
         getProxy().getPluginManager().registerCommand(this, new survival());
+        getProxy().getPluginManager().registerCommand(this, new ranks());
 
         // Event Registry
         getProxy().getPluginManager().registerListener(this, new PlayerOnJoin());
         getProxy().getPluginManager().registerListener(this, new PlayerOnDisconnect());
         getProxy().getPluginManager().registerListener(this, new PlayerOnVote());
         getProxy().getPluginManager().registerListener(this, new ServerListPing());
+        getProxy().getPluginManager().registerListener(this, new PlayerOnServerConnect());
+
+        DiscordMain DiscordMain = new DiscordMain(this);
     }
 
     @Override

@@ -1,12 +1,13 @@
 pluginprefix: '&e&l[CFC]&r'
 developmentprefix: '&b&l[DEV]&r'
 database:
-  host: database.benrobson.me
+  host: database.domain.com
   database: zander
   username: zander
-  password: "[W/8e3YZyXR!3-cW&`tNNMxN?`!{sdPa78,.mqn_c^2sF[Xu)~f-c9YM/Q*qa"
+  password: "password"
 discord:
-  token: "TOKEN"
+  token: "token"
+  reportchannel: "reports"
 web:
   siteaddress: "https://craftingforchrist.net/"
   email: "support@craftingforchrist.net"

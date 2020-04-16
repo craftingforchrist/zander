@@ -49,9 +49,10 @@ public class PlayerOnJoin implements Listener {
         // Start the players game session.
         //
         try {
-            PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO gamesessions (player_id, ipaddress) VALUES ((select id from playerdata where uuid = ?), ?)");
+            PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO gamesessions (player_id, ipaddress, server) VALUES ((select id from playerdata where uuid = ?), ?, ?)");
             insertstatement.setString(1, player.getUniqueId().toString());
             insertstatement.setString(2, player.getAddress().getAddress().getHostAddress());
+            insertstatement.setString(3, "hub");
             insertstatement.executeUpdate();
             plugin.getProxy().getConsole().sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', developmentprefix + " " + player.getDisplayName() + " has logged in, beginning their session.")));
         } catch (SQLException e) {
