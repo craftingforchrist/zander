@@ -8,9 +8,9 @@ import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 
-public class discord extends Command {
-    public discord() {
-        super("discord");
+public class ranks extends Command {
+    public ranks() {
+        super("ranks");
     }
 
     @Override
@@ -18,8 +18,9 @@ public class discord extends Command {
         String siteaddress = ConfigurationManager.getConfig().getString("web.siteaddress");
         if (commandSender instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer) commandSender;
-            TextComponent message = new TextComponent("Get to know the community and join our Discord here: " + ChatColor.BLUE + siteaddress + "discord");
-            message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, siteaddress + "discord"));
+            TextComponent message = new TextComponent("Look at rank perks and purchase ranks at " + ChatColor.BLUE + siteaddress + "ranks" + ChatColor.RESET);
+            message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, siteaddress + "ranks"));
+            player.sendMessage(message);
             return;
         }
     }
