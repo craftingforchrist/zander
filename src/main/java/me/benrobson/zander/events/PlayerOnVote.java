@@ -1,9 +1,11 @@
 package me.benrobson.zander.events;
 
 import com.vexsoftware.votifier.bungee.events.VotifierEvent;
-import me.benrobson.zander.ConfigurationManager;
+import me.benrobson.zander.Variables;
 import me.benrobson.zander.ZanderBungeeMain;
+import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
@@ -19,8 +21,9 @@ public class PlayerOnVote implements Listener {
         String player = event.getVote().getUsername();
         String service = event.getVote().getServiceName();
 
-        // May comment out if getting spammy
-        ProxyServer.getInstance().broadcast(new TextComponent(player + " has voted from " + service + ". You can too at:" + ConfigurationManager.getConfig().getString("web.siteaddress") + "vote")); // Broadcast to all Servers
+        TextComponent message = new TextComponent(ChatColor.translateAlternateColorCodes('&', Variables.voteprefix + " " + player + " has voted from " + ChatColor.AQUA + service + ChatColor.RESET + ". You can too at: " + ChatColor.GOLD + Variables.siteaddress + "vote"));
+        message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Variables.siteaddress + "vote"));
+        ProxyServer.getInstance().broadcast(); // Broadcast to all Servers
 
         try {
             PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO votes (username, service) VALUES (?, ?)");
@@ -29,7 +32,7 @@ public class PlayerOnVote implements Listener {
             insertstatement.setString(2, service);
 
             insertstatement.executeUpdate();
-            plugin.getLogger().info(player + " has voted on " + service + ".");
+            plugin.getLogger().info(Variables.developmentprefix + " " + player + " has voted on " + service + ".");
 
         } catch (SQLException e) {
             e.printStackTrace();

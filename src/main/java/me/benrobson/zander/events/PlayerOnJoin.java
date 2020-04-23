@@ -1,6 +1,6 @@
 package me.benrobson.zander.events;
 
-import me.benrobson.zander.ConfigurationManager;
+import me.benrobson.zander.Variables;
 import me.benrobson.zander.ZanderBungeeMain;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -18,7 +18,6 @@ public class PlayerOnJoin implements Listener {
 
     @EventHandler
     public void PlayerOnJoin(PostLoginEvent event) {
-        String developmentprefix = ConfigurationManager.getConfig().getString("developmentprefix");
         ProxiedPlayer player = event.getPlayer();
         plugin.getLogger().info(player.getDisplayName() + " has joined the server");
 
@@ -31,14 +30,14 @@ public class PlayerOnJoin implements Listener {
             findstatement.setString(1, player.getUniqueId().toString());
             ResultSet results = findstatement.executeQuery();
             if (!results.next()) {
-                plugin.getProxy().getConsole().sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', developmentprefix + " " + player.getDisplayName() + " is a new player, creating a player profile.")));
+                plugin.getProxy().getConsole().sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + " " + player.getDisplayName() + " is a new player, creating a player profile.")));
                 PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO playerdata (uuid, username) VALUES (?, ?)");
 
                 insertstatement.setString(1, player.getUniqueId().toString());
                 insertstatement.setString(2, player.getDisplayName());
 
                 insertstatement.executeUpdate();
-                plugin.getProxy().getConsole().sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', developmentprefix + " Inserted information into " + player.getDisplayName() + "'s profile")));
+                plugin.getProxy().getConsole().sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + " Inserted information into " + player.getDisplayName() + "'s profile")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -54,7 +53,7 @@ public class PlayerOnJoin implements Listener {
             insertstatement.setString(2, player.getAddress().getAddress().getHostAddress());
             insertstatement.setString(3, "hub");
             insertstatement.executeUpdate();
-            plugin.getProxy().getConsole().sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', developmentprefix + " " + player.getDisplayName() + " has logged in, beginning their session.")));
+            plugin.getProxy().getConsole().sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + " " + player.getDisplayName() + " has logged in, beginning their session.")));
         } catch (SQLException e) {
             e.printStackTrace();
         }

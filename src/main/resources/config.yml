@@ -1,5 +1,8 @@
-pluginprefix: '&e&l[CFC]&r'
-developmentprefix: '&b&l[DEV]&r'
+prefix:
+  plugin: '&7&l[&e&lCFC&7&l]&r'
+  development: '&b&l[DEV]&r'
+  report: '&c&l[REPORT]&r'
+  vote: '&7&l[&9VOTE&7]&r'
 database:
   host: database.domain.com
   database: zander
@@ -17,9 +20,13 @@ motd:
   1: "&e&l[CFC]&r&6 Crafting For Christ\n&eI feel God in this Minecraft Server tonight."
   2: "&e&l[CFC]&r&6 Crafting For Christ\n&eJesus came to seek and save all those who are lost."
   3: "&e&l[CFC]&r&6 Crafting For Christ\n&eNo Swearing on my Minecraft Server"
-## The interval timer works for BOTH the MOTD and the Announcer.
-#interval: 10
-#announcements:
-#  - "&1Message 1"
-#  - "&2Message 2"
-#  - "&3Message 3"
+announcement:
+  interval: 20
+  max: 6
+  0: "Join our &6Forums! &7Stay in touch with the community in conversation and don't miss the Server announcements. &6https://craftingforchrist.net/forums"
+  1: "Join our &9Discord! &7Talk to and get to know a community of awesome people! Stay informed about announcements & upcoming events. &9https://craftingforchrist.net/discord"
+  2: "If you see something, say something! Report bugs & issues to our issue tracker: &chttps://craftingforchrist.net/issues"
+  3: "Interested in becoming a Staff Member? Well, Staff Applications are open! &dhttps://craftingforchrist.net/apply/juniorstaff"
+  4: "We're looking for talented Builders to join our team! Have you got the stuff? Know the craft? Then we encourage you to apply! &9https://craftingforchrist.net/apply/builder"
+  5: "We're looking for Developers to help make our server bug free. If you're a Developer, then apply here: &9https://craftingforchrist.net/apply/developer"
+  6: "Help out Crafting For Christ by voting on Minecraft Server lists! &3https://craftingforchrist.net/vote"
