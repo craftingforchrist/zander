@@ -1,6 +1,7 @@
 package me.benrobson.zander.commands;
 
-import me.benrobson.zander.DiscordMain;
+import com.google.common.collect.ImmutableSet;
+import me.benrobson.zander.Variables;
 import me.benrobson.zander.ZanderBungeeMain;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
@@ -10,10 +11,15 @@ import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
+import net.md_5.bungee.api.plugin.TabExecutor;
 
 import java.awt.*;
+import java.util.HashSet;
+import java.util.Set;
 
-public class report extends Command {
+import static me.benrobson.zander.DiscordMain.jda;
+
+public class report extends Command implements TabExecutor {
     public report() {
         super("report");
     }
@@ -42,7 +48,7 @@ public class report extends Command {
 
                 for (ProxiedPlayer pspp : ProxyServer.getInstance().getPlayers()) {
                     if (pspp.hasPermission("zander.reportnotify")) {
-                        pspp.sendMessage(new TextComponent(player.getName() + " has reported " + target.getDisplayName() + " for " + ChatColor.GRAY + str.toString().trim()));
+                        pspp.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', ChatColor.GOLD + "============================================\n" + Variables.reportprefix + " " + ChatColor.YELLOW + ChatColor.BOLD + "INCOMING REPORT\n" + player.getName() + " reported " + target.getDisplayName() + "\n" + ChatColor.GRAY + str.toString().trim() + "\n" + ChatColor.GOLD + "============================================")));
                     }
                 }
 
@@ -53,10 +59,28 @@ public class report extends Command {
                 embed.addField("Reported By", player.getName(), true);
                 embed.addField("Reported Reason", str.toString().trim(), false);
 
-                TextChannel textChannel = DiscordMain.getInstance().getJda().getTextChannelsByName(plugin.configurationManager.getConfig().getString("discord.reportchannel"), true).get(0);
+                TextChannel textChannel =  jda.getTextChannelsByName(plugin.configurationManager.getConfig().getString("discord.reportchannel"), true).get(0);
                 textChannel.sendMessage(embed.build()).queue();
             }
             return;
         }
+    }
+
+    @Override
+    public Iterable<String> onTabComplete(CommandSender commandSender, String[] args) {
+        if( args.length > 2 || args.length == 0 ) {
+            return ImmutableSet.of();
+        }
+
+        Set<String> matches = new HashSet<>();
+        if (args.length == 1) {
+            String search = args[0].toLowerCase();
+            for (ProxiedPlayer player : ProxyServer.getInstance().getPlayers()) {
+                if (player.getName().toLowerCase().startsWith(search)) {
+                    matches.add(player.getName());
+                }
+            }
+        }
+        return matches;
     }
 }
