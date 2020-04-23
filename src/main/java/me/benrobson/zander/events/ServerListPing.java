@@ -13,7 +13,7 @@ public class ServerListPing implements Listener {
     private ZanderBungeeMain plugin = ZanderBungeeMain.getInstance();
 
     @EventHandler (
-      priority = 64
+            priority = 64
     )
     public void ServerListPing(ProxyPingEvent event) {
         ServerPing ping = event.getResponse();

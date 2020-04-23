@@ -1,6 +1,6 @@
 package me.benrobson.zander.commands;
 
-import me.benrobson.zander.Variables;
+import me.benrobson.zander.ConfigurationManager;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -15,10 +15,11 @@ public class ranks extends Command {
 
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
+        String siteaddress = ConfigurationManager.getConfig().getString("web.siteaddress");
         if (commandSender instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer) commandSender;
-            TextComponent message = new TextComponent("Look at rank perks and purchase ranks at " + ChatColor.BLUE + Variables.siteaddress + "ranks" + ChatColor.RESET);
-            message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Variables.siteaddress + "ranks"));
+            TextComponent message = new TextComponent("Look at rank perks and purchase ranks at " + ChatColor.BLUE + siteaddress + "ranks" + ChatColor.RESET);
+            message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, siteaddress + "ranks"));
             player.sendMessage(message);
             return;
         }

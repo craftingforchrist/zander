@@ -1,6 +1,6 @@
 package me.benrobson.zander.events;
 
-import me.benrobson.zander.Variables;
+import me.benrobson.zander.ConfigurationManager;
 import me.benrobson.zander.ZanderBungeeMain;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -17,6 +17,7 @@ public class PlayerOnServerConnect implements Listener {
 
     @EventHandler
     public void PlayerServerSwitchEvent(ServerConnectedEvent event) {
+        String developmentprefix = ConfigurationManager.getConfig().getString("developmentprefix");
         ProxiedPlayer player = event.getPlayer();
 
         //
@@ -28,7 +29,7 @@ public class PlayerOnServerConnect implements Listener {
             updatestatement.setString(1, event.getServer().getInfo().getName());
             updatestatement.setString(2, event.getPlayer().getUniqueId().toString());
             updatestatement.executeUpdate();
-            plugin.getProxy().getConsole().sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + " " + player.getDisplayName() + " has switched to " + event.getServer().getInfo().getName() + ".")));
+            plugin.getProxy().getConsole().sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', developmentprefix + " " + player.getDisplayName() + " has switched to " + event.getServer().getInfo().getName() + ".")));
         } catch (SQLException e) {
             e.printStackTrace();
         }

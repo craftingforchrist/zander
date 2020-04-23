@@ -1,6 +1,6 @@
 package me.benrobson.zander.commands;
 
-import me.benrobson.zander.Variables;
+import me.benrobson.zander.ConfigurationManager;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -15,10 +15,11 @@ public class discord extends Command {
 
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
+        String siteaddress = ConfigurationManager.getConfig().getString("web.siteaddress");
         if (commandSender instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer) commandSender;
-            TextComponent message = new TextComponent("Get to know the community and join our Discord here: " + ChatColor.BLUE + Variables.siteaddress + "discord");
-            message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Variables.siteaddress + "discord"));
+            TextComponent message = new TextComponent("Get to know the community and join our Discord here: " + ChatColor.BLUE + siteaddress + "discord");
+            message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, siteaddress + "discord"));
             return;
         }
     }
