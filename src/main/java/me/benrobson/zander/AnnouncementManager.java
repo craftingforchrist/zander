@@ -18,7 +18,7 @@ public class AnnouncementManager {
                 String announcement = ChatColor.translateAlternateColorCodes('&', Variables.pluginprefix + " " + plugin.configurationManager.getConfig().getString("announcement." + get));
                 ProxyServer.getInstance().broadcast(announcement); // Broadcast to all Servers
             }
-        }, 5, 20, TimeUnit.SECONDS);
+        }, 2, interval, TimeUnit.MINUTES);
         return;
     }
 }

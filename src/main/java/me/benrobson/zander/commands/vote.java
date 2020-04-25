@@ -17,8 +17,9 @@ public class vote extends Command {
     public void execute(CommandSender commandSender, String[] strings) {
         if (commandSender instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer) commandSender;
-            TextComponent message = new TextComponent("Help out Crafting For Christ by voting on Minecraft Server lists! " + ChatColor.BLUE + Variables.siteaddress + "vote");
+            TextComponent message = new TextComponent(ChatColor.AQUA + "Help out Crafting For Christ by voting on Minecraft Server lists! " + ChatColor.BLUE + Variables.siteaddress + "vote");
             message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Variables.siteaddress + "vote"));
+            player.sendMessage(message);
             return;
         }
     }

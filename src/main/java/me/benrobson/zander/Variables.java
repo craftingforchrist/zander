@@ -8,4 +8,5 @@ public class Variables {
 
     public static String siteaddress = ConfigurationManager.getConfig().getString("web.siteaddress");
     public static String discordtoken = ConfigurationManager.getConfig().getString("discord.token");
+    public static String discordprefix = ConfigurationManager.getConfig().getString("discord.prefix");
 }

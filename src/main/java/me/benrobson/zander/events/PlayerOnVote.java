@@ -23,7 +23,7 @@ public class PlayerOnVote implements Listener {
 
         TextComponent message = new TextComponent(ChatColor.translateAlternateColorCodes('&', Variables.voteprefix + " " + player + " has voted from " + ChatColor.AQUA + service + ChatColor.RESET + ". You can too at: " + ChatColor.GOLD + Variables.siteaddress + "vote"));
         message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Variables.siteaddress + "vote"));
-        ProxyServer.getInstance().broadcast(); // Broadcast to all Servers
+        ProxyServer.getInstance().broadcast(message); // Broadcast to all Servers
 
         try {
             PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO votes (username, service) VALUES (?, ?)");

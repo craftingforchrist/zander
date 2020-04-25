@@ -17,7 +17,7 @@ import java.awt.*;
 import java.util.HashSet;
 import java.util.Set;
 
-import static me.benrobson.zander.DiscordMain.jda;
+import static me.benrobson.zander.discord.DiscordMain.jda;
 
 public class report extends Command implements TabExecutor {
     public report() {
@@ -61,6 +61,8 @@ public class report extends Command implements TabExecutor {
 
                 TextChannel textChannel =  jda.getTextChannelsByName(plugin.configurationManager.getConfig().getString("discord.reportchannel"), true).get(0);
                 textChannel.sendMessage(embed.build()).queue();
+
+                plugin.getLogger().info(ChatColor.translateAlternateColorCodes('&', Variables.reportprefix + " " + player.getName() + " reported " + target.getDisplayName() + " for " + ChatColor.GRAY + str.toString().trim()));
             }
             return;
         }

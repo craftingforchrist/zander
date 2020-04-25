@@ -19,6 +19,7 @@ public class discord extends Command {
             ProxiedPlayer player = (ProxiedPlayer) commandSender;
             TextComponent message = new TextComponent("Get to know the community and join our Discord here: " + ChatColor.BLUE + Variables.siteaddress + "discord");
             message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Variables.siteaddress + "discord"));
+            player.sendMessage(message);
             return;
         }
     }

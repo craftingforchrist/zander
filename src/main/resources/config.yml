@@ -9,6 +9,7 @@ database:
   username: zander
   password: "password"
 discord:
+  prefix: '!'
   token: "token"
   reportchannel: "reports"
 web:

@@ -1,6 +1,7 @@
 package me.benrobson.zander;
 
 import me.benrobson.zander.commands.*;
+import me.benrobson.zander.discord.DiscordMain;
 import me.benrobson.zander.events.*;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.plugin.Listener;
@@ -58,7 +59,7 @@ public class ZanderBungeeMain extends Plugin implements Listener {
 
     @Override
     public void onDisable() {
-        this.getLogger().info(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + ChatColor.BLUE + "Shutting down..."));
+        this.getLogger().info(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + ChatColor.BLUE + " Shutting down..."));
     }
 
     public static ZanderBungeeMain getInstance() {

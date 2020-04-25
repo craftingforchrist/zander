@@ -19,6 +19,7 @@ public class rules extends Command {
             ProxiedPlayer player = (ProxiedPlayer) commandSender;
             TextComponent message = new TextComponent("Please read and abide by the Network rules which you can find on our website here: " + ChatColor.BLUE + Variables.siteaddress + "rules");
             message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Variables.siteaddress + "rules"));
+            player.sendMessage(message);
             return;
         }
     }
