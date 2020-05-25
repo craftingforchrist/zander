@@ -33,7 +33,6 @@ public class PlayerOnVote implements Listener {
 
             insertstatement.executeUpdate();
             plugin.getLogger().info(Variables.developmentprefix + " " + player + " has voted on " + service + ".");
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

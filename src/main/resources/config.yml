@@ -2,7 +2,7 @@ prefix:
   plugin: '&7&l[&e&lCFC&7&l]&r'
   development: '&b&l[DEV]&r'
   report: '&c&l[REPORT]&r'
-  vote: '&7&l[&9VOTE&7]&r'
+  vote: '&7&l[&9&lVOTE&7&l]&r'
 database:
   host: database.domain.com
   database: zander
@@ -11,7 +11,7 @@ database:
 discord:
   prefix: '!'
   token: "token"
-  reportchannel: "reports"
+  reportchannel: "staff"
 web:
   siteaddress: "https://craftingforchrist.net/"
   email: "support@craftingforchrist.net"
