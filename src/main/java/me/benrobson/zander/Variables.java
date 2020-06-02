@@ -7,6 +7,7 @@ public class Variables {
     public static String voteprefix = ConfigurationManager.getConfig().getString("prefix.vote");
 
     public static String siteaddress = ConfigurationManager.getConfig().getString("web.siteaddress");
+    public static String guideaddress = ConfigurationManager.getConfig().getString("web.guideaddress");
     public static String discordtoken = ConfigurationManager.getConfig().getString("discord.token");
     public static String discordprefix = ConfigurationManager.getConfig().getString("discord.prefix");
 }

@@ -14,13 +14,14 @@ discord:
   reportchannel: "staff"
 web:
   siteaddress: "https://craftingforchrist.net/"
+  guideaddress: "https://guides.craftingforchrist.net/"
   email: "support@craftingforchrist.net"
 motd:
   max: 3
   0: "&e&l[CFC]&r&6 Crafting For Christ\n&eA Christian Minecraft Server."
   1: "&e&l[CFC]&r&6 Crafting For Christ\n&eI feel God in this Minecraft Server tonight."
   2: "&e&l[CFC]&r&6 Crafting For Christ\n&eJesus came to seek and save all those who are lost."
-  3: "&e&l[CFC]&r&6 Crafting For Christ\n&eNo Swearing on my Minecraft Server"
+  3: "&e&l[CFC]&r&6 Crafting For Christ\n&eNo Swearing on my Christian Minecraft Server"
 announcement:
   interval: 20
   max: 6
