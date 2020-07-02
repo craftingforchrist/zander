@@ -21,7 +21,7 @@ public class PlayerOnVote implements Listener {
         String player = event.getVote().getUsername();
         String service = event.getVote().getServiceName();
 
-        TextComponent message = new TextComponent(ChatColor.translateAlternateColorCodes('&', Variables.voteprefix + " " + player + " has voted from " + ChatColor.AQUA + service + ChatColor.RESET + ". You can too at: " + ChatColor.GOLD + Variables.siteaddress + "vote"));
+        TextComponent message = new TextComponent(ChatColor.translateAlternateColorCodes('&', Variables.voteprefix + " " + player + " voted from " + ChatColor.AQUA + service + ChatColor.RESET + ". You can too using " + ChatColor.GOLD + "/vote"));
         message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Variables.siteaddress + "vote"));
         ProxyServer.getInstance().broadcast(message); // Broadcast to all Servers
 
