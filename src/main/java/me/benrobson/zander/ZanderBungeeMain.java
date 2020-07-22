@@ -67,6 +67,17 @@ public class ZanderBungeeMain extends Plugin implements Listener {
 
     @Override
     public void onDisable() {
+        //
+        // Database Query
+        // End all players game sessions that are NULL.
+        //
+        try {
+            PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE gamesessions SET sessionend = NOW() where sessionend is null");
+            updatestatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         this.getLogger().info(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + ChatColor.BLUE + " Shutting down..."));
     }
 
