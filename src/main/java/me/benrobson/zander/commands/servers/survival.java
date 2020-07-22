@@ -1,4 +1,4 @@
-package me.benrobson.zander.commands;
+package me.benrobson.zander.commands.servers;
 
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;

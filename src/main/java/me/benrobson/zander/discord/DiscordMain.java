@@ -18,7 +18,6 @@ import static me.benrobson.zander.Variables.discordtoken;
 
 public class DiscordMain extends ListenerAdapter implements Listener {
     @Getter private static DiscordMain instance;
-//    @Getter private JDA jda;
     public static JDA jda;
     @Getter private ZanderBungeeMain plugin;
 
@@ -28,7 +27,6 @@ public class DiscordMain extends ListenerAdapter implements Listener {
         plugin.getProxy().getPluginManager().registerListener(plugin, this);
 
         if (startBot()) {
-//            setGame(Game.GameType.DEFAULT, plugin.getConfig().getString("discord.status"));
             registerDiscordEventListeners();
         }
     }

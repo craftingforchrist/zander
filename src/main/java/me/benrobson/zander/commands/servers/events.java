@@ -1,4 +1,4 @@
-package me.benrobson.zander.commands;
+package me.benrobson.zander.commands.servers;
 
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
@@ -8,9 +8,9 @@ import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 
-public class build extends Command {
-    public build() {
-        super("build");
+public class events extends Command {
+    public events() {
+        super("events");
     }
 
     @Override
@@ -19,12 +19,12 @@ public class build extends Command {
             ProxiedPlayer player = (ProxiedPlayer) commandSender;
 
             // Check if the Player is already connected to the Hub
-            if (player.getServer().getInfo().getName().equalsIgnoreCase("build")) {
-                player.sendMessage(new TextComponent(ChatColor.RED + "You are already connected to Build!"));
+            if (player.getServer().getInfo().getName().equalsIgnoreCase("events")) {
+                player.sendMessage(new TextComponent(ChatColor.RED + "You are already connected to Events!"));
                 return;
             } else {
-                if (player.hasPermission("bungeecord.server.build")) {
-                    ServerInfo target = ProxyServer.getInstance().getServerInfo("build");
+                if (player.hasPermission("bungeecord.server.events")) {
+                    ServerInfo target = ProxyServer.getInstance().getServerInfo("events");
                     player.connect(target);
                 } else {
                     player.sendMessage(new TextComponent(ChatColor.RED + "You do not have access to this server."));

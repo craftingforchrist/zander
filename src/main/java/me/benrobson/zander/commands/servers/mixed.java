@@ -1,4 +1,4 @@
-package me.benrobson.zander.commands;
+package me.benrobson.zander.commands.servers;
 
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
@@ -8,9 +8,9 @@ import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 
-public class creative extends Command {
-    public creative() {
-        super("creative");
+public class mixed extends Command {
+    public mixed() {
+        super("mixed");
     }
 
     @Override
@@ -19,12 +19,12 @@ public class creative extends Command {
             ProxiedPlayer player = (ProxiedPlayer) commandSender;
 
             // Check if the Player is already connected to the Hub
-            if (player.getServer().getInfo().getName().equalsIgnoreCase("creative")) {
-                player.sendMessage(new TextComponent(ChatColor.RED + "You are already connected to Creative!"));
+            if (player.getServer().getInfo().getName().equalsIgnoreCase("mixed")) {
+                player.sendMessage(new TextComponent(ChatColor.RED + "You are already connected to Mixed!"));
                 return;
             } else {
-                if (player.hasPermission("bungeecord.server.creative")) {
-                    ServerInfo target = ProxyServer.getInstance().getServerInfo("creative");
+                if (player.hasPermission("bungeecord.server.mixed")) {
+                    ServerInfo target = ProxyServer.getInstance().getServerInfo("mixed");
                     player.connect(target);
                 } else {
                     player.sendMessage(new TextComponent(ChatColor.RED + "You do not have access to this server."));

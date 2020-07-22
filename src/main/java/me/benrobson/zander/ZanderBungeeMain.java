@@ -1,6 +1,7 @@
 package me.benrobson.zander;
 
 import me.benrobson.zander.commands.*;
+import me.benrobson.zander.commands.servers.*;
 import me.benrobson.zander.discord.DiscordMain;
 import me.benrobson.zander.events.*;
 import net.md_5.bungee.api.ChatColor;
@@ -38,16 +39,20 @@ public class ZanderBungeeMain extends Plugin implements Listener {
         // Command Registry
         getProxy().getPluginManager().registerCommand(this, new rules());
         getProxy().getPluginManager().registerCommand(this, new ping());
-        getProxy().getPluginManager().registerCommand(this, new hub());
         getProxy().getPluginManager().registerCommand(this, new discord());
-        getProxy().getPluginManager().registerCommand(this, new build());
-        getProxy().getPluginManager().registerCommand(this, new development());
-        getProxy().getPluginManager().registerCommand(this, new survival());
         getProxy().getPluginManager().registerCommand(this, new ranks());
         getProxy().getPluginManager().registerCommand(this, new report());
         getProxy().getPluginManager().registerCommand(this, new vote());
         getProxy().getPluginManager().registerCommand(this, new guides());
-        getProxy().getPluginManager().registerCommand(this, new creative());
+
+            // Servers
+            getProxy().getPluginManager().registerCommand(this, new hub());
+            getProxy().getPluginManager().registerCommand(this, new creative());
+            getProxy().getPluginManager().registerCommand(this, new build());
+            getProxy().getPluginManager().registerCommand(this, new development());
+            getProxy().getPluginManager().registerCommand(this, new survival());
+            getProxy().getPluginManager().registerCommand(this, new mixed());
+            getProxy().getPluginManager().registerCommand(this, new events());
 
         // Event Registry
         getProxy().getPluginManager().registerListener(this, new PlayerOnJoin());
