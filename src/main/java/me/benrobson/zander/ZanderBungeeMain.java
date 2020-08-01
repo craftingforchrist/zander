@@ -4,6 +4,8 @@ import me.benrobson.zander.commands.*;
 import me.benrobson.zander.commands.servers.*;
 import me.benrobson.zander.discord.DiscordMain;
 import me.benrobson.zander.events.*;
+import net.luckperms.api.LuckPerms;
+import net.luckperms.api.LuckPermsProvider;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -24,6 +26,13 @@ public class ZanderBungeeMain extends Plugin implements Listener {
         setInstance(this);
         configurationManager.initConfig(); // Create and load config.yml
         establishConnection(); // Connect to the database
+
+        LuckPerms api = LuckPermsProvider.get();
+
+//        RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
+//        if (provider != null) {
+//            LuckPerms api = provider.getProvider();
+//        }
 
         //
         // Database Query
@@ -61,6 +70,7 @@ public class ZanderBungeeMain extends Plugin implements Listener {
         getProxy().getPluginManager().registerListener(this, new ServerListPing());
         getProxy().getPluginManager().registerListener(this, new PlayerOnServerConnect());
 
+        // Discord Registry
         DiscordMain DiscordMain = new DiscordMain(this);
         AnnouncementManager.schedule(this);
     }

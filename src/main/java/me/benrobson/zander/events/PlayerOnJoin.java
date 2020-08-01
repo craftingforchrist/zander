@@ -45,6 +45,24 @@ public class PlayerOnJoin implements Listener {
 
         //
         // Database Query
+        // Check if player has updated their username
+        //
+        try {
+            PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT username FROM playerdata WHERE uuid=?;");
+            findstatement.setString(1, player.getUniqueId().toString());
+            ResultSet results = findstatement.executeQuery();
+            if (results.next()) {
+                PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE playerdata SET username=? WHERE uuid=?;");
+                updatestatement.setString(1, player.getDisplayName());
+                updatestatement.setString(2, player.getUniqueId().toString());
+                updatestatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        //
+        // Database Query
         // Start the players game session.
         //
         try {
