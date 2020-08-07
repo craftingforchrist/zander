@@ -12,6 +12,7 @@ discord:
   prefix: '!'
   token: "token"
   reportchannel: "staff"
+  punishementlogchannel: "punishment-log"
 web:
   siteaddress: "https://craftingforchrist.net/"
   guideaddress: "https://guides.craftingforchrist.net/"
