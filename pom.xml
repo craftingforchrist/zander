@@ -66,12 +66,6 @@
             <id>bintray-repo</id>
             <url>https://dl.bintray.com/ichbinjoe/public/</url>
         </repository>
-
-        <!-- BungeeTabList -->
-        <repository>
-            <id>codecrafter47-repo</id>
-            <url>http://nexus.codecrafter47.de/content/repositories/public/</url>
-        </repository>
     </repositories>
 
     <dependencies>
@@ -126,14 +120,6 @@
             <groupId>com.vexsoftware</groupId>
             <artifactId>nuvotifier-universal</artifactId>
             <version>2.6.0</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- BungeeTabListPlus -->
-        <dependency>
-            <groupId>codecrafter47.bungeetablistplus</groupId>
-            <artifactId>bungeetablistplus-api-bungee</artifactId>
-            <version>3.3.4</version>
             <scope>provided</scope>
         </dependency>
 
