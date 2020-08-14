@@ -25,14 +25,10 @@ public class ZanderBungeeMain extends Plugin implements Listener {
     public void onEnable() {
         setInstance(this);
         configurationManager.initConfig(); // Create and load config.yml
+//        configurationManager.initMotd(); // Create and load motd.yml
         establishConnection(); // Connect to the database
 
         LuckPerms api = LuckPermsProvider.get();
-
-//        RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
-//        if (provider != null) {
-//            LuckPerms api = provider.getProvider();
-//        }
 
         //
         // Database Query
@@ -53,6 +49,7 @@ public class ZanderBungeeMain extends Plugin implements Listener {
         getProxy().getPluginManager().registerCommand(this, new report());
         getProxy().getPluginManager().registerCommand(this, new vote());
         getProxy().getPluginManager().registerCommand(this, new guides());
+        getProxy().getPluginManager().registerCommand(this, new website());
 
             // Servers
             getProxy().getPluginManager().registerCommand(this, new hub());
@@ -69,6 +66,7 @@ public class ZanderBungeeMain extends Plugin implements Listener {
         getProxy().getPluginManager().registerListener(this, new PlayerOnVote());
         getProxy().getPluginManager().registerListener(this, new ServerListPing());
         getProxy().getPluginManager().registerListener(this, new PlayerOnServerConnect());
+        getProxy().getPluginManager().registerListener(this, new TabListListener());
 
         // Discord Registry
         DiscordMain DiscordMain = new DiscordMain(this);

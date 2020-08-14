@@ -4,16 +4,19 @@ prefix:
   report: '&c&l[REPORT]&r'
   vote: '&7&l[&9&lVOTE&7&l]&r'
 database:
-  host: database.domain.com
-  database: zander
-  username: zander
+  host: "localhost"
+  database: "zander"
+  username: "root"
   password: "password"
 discord:
   prefix: '!'
   token: "token"
   reportchannel: "staff"
+tablist:
+  header: '✝ &6&lCrafting For Christ Network&r ✝'
+  footer: '&6&l/website&r &9&l/discord&r'
 web:
-  siteaddress: "https://craftingforchrist.net/"
+  siteaddress: "https://www.craftingforchrist.net/"
   guideaddress: "https://guides.craftingforchrist.net/"
   email: "support@craftingforchrist.net"
 motd:
