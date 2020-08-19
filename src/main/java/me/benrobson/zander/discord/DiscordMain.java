@@ -3,7 +3,6 @@ package me.benrobson.zander.discord;
 import lombok.Getter;
 import me.benrobson.zander.Variables;
 import me.benrobson.zander.ZanderBungeeMain;
-import me.benrobson.zander.discord.commands.status;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -33,7 +32,6 @@ public class DiscordMain extends ListenerAdapter implements Listener {
 
     private void registerDiscordEventListeners() {
         this.jda.addEventListener(this);
-        this.jda.addEventListener(new status());
     }
 
     //

@@ -7,7 +7,7 @@ database:
   host: "localhost"
   database: "zander"
   username: "root"
-  password: "password"
+  password: "root"
 discord:
   prefix: '!'
   token: "token"
@@ -19,6 +19,7 @@ web:
   siteaddress: "https://www.craftingforchrist.net/"
   guideaddress: "https://guides.craftingforchrist.net/"
   email: "support@craftingforchrist.net"
+swearfilterwords: "https://docs.google.com/spreadsheets/d/1hIEi2YG3ydav1E06Bzf2mQbGZ12kh2fe4ISgLg_UBuM/export?format=csv"
 motd:
   max: 4
   0: "&e&l[CFC]&r&6 Crafting For Christ\n&eSupporting Bedrock! &7bedrock.craftingforchrist.net"

@@ -3,6 +3,8 @@ package me.benrobson.zander;
 import me.benrobson.zander.commands.*;
 import me.benrobson.zander.commands.servers.*;
 import me.benrobson.zander.discord.DiscordMain;
+import me.benrobson.zander.discord.commands.status;
+import me.benrobson.zander.discord.events.SwearChatEvent;
 import me.benrobson.zander.events.*;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
@@ -19,6 +21,7 @@ public class ZanderBungeeMain extends Plugin implements Listener {
     private static ZanderBungeeMain plugin;
     public static ConfigurationManager configurationManager;
     private Connection connection;
+    public static SwearFilterManager SwearFilterManager = new SwearFilterManager();
 
 
     @Override
@@ -27,6 +30,7 @@ public class ZanderBungeeMain extends Plugin implements Listener {
         configurationManager.initConfig(); // Create and load config.yml
 //        configurationManager.initMotd(); // Create and load motd.yml
         establishConnection(); // Connect to the database
+        SwearFilterManager.loadSwearFilterConfigs();
 
         LuckPerms api = LuckPermsProvider.get();
 
@@ -63,13 +67,16 @@ public class ZanderBungeeMain extends Plugin implements Listener {
         // Event Registry
         getProxy().getPluginManager().registerListener(this, new PlayerOnJoin());
         getProxy().getPluginManager().registerListener(this, new PlayerOnDisconnect());
-        getProxy().getPluginManager().registerListener(this, new PlayerOnVote());
+//        getProxy().getPluginManager().registerListener(this, new PlayerOnVote());
         getProxy().getPluginManager().registerListener(this, new ServerListPing());
         getProxy().getPluginManager().registerListener(this, new PlayerOnServerConnect());
         getProxy().getPluginManager().registerListener(this, new TabListListener());
 
         // Discord Registry
         DiscordMain DiscordMain = new DiscordMain(this);
+        DiscordMain.jda.addEventListener(new status());
+        DiscordMain.jda.addEventListener(new SwearChatEvent());
+
         AnnouncementManager.schedule(this);
     }
 
