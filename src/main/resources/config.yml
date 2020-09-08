@@ -5,6 +5,7 @@ prefix:
   vote: '&7&l[&9&lVOTE&7&l]&r'
 database:
   host: "localhost"
+  port: "3306"
   database: "zander"
   username: "root"
   password: "password"
