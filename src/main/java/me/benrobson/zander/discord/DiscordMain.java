@@ -4,7 +4,6 @@ import lombok.Getter;
 import me.benrobson.zander.Variables;
 import me.benrobson.zander.ZanderBungeeMain;
 import me.benrobson.zander.discord.commands.status;
-import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -42,11 +41,11 @@ public class DiscordMain extends ListenerAdapter implements Listener {
     private boolean startBot() {
         try {
             // Build JDA/bot connection
-            jda = new JDABuilder(AccountType.BOT).setToken(discordtoken).build().awaitReady();
+            jda = JDABuilder.createDefault(discordtoken).build();
             // Show signs of life
             plugin.getProxy().getConsole().sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + " zander is now connected to Discord.\nConnected Discord Server Name: " + ChatColor.YELLOW + jda.getGuilds())));
             return true;
-        } catch (LoginException | InterruptedException e) {
+        } catch (LoginException e) {
             plugin.getProxy().getConsole().sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + " zander has encountered an error and can't login to Discord. The Discord Token may not be set, Discord integrations might not function.")));
         }
         return false;

@@ -92,7 +92,7 @@
             <version>8.0.22</version>
         </dependency>
 
-        <!-- Discord -->
+        <!-- Discord JDA -->
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
