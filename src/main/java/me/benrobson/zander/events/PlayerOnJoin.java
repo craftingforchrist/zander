@@ -66,7 +66,7 @@ public class PlayerOnJoin implements Listener {
         // Start the players game session.
         //
         try {
-            PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO gamesessions (playerid, ipaddress, server) VALUES ((select id from playerdata where uuid = ?), ?, ?)");
+            PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO gamesessions (playerid, ipaddress, server) VALUES ((select id from playerdata where uuid=?), ?, ?)");
             insertstatement.setString(1, player.getUniqueId().toString());
             insertstatement.setString(2, player.getAddress().getAddress().getHostAddress());
             insertstatement.setString(3, "hub");

@@ -92,11 +92,11 @@
             <version>8.0.22</version>
         </dependency>
 
-        <!-- Discord -->
+        <!-- Discord JDA -->
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>4.2.0_198</version>
+            <version>4.2.0_214</version>
         </dependency>
 
         <!-- Project Lombok - Easy getters/setters with annotations -->
