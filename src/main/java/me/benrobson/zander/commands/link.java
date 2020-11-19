@@ -22,26 +22,29 @@ public class link extends Command {
         if (commandSender instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer) commandSender;
 
-            if (strings.length == 0 || strings.length < 32) {
-                player.sendMessage(new TextComponent(ChatColor.RED + "Please provide a link code found in the registration email."));
+            if (strings.length == 0) {
+                player.sendMessage(new TextComponent(ChatColor.RED + "Please provide a link code."));
                 return;
             } else {
                 //
                 // Database Query
-                // Check if the player is already linked.
+                // Check if the player can be verified.
                 //
                 try {
-                    PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM webaccounts where playerid = (select id from playerdata where username=?) AND registered = false;");
-                    findstatement.setString(1, player.getDisplayName());
+                    PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT * FROM webaccounts where playerid = (select id from playerdata where username='?') AND registered = false;");
+                    findstatement.setString(1, player.getName());
                     ResultSet results = findstatement.executeQuery();
+
+                    System.out.println(findstatement);
+                    System.out.println(results);
+
                     if (results.next()) {
-                        player.sendMessage(new TextComponent(ChatColor.RED + "This is a test."));
+                        player.sendMessage(new TextComponent(ChatColor.RED + "The results are in!"));
                     } else {
-                        player.sendMessage(new TextComponent(ChatColor.RED + "This is another test."));
+                        player.sendMessage(new TextComponent(ChatColor.RED + "The results are out!"));
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
-                    player.sendMessage(new TextComponent(ChatColor.RED + "Database error, please try again later."));
                 }
             }
             return;
