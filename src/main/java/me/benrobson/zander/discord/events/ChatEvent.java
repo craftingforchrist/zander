@@ -27,16 +27,21 @@ public class ChatEvent extends ListenerAdapter {
 
         for (String word : words) {
             for (String BadWord : bannedWords) {
-                if (event.getMessage().getAuthor().isBot()) return;
-                if (word.toLowerCase().contains(BadWord.toLowerCase())) {
-                    event.getMessage().delete().queue();
+                boolean shouldBreak = false;
 
-                    EmbedBuilder embed = new EmbedBuilder();
-                    embed.setTitle("No Swearing!", null);
-                    embed.setColor(Color.red);
-                    embed.setDescription(event.getAuthor().getName() + " swearing was detected in your message, swearing is not allowed on this Server.\nContinuing to do so will result in punishment.");
-                    event.getChannel().sendMessage(embed.build()).complete();
-                }
+                if (shouldBreak == false) {
+                    if (event.getMessage().getAuthor().isBot()) return;
+                    if (word.toLowerCase().contains(BadWord.toLowerCase())) {
+                        event.getMessage().delete().queue();
+
+                        EmbedBuilder embed = new EmbedBuilder();
+                        embed.setTitle("No Swearing!", null);
+                        embed.setColor(Color.red);
+                        embed.setDescription(event.getAuthor().getName() + " swearing was detected in your message, swearing is not allowed on this Server.\nContinuing to do so will result in punishment.");
+                        event.getChannel().sendMessage(embed.build()).complete();
+                        shouldBreak = true;
+                    }
+                } else return;
             }
         }
 
@@ -56,6 +61,7 @@ public class ChatEvent extends ListenerAdapter {
                     embed.setColor(Color.red);
                     embed.setDescription(event.getAuthor().getName() + " advertising was detected in your message, advertising is not allowed on this Server.\nContinuing to do so will result in punishment.");
                     event.getChannel().sendMessage(embed.build()).complete();
+                    return;
                 }
             }
         }
