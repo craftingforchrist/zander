@@ -4,6 +4,7 @@ import lombok.Getter;
 import me.benrobson.zander.Variables;
 import me.benrobson.zander.ZanderBungeeMain;
 import me.benrobson.zander.discord.commands.status;
+import me.benrobson.zander.discord.events.ChatEvent;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -33,6 +34,7 @@ public class DiscordMain extends ListenerAdapter implements Listener {
     private void registerDiscordEventListeners() {
         this.jda.addEventListener(this);
         this.jda.addEventListener(new status());
+        this.jda.addEventListener(new ChatEvent());
     }
 
     //
