@@ -25,25 +25,43 @@ public class PlayerChatEvent implements Listener {
         //
         List<String> bannedWords = plugin.configurationManager.getConfig().getStringList("bannedWords");
 
+        boolean bannedshouldBreak = false;
         for (String word : words) {
-            for (String BadWord : bannedWords) {
-                if (word.toLowerCase().contains(BadWord.toLowerCase())) {
+            if(bannedshouldBreak) break;
+            for (String badWord : bannedWords) {
+
+                if (word.toLowerCase().contains(badWord.toLowerCase())) {
                     event.setCancelled(true);
                     player.sendMessage(new TextComponent(ChatColor.RED + "You are not allowed to swear on this Server."));
+
+                    System.out.println(badWord + " is a banned word.");
+
+                    bannedshouldBreak = true;
+                    break;
                 }
             }
         }
+
 
         //
         // Link Filter
         //
         List<String> filteredLinks = plugin.configurationManager.getConfig().getStringList("filteredLinks");
 
+        boolean linksshouldBreak = false;
         for (String word : words) {
-            for (String FilteredLinks : filteredLinks) {
-                if (word.toLowerCase().contains(FilteredLinks.toLowerCase())) {
+            if (linksshouldBreak) break;
+
+            for (String filterLink : filteredLinks) {
+                if (word.toLowerCase().contains(filterLink.toLowerCase())) {
+                    if (word.toLowerCase().contains(plugin.configurationManager.getConfig().getString("web.siteaddress"))) return;
                     event.setCancelled(true);
-                    player.sendMessage(new TextComponent(ChatColor.RED + "You are not allowed to swear on this Server."));
+                    player.sendMessage(new TextComponent(ChatColor.RED + "You are not allowed to advertise on this Server."));
+
+                    System.out.println(filterLink + " is a part of or is an advertising link.");
+
+                    linksshouldBreak = true;
+                    break;
                 }
             }
         }

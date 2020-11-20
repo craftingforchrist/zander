@@ -25,23 +25,24 @@ public class ChatEvent extends ListenerAdapter {
         //
         List<String> bannedWords = plugin.configurationManager.getConfig().getStringList("bannedWords");
 
+        boolean bannedshouldBreak = false;
         for (String word : words) {
-            for (String BadWord : bannedWords) {
-                boolean shouldBreak = false;
+            if(bannedshouldBreak) break;
+            for (String badWord : bannedWords) {
+                if (event.getMessage().getAuthor().isBot()) return;
+                if (word.toLowerCase().contains(badWord.toLowerCase())) {
+                    event.getMessage().delete().queue();
 
-                if (shouldBreak == false) {
-                    if (event.getMessage().getAuthor().isBot()) return;
-                    if (word.toLowerCase().contains(BadWord.toLowerCase())) {
-                        event.getMessage().delete().queue();
+                    System.out.println(badWord + " is a banned word.");
 
-                        EmbedBuilder embed = new EmbedBuilder();
-                        embed.setTitle("No Swearing!", null);
-                        embed.setColor(Color.red);
-                        embed.setDescription(event.getAuthor().getName() + " swearing was detected in your message, swearing is not allowed on this Server.\nContinuing to do so will result in punishment.");
-                        event.getChannel().sendMessage(embed.build()).complete();
-                        shouldBreak = true;
-                    }
-                } else return;
+                    EmbedBuilder embed = new EmbedBuilder();
+                    embed.setTitle("No Swearing!", null);
+                    embed.setColor(Color.red);
+                    embed.setDescription(event.getAuthor().getName() + " swearing was detected in your message, swearing is not allowed on this Server.\nContinuing to do so will result in punishment.");
+                    event.getChannel().sendMessage(embed.build()).complete();
+                    bannedshouldBreak = true;
+                    break;
+                }
             }
         }
 
@@ -50,18 +51,26 @@ public class ChatEvent extends ListenerAdapter {
         //
         List<String> filteredLinks = plugin.configurationManager.getConfig().getStringList("filteredLinks");
 
+        boolean linksshouldBreak = false;
         for (String word : words) {
-            for (String FilteredLinks : filteredLinks) {
+            if (linksshouldBreak) break;
+
+            for (String filterLink : filteredLinks) {
                 if (event.getMessage().getAuthor().isBot()) return;
-                if (word.toLowerCase().contains(FilteredLinks.toLowerCase())) {
+                if (word.toLowerCase().contains(filterLink.toLowerCase())) {
+                    if (word.toLowerCase().contains(plugin.configurationManager.getConfig().getString("web.siteaddress"))) return;
+
                     event.getMessage().delete().queue();
+
+                    System.out.println(filterLink + " is a part of or is an advertising link.");
 
                     EmbedBuilder embed = new EmbedBuilder();
                     embed.setTitle("No Advertising!", null);
                     embed.setColor(Color.red);
                     embed.setDescription(event.getAuthor().getName() + " advertising was detected in your message, advertising is not allowed on this Server.\nContinuing to do so will result in punishment.");
                     event.getChannel().sendMessage(embed.build()).complete();
-                    return;
+                    linksshouldBreak = true;
+                    break;
                 }
             }
         }
