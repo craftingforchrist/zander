@@ -16,10 +16,6 @@ public class ChatEvent extends ListenerAdapter {
         String GuildMessage = event.getMessage().getContentRaw();
         String[] words = GuildMessage.split(" ");
 
-
-        System.out.println(event.getMessage().getContentRaw());
-
-
         //
         // Swear Filter
         //
