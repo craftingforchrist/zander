@@ -18,7 +18,6 @@ public class ZanderBungeeMain extends Plugin implements Listener {
     public static ConfigurationManager configurationManager;
     private Connection connection;
 
-
     @Override
     public void onEnable() {
         setInstance(this);
