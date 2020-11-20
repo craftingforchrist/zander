@@ -38,7 +38,7 @@
     </build>
 
     <repositories>
-        <!-- Spigot -->
+        <!-- BungeeCord -->
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
@@ -66,23 +66,9 @@
             <id>bintray-repo</id>
             <url>https://dl.bintray.com/ichbinjoe/public/</url>
         </repository>
-
-        <!-- BungeeTabList -->
-        <repository>
-            <id>codecrafter47-repo</id>
-            <url>http://nexus.codecrafter47.de/content/repositories/public/</url>
-        </repository>
     </repositories>
 
     <dependencies>
-        <!-- Spigot API -->
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.15.1-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-      
         <!-- BungeeCord API -->
         <dependency>
             <groupId>net.md-5</groupId>
@@ -103,21 +89,21 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.21</version>
+            <version>8.0.22</version>
         </dependency>
 
-        <!-- Discord -->
+        <!-- Discord JDA -->
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>4.2.0_184</version>
+            <version>4.2.0_217</version>
         </dependency>
 
         <!-- Project Lombok - Easy getters/setters with annotations -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.12</version>
+            <version>1.18.16</version>
             <scope>provided</scope>
         </dependency>
 
@@ -129,23 +115,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- BungeeTabListPlus -->
-        <dependency>
-            <groupId>codecrafter47.bungeetablistplus</groupId>
-            <artifactId>bungeetablistplus-api-bungee</artifactId>
-            <version>3.3.4</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- LuckPerms -->
-        <dependency>
-            <groupId>net.luckperms</groupId>
-            <artifactId>api</artifactId>
-            <version>5.1</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- AdvancedBan -->
+      <!-- AdvancedBan -->
         <dependency>
             <groupId>com.github.DevLeoko</groupId>
             <artifactId>AdvancedBan</artifactId>

@@ -5,7 +5,7 @@ import me.benrobson.zander.ZanderBungeeMain;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.event.PostLoginEvent;
+import net.md_5.bungee.api.event.ServerConnectedEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
@@ -17,7 +17,7 @@ public class PlayerOnJoin implements Listener {
     private ZanderBungeeMain plugin = ZanderBungeeMain.getInstance();
 
     @EventHandler
-    public void PlayerOnJoin(PostLoginEvent event) {
+    public void PlayerOnJoin(ServerConnectedEvent event) {
         ProxiedPlayer player = event.getPlayer();
         plugin.getLogger().info(player.getDisplayName() + " has joined the server");
 
@@ -66,7 +66,7 @@ public class PlayerOnJoin implements Listener {
         // Start the players game session.
         //
         try {
-            PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO gamesessions (player_id, ipaddress, server) VALUES ((select id from playerdata where uuid = ?), ?, ?)");
+            PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO gamesessions (playerid, ipaddress, server) VALUES ((select id from playerdata where uuid=?), ?, ?)");
             insertstatement.setString(1, player.getUniqueId().toString());
             insertstatement.setString(2, player.getAddress().getAddress().getHostAddress());
             insertstatement.setString(3, "hub");
