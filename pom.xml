@@ -96,7 +96,7 @@
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>4.2.0_214</version>
+            <version>4.2.0_218</version>
         </dependency>
 
         <!-- Project Lombok - Easy getters/setters with annotations -->
@@ -113,6 +113,13 @@
             <artifactId>nuvotifier-universal</artifactId>
             <version>2.6.0</version>
             <scope>provided</scope>
+        </dependency>
+
+      <!-- AdvancedBan -->
+        <dependency>
+            <groupId>com.github.DevLeoko</groupId>
+            <artifactId>AdvancedBan</artifactId>
+            <version>2.2.1</version>
         </dependency>
     </dependencies>
 </project>
