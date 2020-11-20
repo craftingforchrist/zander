@@ -39,15 +39,15 @@
     </build>
 
     <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+
         <!-- BungeeCord -->
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
         </repository>
 
         <repository>
@@ -114,6 +114,13 @@
             <artifactId>nuvotifier-universal</artifactId>
             <version>2.6.0</version>
             <scope>provided</scope>
+        </dependency>
+
+        <!-- AdvancedBan -->
+        <dependency>
+            <groupId>com.github.DevLeoko.AdvancedBan</groupId>
+            <artifactId>AdvancedBan</artifactId>
+            <version>2.3.0</version>
         </dependency>
     </dependencies>
 </project>
