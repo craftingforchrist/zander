@@ -22,7 +22,8 @@ public class ZanderBungeeMain extends Plugin implements Listener {
     public void onEnable() {
         setInstance(this);
         configurationManager.initConfig(); // Create and load config.yml
-//        configurationManager.initMotd(); // Create and load motd.yml
+        configurationManager.initDatabase(); // Create and load database.yml
+        configurationManager.initFilter(); // Create and load filter.yml
         establishConnection(); // Connect to the database
 
         //
@@ -68,6 +69,9 @@ public class ZanderBungeeMain extends Plugin implements Listener {
         // Discord Registry
         DiscordMain DiscordMain = new DiscordMain(this);
         AnnouncementManager.schedule(this);
+
+
+        this.getLogger().info("This should work: The ip to connect to for the database is " + ConfigurationManager.getFilter().getString("filteredLinks"));
     }
 
     @Override
@@ -96,14 +100,8 @@ public class ZanderBungeeMain extends Plugin implements Listener {
 
     public void establishConnection() {
         try {
-            String host = ConfigurationManager.getConfig().getString("database.host");
-            String port = ConfigurationManager.getConfig().getString("database.port");
-            String database = ConfigurationManager.getConfig().getString("database.database");
-            String username = ConfigurationManager.getConfig().getString("database.username");
-            String password = ConfigurationManager.getConfig().getString("database.password");
-
             Class.forName("com.mysql.jdbc.Driver");
-            this.connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password);
+            this.connection = DriverManager.getConnection("jdbc:mysql://" + Variables.host + ":" + Variables.port + "/" + Variables.database, Variables.username, Variables.password);
             this.getLogger().info(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + ChatColor.GREEN + " Database connection was successful."));
         } catch (SQLException e) {
             this.getLogger().info(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + ChatColor.RED + " Database connection failed!"));
