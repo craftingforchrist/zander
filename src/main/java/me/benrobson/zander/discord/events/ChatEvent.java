@@ -19,14 +19,14 @@ public class ChatEvent extends ListenerAdapter {
         //
         // Swear Filter
         //
-        List<String> bannedWords = plugin.configurationManager.getConfig().getStringList("bannedWords");
+        List<String> bannedWords = plugin.configurationManager.getFilter().getStringList("bannedWords");
 
         boolean bannedshouldBreak = false;
         for (String word : words) {
             if(bannedshouldBreak) break;
             for (String badWord : bannedWords) {
                 if (event.getMessage().getAuthor().isBot()) return;
-                if (word.toLowerCase().contains(badWord.toLowerCase())) {
+                if (word.toLowerCase().equals(badWord.toLowerCase())) {
                     event.getMessage().delete().queue();
 
                     System.out.println(badWord + " is a banned word.");
@@ -45,7 +45,7 @@ public class ChatEvent extends ListenerAdapter {
         //
         // Link Filter
         //
-        List<String> filteredLinks = plugin.configurationManager.getConfig().getStringList("filteredLinks");
+        List<String> filteredLinks = plugin.configurationManager.getFilter().getStringList("filteredLinks");
 
         boolean linksshouldBreak = false;
         for (String word : words) {
@@ -55,7 +55,6 @@ public class ChatEvent extends ListenerAdapter {
                 if (event.getMessage().getAuthor().isBot()) return;
                 if (word.toLowerCase().contains(filterLink.toLowerCase())) {
                     if (word.toLowerCase().contains(plugin.configurationManager.getConfig().getString("web.siteaddress"))) return;
-
                     event.getMessage().delete().queue();
 
                     System.out.println(filterLink + " is a part of or is an advertising link.");
