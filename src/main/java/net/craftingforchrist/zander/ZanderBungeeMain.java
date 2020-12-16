@@ -47,6 +47,7 @@ public class ZanderBungeeMain extends Plugin implements Listener {
         getProxy().getPluginManager().registerCommand(this, new website());
 //        getProxy().getPluginManager().registerCommand(this, new link());
         getProxy().getPluginManager().registerCommand(this, new seen());
+        getProxy().getPluginManager().registerCommand(this, new playtime());
 
             // Servers
             getProxy().getPluginManager().registerCommand(this, new hub());
