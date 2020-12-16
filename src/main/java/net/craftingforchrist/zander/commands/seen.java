@@ -36,7 +36,7 @@ public class seen extends Command implements TabExecutor {
             } else if (args.length == 1) {
                 //
                 // Database Query
-                //
+                // Check the database to see if the args matches to a player that has logged in.
                 //
                 try {
                     PreparedStatement findplayerstatement = plugin.getInstance().getConnection().prepareStatement("select username from playerdata where username=?;");
@@ -46,7 +46,7 @@ public class seen extends Command implements TabExecutor {
                     if (findplayerresults.next()) {
                         //
                         // Database Query
-                        //
+                        // Grab the player from args and get their last seen time in seconds and the last Server I was on.
                         //
                         try {
                             PreparedStatement findlastplayedstatement = plugin.getInstance().getConnection().prepareStatement("select playerdata.username, (select server from gamesessions where playerid = (select id from playerdata where username=?) order by sessionend asc limit 1) as 'server', TIME_TO_SEC(timediff(NOW(), lp.lp_timestamp)) as 'lastplayed' from (select session.playerid, max(if(session.sessionend, session.sessionend, NOW())) as 'lp_timestamp' from gamesessions session group by session.playerid) as lp left join playerdata on playerdata.id = lp.playerid where username=?;");
@@ -100,7 +100,7 @@ public class seen extends Command implements TabExecutor {
 
         //
         // Database Query
-        //
+        // Grab all players username from the database.
         //
         try {
             PreparedStatement findplayersstatement = plugin.getInstance().getConnection().prepareStatement("select username from playerdata order by username asc;");
