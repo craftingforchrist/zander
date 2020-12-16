@@ -23,30 +23,26 @@ public class PlayerChatEvent implements Listener {
         //
         // Swear Filter
         //
-        List<String> bannedWords = plugin.configurationManager.getConfig().getStringList("bannedWords");
+        List<String> bannedWords = plugin.configurationManager.getFilter().getStringList("bannedWords");
 
         boolean bannedshouldBreak = false;
         for (String word : words) {
-            if(bannedshouldBreak) break;
+            if (bannedshouldBreak) break;
             for (String badWord : bannedWords) {
-
-                if (word.toLowerCase().contains(badWord.toLowerCase())) {
+                if (word.toLowerCase().equals(badWord.toLowerCase())) {
                     event.setCancelled(true);
                     player.sendMessage(new TextComponent(ChatColor.RED + "You are not allowed to swear on this Server."));
-
                     System.out.println(badWord + " is a banned word.");
-
                     bannedshouldBreak = true;
                     break;
                 }
             }
         }
 
-
         //
         // Link Filter
         //
-        List<String> filteredLinks = plugin.configurationManager.getConfig().getStringList("filteredLinks");
+        List<String> filteredLinks = plugin.configurationManager.getFilter().getStringList("filteredLinks");
 
         boolean linksshouldBreak = false;
         for (String word : words) {
