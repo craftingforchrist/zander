@@ -150,4 +150,96 @@ public class ConfigurationManager {
     public void setFilter(Configuration newFilter) {
         filter = newFilter;
     }
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Announcements
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private static Configuration announcements;
+    public static Configuration initAnnouncments() {
+        File dataFolder = plugin.getDataFolder();
+        if (!dataFolder.exists()) if (!dataFolder.mkdirs()) plugin.getLogger().info("Failed to create configuration folder.");
+
+        File announcementsFile = new File(dataFolder, "announcements.yml");
+        if (!announcementsFile.exists()) {
+            try {
+                if (!announcementsFile.createNewFile()) {
+                    plugin.getLogger().info("Unable to create configuration folder.");
+                }
+                InputStream in = plugin.getClass().getClassLoader().getResourceAsStream("announcements.yml");
+                FileOutputStream ou = new FileOutputStream(announcementsFile);
+
+                ByteStreams.copy(in, ou);
+                ou.close();
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            ConfigurationProvider provider = ConfigurationProvider.getProvider(YamlConfiguration.class);
+            announcements = provider.load(new File(dataFolder, "announcements.yml"));
+            provider.save(announcements, new File(dataFolder, "announcements.yml"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return announcements;
+    }
+
+    public static Configuration getAnnouncements() {
+        return announcements;
+    }
+
+    public void setAnnouncements(Configuration newAnnouncements) {
+        announcements = newAnnouncements;
+    }
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MOTD
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private static Configuration motd;
+    public static Configuration initMotd() {
+        File dataFolder = plugin.getDataFolder();
+        if (!dataFolder.exists()) if (!dataFolder.mkdirs()) plugin.getLogger().info("Failed to create configuration folder.");
+
+        File motdFile = new File(dataFolder, "motd.yml");
+        if (!motdFile.exists()) {
+            try {
+                if (!motdFile.createNewFile()) {
+                    plugin.getLogger().info("Unable to create configuration folder.");
+                }
+                InputStream in = plugin.getClass().getClassLoader().getResourceAsStream("motd.yml");
+                FileOutputStream ou = new FileOutputStream(motdFile);
+
+                ByteStreams.copy(in, ou);
+                ou.close();
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            ConfigurationProvider provider = ConfigurationProvider.getProvider(YamlConfiguration.class);
+            motd = provider.load(new File(dataFolder, "motd.yml"));
+            provider.save(motd, new File(dataFolder, "motd.yml"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return motd;
+    }
+
+    public static Configuration getMotd() {
+        return motd;
+    }
+
+    public void setMotd(Configuration newMotd) {
+        motd = newMotd;
+    }
 }

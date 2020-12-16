@@ -24,6 +24,8 @@ public class ZanderBungeeMain extends Plugin implements Listener {
         configurationManager.initConfig(); // Create and load config.yml
         configurationManager.initDatabase(); // Create and load database.yml
         configurationManager.initFilter(); // Create and load filter.yml
+        configurationManager.initAnnouncments(); // Create and load announcements.yml
+        configurationManager.initMotd(); // Create and load motd.yml
         establishConnection(); // Connect to the database
 
         //
@@ -69,9 +71,6 @@ public class ZanderBungeeMain extends Plugin implements Listener {
         // Discord Registry
         DiscordMain DiscordMain = new DiscordMain(this);
         AnnouncementManager.schedule(this);
-
-
-        this.getLogger().info("This should work: The ip to connect to for the database is " + ConfigurationManager.getFilter().getString("filteredLinks"));
     }
 
     @Override
@@ -93,7 +92,6 @@ public class ZanderBungeeMain extends Plugin implements Listener {
     public static ZanderBungeeMain getInstance() {
         return plugin;
     }
-
     private static void setInstance(ZanderBungeeMain instance) {
         ZanderBungeeMain.plugin = instance;
     }
