@@ -22,7 +22,10 @@ public class ZanderBungeeMain extends Plugin implements Listener {
     public void onEnable() {
         setInstance(this);
         configurationManager.initConfig(); // Create and load config.yml
-//        configurationManager.initMotd(); // Create and load motd.yml
+        configurationManager.initDatabase(); // Create and load database.yml
+        configurationManager.initFilter(); // Create and load filter.yml
+        configurationManager.initAnnouncments(); // Create and load announcements.yml
+        configurationManager.initMotd(); // Create and load motd.yml
         establishConnection(); // Connect to the database
 
         //
@@ -63,6 +66,7 @@ public class ZanderBungeeMain extends Plugin implements Listener {
         getProxy().getPluginManager().registerListener(this, new PlayerOnServerConnect());
         getProxy().getPluginManager().registerListener(this, new TabListListener());
         getProxy().getPluginManager().registerListener(this, new PlayerChatEvent());
+        getProxy().getPluginManager().registerListener(this, new PlayerOnPunish());
 
         // Discord Registry
         DiscordMain DiscordMain = new DiscordMain(this);

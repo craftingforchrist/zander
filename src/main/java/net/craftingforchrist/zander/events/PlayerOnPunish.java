@@ -20,16 +20,19 @@ public class PlayerOnPunish implements Listener {
         String punisheduser = event.getPunishment().getName();
         String punisher = event.getPunishment().getOperator();
         String reason = event.getPunishment().getReason();
+        String type = event.getPunishment().getType().getName();
+        int id = event.getPunishment().getId();
 
         EmbedBuilder embed = new EmbedBuilder();
-        embed.setTitle("Punishment Logged");
+        embed.setTitle("Punishment Logged [" + id + "]");
         embed.setColor(Color.ORANGE);
         embed.addField("Punished User", punisheduser, true);
         embed.addField("Punished By", punisher, true);
+        embed.addField("Type", type, true);
         embed.addField("Reason", reason, true);
         embed.setFooter("zander // AdvancedBan Hook");
 
-        TextChannel textChannel = jda.getTextChannelsByName(plugin.configurationManager.getConfig().getString("discord.punishmentlog"), true).get(0);
+        TextChannel textChannel = jda.getTextChannelsByName(plugin.configurationManager.getConfig().getString("discord.punishmentlogchannel"), true).get(0);
         textChannel.sendMessage(embed.build()).queue();
     }
 
@@ -38,12 +41,13 @@ public class PlayerOnPunish implements Listener {
         String punisheduser = event.getPunishment().getName();
         String punisher = event.getPunishment().getOperator();
         String reason = event.getPunishment().getReason();
+        int id = event.getPunishment().getId();
 
         EmbedBuilder embed = new EmbedBuilder();
-        embed.setTitle("Punishment Revoked");
+        embed.setTitle("Punishment Revoked [" + id + "]");
         embed.setColor(Color.YELLOW);
-        embed.addField("Punished User", punisheduser, true);
-        embed.addField("Punished By", punisher, true);
+        embed.addField("Revoked User", punisheduser, true);
+        embed.addField("Revoked By", punisher, true);
         embed.addField("Reason", reason, true);
         embed.setFooter("zander // AdvancedBan Hook");
 
