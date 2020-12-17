@@ -7,7 +7,7 @@ discord:
   prefix: '!'
   token: "token"
   reportchannel: "staff"
-  punishmentlog: "punishment-log"
+  punishmentlogchannel: "punishment-log"
 tablist:
   header: '✝ &6&lCrafting For Christ Network&r ✝'
   footer: '&6&l/website&r &9&l/discord&r'

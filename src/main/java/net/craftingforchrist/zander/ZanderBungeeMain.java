@@ -66,6 +66,7 @@ public class ZanderBungeeMain extends Plugin implements Listener {
         getProxy().getPluginManager().registerListener(this, new PlayerOnServerConnect());
         getProxy().getPluginManager().registerListener(this, new TabListListener());
         getProxy().getPluginManager().registerListener(this, new PlayerChatEvent());
+        getProxy().getPluginManager().registerListener(this, new PlayerOnPunish());
 
         // Discord Registry
         DiscordMain DiscordMain = new DiscordMain(this);
@@ -91,6 +92,7 @@ public class ZanderBungeeMain extends Plugin implements Listener {
     public static ZanderBungeeMain getInstance() {
         return plugin;
     }
+
     private static void setInstance(ZanderBungeeMain instance) {
         ZanderBungeeMain.plugin = instance;
     }
