@@ -94,32 +94,40 @@ public class seen extends Command implements TabExecutor {
 
     @Override
     public Iterable<String> onTabComplete(CommandSender commandSender, String[] args) {
-        if (args.length > 2 || args.length == 0 ) {
+        if (args.length > 2 || args.length == 0) {
             return ImmutableSet.of();
         }
 
+        Set<String> matches = new HashSet<>();
         //
         // Database Query
         // Grab all players username from the database.
         //
         try {
-            PreparedStatement findplayersstatement = plugin.getInstance().getConnection().prepareStatement("select username from playerdata order by username asc;");
-            ResultSet results = findplayersstatement.executeQuery();
+            PreparedStatement findallplayersstatement = plugin.getInstance().getConnection().prepareStatement("select username from playerdata order by username asc;");
+            ResultSet results = findallplayersstatement.executeQuery();
 
-            if (results.next()) {
-                Set<String> matches = new HashSet<>();
-                if (args.length == 1) {
+            if (args.length == 1) {
+                String search = args[0].toLowerCase();
+                if (results.next()) {
+
                     while (results.next()) {
-                        if (args[0].startsWith(args[0])) {
-                            matches.add(results.getString("username"));
-                        }
+                        String username = results.getString(1);
+                        matches.add(username);
+                        System.out.println(matches);
                     }
+
+//                    while (results.next()) {
+//                        if (args[0].toLowerCase().startsWith(search)) {
+////                            System.out.println(results.getString("username"));
+//                            matches.add(results.getString("username"));
+//                        }
+//                    }
                 }
-                return matches;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return matches;
     }
 }

@@ -8,15 +8,15 @@ import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ZanderBungeeMain extends Plugin implements Listener {
     private static ZanderBungeeMain plugin;
     public static ConfigurationManager configurationManager;
     private Connection connection;
+    public static Set<String> allplayers = new HashSet<>();
 
     @Override
     public void onEnable() {
