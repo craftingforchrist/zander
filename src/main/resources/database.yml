@@ -4,5 +4,5 @@ database:
   database: "zander"
   username: "root"
   password: "password"
-  useSSL: "true"
-  autoReconnect: "true"
+  useSSL: true
+  autoReconnect: true

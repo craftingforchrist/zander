@@ -48,6 +48,7 @@ public class ZanderBungeeMain extends Plugin implements Listener {
         getProxy().getPluginManager().registerCommand(this, new vote());
         getProxy().getPluginManager().registerCommand(this, new guides());
         getProxy().getPluginManager().registerCommand(this, new website());
+        getProxy().getPluginManager().registerCommand(this, new seen());
 
             // Servers
             getProxy().getPluginManager().registerCommand(this, new hub());
@@ -85,7 +86,6 @@ public class ZanderBungeeMain extends Plugin implements Listener {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         this.getLogger().info(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + ChatColor.BLUE + " Shutting down..."));
     }
 
@@ -100,7 +100,7 @@ public class ZanderBungeeMain extends Plugin implements Listener {
     public void establishConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.connection = DriverManager.getConnection("jdbc:mysql://" + Variables.host + ":" + Variables.port + "/" + Variables.database, Variables.username, Variables.password);
+            this.connection = DriverManager.getConnection("jdbc:mysql://" + Variables.host + ":" + Variables.port + "/" + Variables.database + "?autoReconnect=" + Variables.autoReconnect + "&useSSL=" + Variables.useSSL , Variables.username, Variables.password);
             this.getLogger().info(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + ChatColor.GREEN + " Database connection was successful."));
         } catch (SQLException e) {
             this.getLogger().info(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + ChatColor.RED + " Database connection failed!"));
