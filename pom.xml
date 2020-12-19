@@ -135,5 +135,14 @@
             <artifactId>joda-time</artifactId>
             <version>2.10.1</version>
         </dependency>
+
+        <!-- AdvancedBan -->
+        <dependency>
+            <groupId>com.github.DevLeoko.AdvancedBan</groupId>
+            <artifactId>AdvancedBan</artifactId>
+            <version>2.3.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/AdvancedBan-Bundle-2.3.0-RELEASE.jar</systemPath>
+        </dependency>
     </dependencies>
 </project>

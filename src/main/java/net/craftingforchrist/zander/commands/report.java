@@ -3,7 +3,6 @@ package net.craftingforchrist.zander.commands;
 import com.google.common.collect.ImmutableSet;
 import net.craftingforchrist.zander.Variables;
 import net.craftingforchrist.zander.ZanderBungeeMain;
-import net.craftingforchrist.zander.discord.DiscordMain;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.md_5.bungee.api.ChatColor;
@@ -17,6 +16,8 @@ import net.md_5.bungee.api.plugin.TabExecutor;
 import java.awt.*;
 import java.util.HashSet;
 import java.util.Set;
+
+import static net.craftingforchrist.zander.discord.DiscordMain.jda;
 
 public class report extends Command implements TabExecutor {
     public report() {
@@ -58,7 +59,7 @@ public class report extends Command implements TabExecutor {
                 embed.addField("Reported By", player.getName(), true);
                 embed.addField("Reported Reason", str.toString().trim(), false);
 
-                TextChannel textChannel =  DiscordMain.jda.getTextChannelsByName(plugin.configurationManager.getConfig().getString("discord.reportchannel"), true).get(0);
+                TextChannel textChannel =  jda.getTextChannelsByName(plugin.configurationManager.getConfig().getString("discord.reportchannel"), true).get(0);
                 textChannel.sendMessage(embed.build()).queue();
 
                 plugin.getLogger().info(ChatColor.translateAlternateColorCodes('&', Variables.reportprefix + " " + player.getName() + " reported " + target.getDisplayName() + " for " + ChatColor.GRAY + str.toString().trim()));
