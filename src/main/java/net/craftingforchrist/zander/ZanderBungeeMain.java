@@ -8,15 +8,15 @@ import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 
-import java.sql.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class ZanderBungeeMain extends Plugin implements Listener {
     private static ZanderBungeeMain plugin;
     public static ConfigurationManager configurationManager;
     private Connection connection;
-    public static Set<String> allplayers = new HashSet<>();
 
     @Override
     public void onEnable() {
@@ -86,7 +86,6 @@ public class ZanderBungeeMain extends Plugin implements Listener {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         this.getLogger().info(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + ChatColor.BLUE + " Shutting down..."));
     }
 
@@ -101,7 +100,7 @@ public class ZanderBungeeMain extends Plugin implements Listener {
     public void establishConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.connection = DriverManager.getConnection("jdbc:mysql://" + Variables.host + ":" + Variables.port + "/" + Variables.database, Variables.username, Variables.password);
+            this.connection = DriverManager.getConnection("jdbc:mysql://" + Variables.host + ":" + Variables.port + "/" + Variables.database + "?autoReconnect=" + Variables.autoReconnect + "&useSSL=" + Variables.useSSL , Variables.username, Variables.password);
             this.getLogger().info(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + ChatColor.GREEN + " Database connection was successful."));
         } catch (SQLException e) {
             this.getLogger().info(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + ChatColor.RED + " Database connection failed!"));

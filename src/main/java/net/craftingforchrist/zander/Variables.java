@@ -13,8 +13,8 @@ public class Variables {
     public static String database = ConfigurationManager.getDatabase().getString("database.database");
     public static String username = ConfigurationManager.getDatabase().getString("database.username");
     public static String password = ConfigurationManager.getDatabase().getString("database.password");
-    public static String useSSL = ConfigurationManager.getDatabase().getString("database.usessl");
-    public static String autoReconnect = ConfigurationManager.getDatabase().getString("database.autoreconnect");
+    public static Boolean useSSL = ConfigurationManager.getDatabase().getBoolean("database.usessl");
+    public static Boolean autoReconnect = ConfigurationManager.getDatabase().getBoolean("database.autoreconnect");
 
     // Website Information
     public static String siteaddress = ConfigurationManager.getConfig().getString("web.siteaddress");
