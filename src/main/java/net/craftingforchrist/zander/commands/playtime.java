@@ -1,19 +1,16 @@
 package net.craftingforchrist.zander.commands;
 
 import net.craftingforchrist.zander.ZanderBungeeMain;
+import net.craftingforchrist.zander.utilities.IntervalFormat;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
-import org.joda.time.Period;
-import org.joda.time.format.PeriodFormatter;
-import org.joda.time.format.PeriodFormatterBuilder;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.concurrent.TimeUnit;
 
 public class playtime extends Command {
     public playtime() {
@@ -38,20 +35,7 @@ public class playtime extends Command {
 
                     if (results.next()) {
                         int totaltimeplayed = results.getInt("totaltimeplayed");
-
-                        Period difference = new Period(TimeUnit.SECONDS.toMillis(totaltimeplayed));
-                        PeriodFormatter formatter = new PeriodFormatterBuilder()
-                                .appendYears().appendSuffix(" year, ", " years, ")
-                                .appendMonths().appendSuffix(" month, ", " months, ")
-                                .appendWeeks().appendSuffix(" week, ", " weeks, ")
-                                .appendDays().appendSuffix(" day, ", " days, ")
-                                .appendHours().appendSuffix(" hour, ", " hours, ")
-                                .appendMinutes().appendSuffix(" minute, ", " minutes, ")
-                                .appendSeconds().appendSuffix(" second", " seconds")
-                                .printZeroNever()
-                                .toFormatter();
-
-                        player.sendMessage(new TextComponent(ChatColor.GRAY + "You have played for " + ChatColor.YELLOW + formatter.print(difference) + "."));
+                        player.sendMessage(new TextComponent(ChatColor.GRAY + "You have played for " + ChatColor.YELLOW + IntervalFormat.format(totaltimeplayed)));
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -79,20 +63,7 @@ public class playtime extends Command {
 
                             if (results.next()) {
                                 int totaltimeplayed = results.getInt("totaltimeplayed");
-
-                                Period difference = new Period(TimeUnit.SECONDS.toMillis(totaltimeplayed));
-                                PeriodFormatter formatter = new PeriodFormatterBuilder()
-                                        .appendYears().appendSuffix(" year, ", " years, ")
-                                        .appendMonths().appendSuffix(" month, ", " months, ")
-                                        .appendWeeks().appendSuffix(" week, ", " weeks, ")
-                                        .appendDays().appendSuffix(" day, ", " days, ")
-                                        .appendHours().appendSuffix(" hour, ", " hours, ")
-                                        .appendMinutes().appendSuffix(" minute, ", " minutes, ")
-                                        .appendSeconds().appendSuffix(" second", " seconds")
-                                        .printZeroNever()
-                                        .toFormatter();
-
-                                player.sendMessage(new TextComponent(ChatColor.GRAY + args[0] + " has played for " + ChatColor.YELLOW + formatter.print(difference) + "."));
+                                player.sendMessage(new TextComponent(ChatColor.GRAY + args[0] + " has played for " + ChatColor.YELLOW + IntervalFormat.format(totaltimeplayed)));
                             }
                         } catch (SQLException e) {
                             e.printStackTrace();

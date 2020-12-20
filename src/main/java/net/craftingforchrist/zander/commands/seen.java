@@ -1,19 +1,16 @@
 package net.craftingforchrist.zander.commands;
 
 import net.craftingforchrist.zander.ZanderBungeeMain;
+import net.craftingforchrist.zander.utilities.IntervalFormat;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
-import org.joda.time.Period;
-import org.joda.time.format.PeriodFormatter;
-import org.joda.time.format.PeriodFormatterBuilder;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.concurrent.TimeUnit;
 
 public class seen extends Command {
     public seen() {
@@ -58,20 +55,7 @@ public class seen extends Command {
                                 if (seentime == 0) {
                                     player.sendMessage(new TextComponent(ChatColor.GRAY + args[0] + " is currently " + ChatColor.GREEN + "online " + ChatColor.GRAY + "on " + ChatColor.AQUA + capServer + ChatColor.GRAY + "."));
                                 } else {
-                                    Period difference = new Period(TimeUnit.SECONDS.toMillis(seentime));
-
-                                    PeriodFormatter formatter = new PeriodFormatterBuilder()
-                                            .appendYears().appendSuffix(" year, ", " years, ")
-                                            .appendMonths().appendSuffix(" month, ", " months, ")
-                                            .appendWeeks().appendSuffix(" week, ", " weeks, ")
-                                            .appendDays().appendSuffix(" day, ", " days, ")
-                                            .appendHours().appendSuffix(" hour, ", " hours, ")
-                                            .appendMinutes().appendSuffix(" minute, ", " minutes, ")
-                                            .appendSeconds().appendSuffix(" second", " seconds")
-                                            .printZeroNever()
-                                            .toFormatter();
-
-                                    player.sendMessage(new TextComponent(ChatColor.GRAY + args[0] + " was last seen " + ChatColor.YELLOW + formatter.print(difference) + ChatColor.GRAY + " ago on " + ChatColor.AQUA + capServer + ChatColor.GRAY + "."));
+                                    player.sendMessage(new TextComponent(ChatColor.GRAY + args[0] + " was last seen " + ChatColor.YELLOW + IntervalFormat.format(seentime) + ChatColor.GRAY + " ago on " + ChatColor.AQUA + capServer + ChatColor.GRAY + "."));
                                 }
                             }
                         } catch (SQLException e) {
