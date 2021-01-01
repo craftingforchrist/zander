@@ -1,5 +1,11 @@
-# zander
-## Notice
-This version of zander is reaching an EOL [End of Life] stage. Zander in this repo can only with stand one server, and not multiple networked servers (like in the use of BungeeCord). This plugin is currently under redevelopment to be used with BungeeCord so things will be changing.
+# zander-proxy
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1700be2399b64a7e9649a0c463a5b8e7)](https://app.codacy.com/gh/craftingforchrist/zander-proxy?utm_source=github.com&utm_medium=referral&utm_content=craftingforchrist/zander-proxy&utm_campaign=Badge_Grade)
+[![craftingforchrist](https://circleci.com/gh/craftingforchrist/zander-proxy.svg?style=svg)]()
 
-All information about zander and it's components can be found on [documentation site](https://zanderdocs.benrobson.me).
+Zander proxy is a BungeeCord exclusive plugin to be used in your proxy network :)
+
+### Documentation
+All documentation is still being documented. You can see the current documentation [here](https://zanderdocs.benrobson.me/)
+
+### Supporting Development
+You can support development of these plugins by [buying me a coffee](https://www.buymeacoffee.com/craftforchrist) :)
