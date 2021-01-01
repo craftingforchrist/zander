@@ -37,6 +37,8 @@ public class report extends Command implements TabExecutor {
                 return;
             } else {
                 ProxiedPlayer target = ProxyServer.getInstance().getPlayer(strings[0]);
+                String targetserver = target.getServer().getInfo().getName();
+                String targetservername = targetserver.substring(0,1).toUpperCase() + targetserver.substring(1).toLowerCase();
 
                 player.sendMessage(new TextComponent(ChatColor.GREEN + "Your report has been sent to the Server Staff."));
 
@@ -45,23 +47,26 @@ public class report extends Command implements TabExecutor {
                     str.append(strings[i] + " ");
                 }
 
+                // For all people that have zander.reportnotify, send them the report.
                 for (ProxiedPlayer pspp : ProxyServer.getInstance().getPlayers()) {
                     if (pspp.hasPermission("zander.reportnotify")) {
-                        pspp.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', ChatColor.GOLD + "============================================\n" + Variables.reportprefix + " " + ChatColor.YELLOW + ChatColor.BOLD + "INCOMING REPORT\n" + player.getName() + " reported " + target.getDisplayName() + "\n" + ChatColor.GRAY + str.toString().trim() + "\n" + ChatColor.GOLD + "============================================")));
+                        pspp.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', ChatColor.GOLD + "============================================\n" + Variables.reportprefix + " " + ChatColor.YELLOW + ChatColor.BOLD + "INCOMING REPORT\n" + player.getName() + " reported " + target.getDisplayName() + " on " + targetservername + "\n" + ChatColor.GRAY + str.toString().trim() + "\n" + ChatColor.GOLD + "============================================")));
                     }
                 }
 
+                // Send a Report to Discord for all Staff to see if they are not online.
                 EmbedBuilder embed = new EmbedBuilder();
                 embed.setTitle("Incoming In-Game Report");
                 embed.setColor(Color.ORANGE);
                 embed.addField("Reported Player", target.getDisplayName(), true);
                 embed.addField("Reported By", player.getName(), true);
+                embed.addField("Reported Server", targetservername, true);
                 embed.addField("Reported Reason", str.toString().trim(), false);
 
                 TextChannel textChannel =  DiscordMain.jda.getTextChannelsByName(plugin.configurationManager.getConfig().getString("discord.reportchannel"), true).get(0);
                 textChannel.sendMessage(embed.build()).queue();
 
-                plugin.getLogger().info(ChatColor.translateAlternateColorCodes('&', Variables.reportprefix + " " + player.getName() + " reported " + target.getDisplayName() + " for " + ChatColor.GRAY + str.toString().trim()));
+//                plugin.getLogger().info(ChatColor.translateAlternateColorCodes('&', Variables.reportprefix + " " + player.getName() + " reported " + target.getDisplayName() + " on " + target.getServer().getInfo().getName() + " for " + ChatColor.GRAY + str.toString().trim()));
             }
             return;
         }
