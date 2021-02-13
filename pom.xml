@@ -73,22 +73,20 @@
             <id>papermc</id>
             <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
+
+        <!-- AdvancedBan -->
+        <repository>
+            <id>spicord-repo</id>
+            <url>https://repo.spicord.org/</url>
+        </repository>
     </repositories>
 
     <dependencies>
-        <!-- BungeeCord API -->
+        <!-- PaperMC/WaterFall -->
         <dependency>
-            <groupId>net.md-5</groupId>
-            <artifactId>bungeecord-api</artifactId>
-            <version>1.16-R0.3</version>
-            <type>jar</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.md-5</groupId>
-            <artifactId>bungeecord-api</artifactId>
-            <version>1.16-R0.3</version>
-            <type>javadoc</type>
+            <groupId>io.github.waterfallmc</groupId>
+            <artifactId>waterfall-api</artifactId>
+            <version>1.16-R0.4-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
@@ -106,7 +104,7 @@
             <version>4.2.0_222</version>
         </dependency>
 
-        <!-- Project Lombok - Easy getters/setters with annotations -->
+        <!-- Project Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -122,14 +120,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- PaperMC/WaterFall -->
-        <dependency>
-            <groupId>io.github.waterfallmc</groupId>
-            <artifactId>waterfall-api</artifactId>
-            <version>1.16-R0.4-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
@@ -138,11 +128,10 @@
 
         <!-- AdvancedBan -->
         <dependency>
-            <groupId>com.github.DevLeoko.AdvancedBan</groupId>
+            <groupId>me.leoko.advancedban</groupId>
             <artifactId>AdvancedBan</artifactId>
-            <version>2.3.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/AdvancedBan-Bundle-2.3.0-RELEASE.jar</systemPath>
+            <version>2.1.6-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>
