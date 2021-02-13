@@ -56,12 +56,6 @@
             <url>https://jcenter.bintray.com</url>
         </repository>
 
-        <!-- BungeeCord -->
-        <repository>
-            <id>bungeecord-repo</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </repository>
-
         <!-- NuVotifer -->
         <repository>
             <id>bintray-repo</id>
