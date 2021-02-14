@@ -1,6 +1,7 @@
 package net.craftingforchrist.zander.events;
 
 import net.craftingforchrist.zander.ZanderBungeeMain;
+import net.dv8tion.jda.api.entities.TextChannel;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -10,6 +11,8 @@ import net.md_5.bungee.event.EventHandler;
 
 import java.util.List;
 
+import static net.craftingforchrist.zander.discord.DiscordMain.jda;
+
 public class PlayerChatEvent implements Listener {
     private ZanderBungeeMain plugin = ZanderBungeeMain.getInstance();
 
@@ -17,8 +20,17 @@ public class PlayerChatEvent implements Listener {
     public void PlayerOnJoin(ChatEvent event) {
         ProxiedPlayer player = (ProxiedPlayer) event.getSender();
 
+        String Server = player.getServer().getInfo().getName();
         String ChatMessage = event.getMessage();
         String[] words = ChatMessage.split(" ");
+
+        //
+        // Discord Chat Logs
+        //
+        TextChannel textChannel = jda.getTextChannelsByName(plugin.configurationManager.getConfig().getString("discord.chatlogchannel"), true).get(0);
+        if (!ChatMessage.startsWith("/")) {
+            textChannel.sendMessage("**" + Server + "** | " + player.getDisplayName() + " :: " + ChatMessage).queue();
+        }
 
         //
         // Swear Filter
