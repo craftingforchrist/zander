@@ -17,7 +17,7 @@ public class TabListListener implements Listener {
 
     // Called for when player is connected, send them the tablist.
     @EventHandler
-    public void onPlayerJoin(ServerConnectedEvent event) {
+    public void onPlayerServerConnect(ServerConnectedEvent event) {
         plugin.getProxy().getScheduler().schedule(plugin, new Runnable() {
             @Override
             public void run() {
@@ -32,7 +32,7 @@ public class TabListListener implements Listener {
 
     // Called for when the player has switched servers, send them the updated tablist.
     @EventHandler
-    public void onPlayerJoin(ServerSwitchEvent event) {
+    public void onPlayerServerSwitch(ServerSwitchEvent event) {
         plugin.getProxy().getScheduler().schedule(plugin, new Runnable() {
             @Override
             public void run() {
