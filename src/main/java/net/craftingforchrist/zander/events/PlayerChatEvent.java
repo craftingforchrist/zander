@@ -28,9 +28,7 @@ public class PlayerChatEvent implements Listener {
         // Discord Chat Logs
         //
         TextChannel textChannel = jda.getTextChannelsByName(plugin.configurationManager.getConfig().getString("discord.chatlogchannel"), true).get(0);
-        if (!ChatMessage.startsWith("/")) {
-            textChannel.sendMessage("**" + Server + "** | " + player.getDisplayName() + " :: " + ChatMessage).queue();
-        }
+        textChannel.sendMessage("**" + Server + "** | " + player.getDisplayName() + " :: " + ChatMessage).queue();
 
         //
         // Swear Filter
