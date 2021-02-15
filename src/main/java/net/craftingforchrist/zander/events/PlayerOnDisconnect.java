@@ -2,6 +2,7 @@ package net.craftingforchrist.zander.events;
 
 import net.craftingforchrist.zander.Variables;
 import net.craftingforchrist.zander.ZanderBungeeMain;
+import net.dv8tion.jda.api.entities.TextChannel;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
@@ -10,6 +11,8 @@ import net.md_5.bungee.event.EventHandler;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import static net.craftingforchrist.zander.discord.DiscordMain.jda;
 
 public class PlayerOnDisconnect implements Listener {
     private ZanderBungeeMain plugin = ZanderBungeeMain.getInstance();
@@ -32,5 +35,11 @@ public class PlayerOnDisconnect implements Listener {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        //
+        // Discord Chat Logs
+        //
+        TextChannel textChannel = jda.getTextChannelsByName(plugin.configurationManager.getConfig().getString("discord.chatlogchannel"), true).get(0);
+        textChannel.sendMessage("** :negative_squared_cross_mark: ** | " + player.getDisplayName() + " has left the Network.").queue();
     }
 }
