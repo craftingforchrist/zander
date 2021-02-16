@@ -19,9 +19,10 @@ public class PlayerChatEvent implements Listener {
     @EventHandler
     public void PlayerOnJoin(ChatEvent event) {
         ProxiedPlayer player = (ProxiedPlayer) event.getSender();
-
+        String Username = player.getDisplayName();
         String Server = player.getServer().getInfo().getName();
         String ChatMessage = event.getMessage();
+
         String[] words = ChatMessage.split(" ");
 
         //
@@ -29,7 +30,7 @@ public class PlayerChatEvent implements Listener {
         //
 
         TextChannel textChannel = jda.getTextChannelsByName(plugin.configurationManager.getConfig().getString("discord.chatlogchannel"), true).get(0);
-        if (!ChatMessage.startsWith("/")) textChannel.sendMessage("**" + Server + "** | " + player.getDisplayName() + " :: " + ChatMessage).queue();
+        if (!ChatMessage.startsWith("/")) textChannel.sendMessage("**" + Server + "** | " + Username + " :: " + ChatMessage).queue();
 
         //
         // Swear Filter
@@ -64,9 +65,7 @@ public class PlayerChatEvent implements Listener {
                     if (word.toLowerCase().contains(plugin.configurationManager.getConfig().getString("web.siteaddress"))) return;
                     event.setCancelled(true);
                     player.sendMessage(new TextComponent(ChatColor.RED + "You are not allowed to advertise on this Server."));
-
                     System.out.println(filterLink + " is a part of or is an advertising link.");
-
                     linksshouldBreak = true;
                     break;
                 }
