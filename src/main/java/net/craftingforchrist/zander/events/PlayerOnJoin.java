@@ -3,6 +3,7 @@ package net.craftingforchrist.zander.events;
 import net.craftingforchrist.zander.Variables;
 import net.craftingforchrist.zander.ZanderBungeeMain;
 import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.User;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -23,6 +24,11 @@ public class PlayerOnJoin implements Listener {
     @EventHandler
     public void PlayerOnJoin(PostLoginEvent event) {
         ProxiedPlayer player = event.getPlayer();
+        String UserUUID = player.getUniqueId().toString();
+        String Username = player.getDisplayName();
+        String UserAddress = player.getAddress().getAddress().getHostAddress();
+        String Server = player.getServer().getInfo().getName();
+
         plugin.getLogger().info(player.getDisplayName() + " has joined the server");
 
         //
@@ -34,14 +40,14 @@ public class PlayerOnJoin implements Listener {
             findstatement.setString(1, player.getUniqueId().toString());
             ResultSet results = findstatement.executeQuery();
             if (!results.next()) {
-                plugin.getProxy().getConsole().sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + " " + player.getDisplayName() + " is a new player, creating a player profile.")));
+                plugin.getProxy().getConsole().sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + " " + Username + " is a new player, creating a player profile.")));
                 PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO playerdata (uuid, username) VALUES (?, ?)");
 
-                insertstatement.setString(1, player.getUniqueId().toString());
-                insertstatement.setString(2, player.getDisplayName());
+                insertstatement.setString(1, UserUUID);
+                insertstatement.setString(2, Username);
 
                 insertstatement.executeUpdate();
-                plugin.getProxy().getConsole().sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + " Inserted information into " + player.getDisplayName() + "'s profile")));
+                plugin.getProxy().getConsole().sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + " Inserted information into " + Username + "'s profile")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -53,12 +59,12 @@ public class PlayerOnJoin implements Listener {
         //
         try {
             PreparedStatement findstatement = plugin.getConnection().prepareStatement("SELECT username FROM playerdata WHERE uuid=?;");
-            findstatement.setString(1, player.getUniqueId().toString());
+            findstatement.setString(1, UserUUID);
             ResultSet results = findstatement.executeQuery();
             if (results.next()) {
                 PreparedStatement updatestatement = plugin.getConnection().prepareStatement("UPDATE playerdata SET username=? WHERE uuid=?;");
-                updatestatement.setString(1, player.getDisplayName());
-                updatestatement.setString(2, player.getUniqueId().toString());
+                updatestatement.setString(1, Username);
+                updatestatement.setString(2, UserUUID);
                 updatestatement.executeUpdate();
             }
         } catch (SQLException e) {
@@ -71,11 +77,11 @@ public class PlayerOnJoin implements Listener {
         //
         try {
             PreparedStatement insertstatement = plugin.getConnection().prepareStatement("INSERT INTO gamesessions (playerid, ipaddress, server) VALUES ((select id from playerdata where uuid=?), ?, ?)");
-            insertstatement.setString(1, player.getUniqueId().toString());
-            insertstatement.setString(2, player.getAddress().getAddress().getHostAddress());
-            insertstatement.setString(3, "hub");
+            insertstatement.setString(1, UserUUID);
+            insertstatement.setString(2, UserAddress);
+            insertstatement.setString(3, Server);
             insertstatement.executeUpdate();
-            plugin.getProxy().getConsole().sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + " " + player.getDisplayName() + " has logged in, beginning their session.")));
+            plugin.getProxy().getConsole().sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Variables.developmentprefix + " " + Username + " has logged in, beginning their session.")));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -84,6 +90,6 @@ public class PlayerOnJoin implements Listener {
         // Discord Chat Logs
         //
         TextChannel textChannel = jda.getTextChannelsByName(plugin.configurationManager.getConfig().getString("discord.chatlogchannel"), true).get(0);
-        textChannel.sendMessage("** :ballot_box_with_check: ** | " + player.getDisplayName() + " has joined the Network.").queue();
+        textChannel.sendMessage("** :ballot_box_with_check: ** | " + Username + " has joined the Network.").queue();
     }
 }
