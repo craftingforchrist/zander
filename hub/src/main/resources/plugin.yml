@@ -1,4 +1,4 @@
-main: me.benrobson.zanderhub.ZanderHubMain
+main: net.craftingforchrist.zander.hub.ZanderHubMain
 name: zander-hub
 version: 1.0
 author: Ben Robson

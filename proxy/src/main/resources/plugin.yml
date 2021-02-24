@@ -1,5 +1,5 @@
-main: net.craftingforchrist.zander.ZanderProxyMain
-name: zander
+main: net.craftingforchrist.zander.proxy.ZanderProxyMain
+name: zander-proxy
 version: 2.0
 author: Ben Robson
 api-version: 1.16
