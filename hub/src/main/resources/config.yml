@@ -1,0 +1,9 @@
+uniqueplayers: 1
+velocitymultiplier: 3
+hub:
+  world: world
+  x: 0.5
+  y: 33
+  z: 0.5
+  yaw: -180.0
+  pitch: 0.0

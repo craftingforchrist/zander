@@ -1,0 +1,7 @@
+main: net.craftingforchrist.zander.ZanderProxyMain
+name: zander
+version: 2.0
+author: Ben Robson
+api-version: 1.16
+depend:
+  - AdvancedBan
