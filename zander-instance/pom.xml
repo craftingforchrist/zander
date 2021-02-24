@@ -20,6 +20,7 @@
     </repositories>
 
     <dependencies>
+        <!-- Paper -->
         <dependency>
             <groupId>com.destroystokyo.paper</groupId>
             <artifactId>paper-api</artifactId>
