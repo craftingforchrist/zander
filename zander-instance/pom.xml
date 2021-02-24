@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>instance</artifactId>
-    <name>instance</name>
+    <artifactId>zander-instance</artifactId>
+    <name>zander-instance</name>
 
     <repositories>
         <repository>

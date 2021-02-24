@@ -11,9 +11,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>hub</module>
-        <module>proxy</module>
-        <module>instance</module>
+        <module>zander-hub</module>
+        <module>zander-proxy</module>
+        <module>zander-instance</module>
     </modules>
 
     <properties>

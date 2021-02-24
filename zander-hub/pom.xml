@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>hub</artifactId>
-    <name>hub</name>
+    <artifactId>zander-hub</artifactId>
+    <name>zander-hub</name>
 
     <repositories>
         <!-- Paper -->
