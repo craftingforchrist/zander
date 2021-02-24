@@ -15,7 +15,7 @@ public class IntervalFormat {
             int minute = calendar.get(Calendar.MINUTE);
             int second = calendar.get(Calendar.SECOND);
 
-            return year + " years, " + month + " months, " + day + " days, " + hour + " hours, " + minute + " minutes and " + second + " seconds.";
+            return year + " years, " + month + " months, " + day + " days, " + hour + " hours, " + minute + " minutes and " + second + " seconds.\n" + "a long time (" + ( seconds / 1000 / 60 / 60 / 24 ) + " days ago)";
         } catch (Exception e) {
             // In case joda can't do it.
             return "a long time (" + ( seconds / 1000 / 60 / 60 / 24 ) + " days ago)";
