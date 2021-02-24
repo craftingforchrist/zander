@@ -1,56 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>zander</artifactId>
+        <groupId>net.craftingforchrist.zander</groupId>
+        <version>2.0</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.craftingforchrist.zander</groupId>
-    <artifactId>zander</artifactId>
-    <name>zander</name>
-    <version>2.0</version>
-    <packaging>pom</packaging>
+    <artifactId>zander-proxy</artifactId>
+    <name>zander-proxy</name>
 
-    <modules>
-        <module>zander-hub</module>
-        <module>zander-proxy</module>
-        <module>zander-instance</module>
-    </modules>
+    <repositories>
+        <!-- BungeeCord -->
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
 
-    <build>
-        <defaultGoal>clean install</defaultGoal>
+        <repository>
+            <id>jcenter</id>
+            <name>jcenter-bintray</name>
+            <url>https://jcenter.bintray.com</url>
+        </repository>
 
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
-                <configuration>
-                    <!-- Place configurations here -->
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-        </plugins>
+        <!-- NuVotifer -->
+        <repository>
+            <id>bintray-repo</id>
+            <url>https://dl.bintray.com/ichbinjoe/public/</url>
+        </repository>
 
         <!-- PaperMC/WaterFall -->
         <repository>
@@ -115,6 +99,15 @@
 <!--            <groupId>me.leoko.advancedban</groupId>-->
 <!--            <artifactId>AdvancedBan</artifactId>-->
 <!--            <version>2.1.6-SNAPSHOT</version>-->
+<!--            <scope>provided</scope>-->
 <!--        </dependency>-->
+
+        <!-- SuperVanish -->
+        <dependency>
+            <groupId>com.github.LeonMangler</groupId>
+            <artifactId>SuperVanish</artifactId>
+            <version>6.2.0</version>
+        </dependency>
+    </dependencies>
 
 </project>

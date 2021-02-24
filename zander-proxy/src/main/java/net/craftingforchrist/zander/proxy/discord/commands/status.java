@@ -1,0 +1,35 @@
+package net.craftingforchrist.zander.proxy.discord.commands;
+
+import net.craftingforchrist.zander.proxy.Variables;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
+
+import java.awt.*;
+
+public class status extends ListenerAdapter {
+    public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
+        String[] args = event.getMessage().getContentRaw().split("\\s+");
+
+        if (args[0].equalsIgnoreCase(Variables.discordprefix + "status")) {
+            EmbedBuilder embed = new EmbedBuilder();
+            embed.setTitle("Network Status");
+            embed.setColor(Color.ORANGE);
+
+            ProxyServer.getInstance().getServers().forEach((name, serverInfo) -> {
+                String servername = serverInfo.getName();
+                servername = servername.substring(0,1).toUpperCase() + servername.substring(1).toLowerCase();
+
+                if (args.length != 1 && args[1].equalsIgnoreCase("--displaynames")) {
+                    embed.addField(servername, "Online: " + serverInfo.getPlayers().size() + " " + serverInfo.getPlayers(),true);
+                } else {
+                    embed.addField(servername, "Online: " + serverInfo.getPlayers().size(),true);
+                }
+            });
+
+            event.getChannel().sendMessage(embed.build()).queue();
+        }
+    }
+}

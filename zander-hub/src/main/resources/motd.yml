@@ -1,0 +1,14 @@
+motdTopLine: "&e&l[CFC]&r&6 Crafting For Christ"
+motdBottomLineMessages:
+  - "&eA Christian Minecraft Server"
+  - "&eI feel God in this Minecraft Server tonight."
+motd:
+  - "&e Welcome to the Crafting For Christ Network!"
+newplayermotd:
+  - "&e&l ========== Crafting For Christ ========== &r"
+  - "&9&l Website:&r http://craftingforchrist.net"
+  - "&9&l Forums:&r https://forums.craftingforchrist.net"
+  - "&9&l Discord:&r http://craftingforchrist.net/discord"
+  -  " "
+  - "By joining the Crafting For Christ Network you agree to our Rules, TOS, and Privacy Policy."
+  - "Make sure you read the rules. &cUse /rules to read the rules.&r"
