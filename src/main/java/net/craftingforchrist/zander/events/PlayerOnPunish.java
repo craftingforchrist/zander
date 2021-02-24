@@ -24,7 +24,7 @@
 //        int id = event.getPunishment().getId();
 //
 //        EmbedBuilder embed = new EmbedBuilder();
-//        embed.setTitle("Punishment Logged [" + id + "]");
+//        embed.setTitle("Punishment Logged [#" + id + "]");
 //        embed.setColor(Color.ORANGE);
 //        embed.addField("Punished User", punisheduser, true);
 //        embed.addField("Punished By", punisher, true);

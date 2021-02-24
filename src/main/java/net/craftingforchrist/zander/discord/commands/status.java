@@ -23,7 +23,7 @@ public class status extends ListenerAdapter {
                 servername = servername.substring(0,1).toUpperCase() + servername.substring(1).toLowerCase();
 
                 if (args.length != 1 && args[1].equalsIgnoreCase("--displaynames")) {
-                    embed.addField(servername, "Online: " + serverInfo.getPlayers().size() + " " +  serverInfo.getPlayers(),true);
+                    embed.addField(servername, "Online: " + serverInfo.getPlayers().size() + " " + serverInfo.getPlayers(),true);
                 } else {
                     embed.addField(servername, "Online: " + serverInfo.getPlayers().size(),true);
                 }
