@@ -1,0 +1,22 @@
+version: 2
+updates:
+- package-ecosystem: maven
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "19:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: com.github.LeonMangler:SuperVanish
+    versions:
+    - 6.2.1
+    - 6.2.4
+  - dependency-name: net.md-5:bungeecord-api
+    versions:
+    - 1.16-R0.4
+  - dependency-name: net.dv8tion:JDA
+    versions:
+    - 4.2.0_227
+  - dependency-name: joda-time:joda-time
+    versions:
+    - 2.10.9
